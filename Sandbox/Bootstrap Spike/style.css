@@ -1,0 +1,8 @@
+/* body::-webkit-scrollbar {
+  display: none;
+} */
+
+.container {
+  display: inline-block;
+  margin: 40px auto 10px;
+}
