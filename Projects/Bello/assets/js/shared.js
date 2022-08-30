@@ -1,3 +1,7 @@
+"use strict";
+// Keys
+const PRODUCT_BACKLOG_KEY = "currentProductBacklogData"
+
 // Class to hold all the product backlog items
 class Inventory {
     constructor () {
@@ -8,6 +12,10 @@ class Inventory {
     
     add_item(item) {
         this._product_backlog.push(item);
+    }
+
+    fromData(data) {
+        this._product_backlog = data._product_backlog;
     }
 }
 
@@ -42,8 +50,17 @@ class PBI {
     set priority(newPriority) { this._priority = newPriority; }
     set assignee(newAssignee) { this._assignee = newAssignee; }
 
+    fromData(data) {
+        this._name = data._name;
+        this._description = data._description;
+        this._type = data._type;
+        this._tag = tag;
+        this._numStoryPoints = data._numStoryPoints;
+        this._status = data._status;
+        this._priority = data._priority;
+        this._assignee = data._assignee;
+    }
 }
-
 
 /**
  * checkLSData function
