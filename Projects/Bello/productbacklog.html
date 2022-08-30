@@ -7,6 +7,9 @@
   <link rel="icon" type="image/x-icon" href="/Projects/Bello/assets/img/favicon.ico">
   <link rel="stylesheet" href="/Projects/Bello/assets/css/style.css">
   <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
   <script> 
     $(function(){
       $("#header").load("/Projects/Bello/assets/components/header.html"); 
@@ -20,7 +23,7 @@
   <div class="container">
     <h1>Product Backlog</h1>
     <div>
-      <p>Text</p>
+      <p>Click on a row to show more details</p>
     </div>
 
     <table class="table table-hover">
@@ -34,7 +37,7 @@
         </tr>
       </thead>
       <tbody class="table-group-divider">
-        <tr>
+        <tr data-bs-toggle="modal" data-bs-target="#addPBIPopUp">
           <th scope="row">1</th>
           <td>Adding PBIs</td>
           <td>UI</td>
@@ -55,12 +58,6 @@
           <td>Low</td>
           <td>13</td>
         </tr>
-        <!-- <tr>
-          <th scope="row">3</th>
-          <td colspan="2">Back End</td>
-          <td>Low</td>
-          <td>13</td>
-        </tr> -->
       </tbody>
     </table>
 
