@@ -44,6 +44,13 @@ class PBI {
 
 }
 
+
+/**
+ * checkLSData function
+ * Used to check if any data in LS exists at a specific key
+ * @param {string} key LS Key to be used
+ * @returns true or false representing if data exists at key in LS
+ */
 function checkLSData(key)
 {
     if (localStorage.getItem(key) != null)
