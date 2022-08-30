@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bello</title>
+  <title>Bello - Product Backlog</title>
   <link rel="icon" type="image/x-icon" href="/Projects/Bello/assets/img/favicon.ico">
   <link rel="stylesheet" href="/Projects/Bello/assets/css/style.css">
   <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
@@ -22,58 +22,113 @@
       <p>Text</p>
     </div>
 
-    <table class="table">
+    <table class="table table-hover">
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
+          <th scope="col">Task</th>
+          <th scope="col">Tag</th>
+          <th scope="col">Priority</th>
+          <th scope="col">Story Points</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="table-group-divider">
         <tr>
           <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
+          <td>Adding PBIs</td>
+          <td>UI</td>
+          <td>High</td>
+          <td>5</td>
         </tr>
         <tr>
           <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
+          <td>Basic PBI Information</td>
+          <td>Code Related</td>
+          <td>Medium</td>
+          <td>8</td>
         </tr>
         <tr>
           <th scope="row">3</th>
-          <td colspan="2">Larry the Bird</td>
-          <td>@twitter</td>
+          <td>Obama</td>
+          <td>Back End</td>
+          <td>Low</td>
+          <td>13</td>
         </tr>
+        <!-- <tr>
+          <th scope="row">3</th>
+          <td colspan="2">Back End</td>
+          <td>Low</td>
+          <td>13</td>
+        </tr> -->
       </tbody>
     </table>
 
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      Launch demo modal
-    </button>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add product backlog item </button>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Add new product backlog item</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            This is a test modal pop-up box.
+            <div><p>This is a test modal pop-up box.</p></div>
             <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label">Email address</label>
-              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+              <label for="exampleFormControlInput1" class="form-label">Task Name</label>
+              <input class="form-control" id="exampleFormControlInput1" placeholder="name of the task">
             </div>
             <div class="mb-3">
-              <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+              <label for="exampleFormControlTextarea1" class="form-label">Task Description</label>
               <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="exampleFormControlInput2" class="form-label">Assignee</label>
+              <input class="form-control" id="exampleFormControlInput2">
+            </div>
+            <div class="mb-3">
+              <label for="selectPBITaskType" class="form-label">Task Type</label>
+              <select class="form-select" id="selectPBITaskType">
+                <option selected>Select</option>
+                <option value="1">Story</option>
+                <option value="2">Bug</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="selectPBITaskTag" class="form-label">Task Type</label>
+              <select class="form-select" id="selectPBITaskTag">
+                <option selected>Select</option>
+                <option value="1">All</option>
+                <option value="2">UI</option>
+                <option value="3">Core</option>
+                <option value="4">Testing</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="selectPBITaskPriority" class="form-label">Task Type</label>
+              <select class="form-select" id="selectPBITaskPriority">
+                <option selected>Select</option>
+                <option value="1">High</option>
+                <option value="2">Medium</option>
+                <option value="3">Low</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="selectPBITaskStoryPoints" class="form-label">Story Points</label>
+              <input type="number" class="form-control" id="selectPBITaskStoryPoints">
+            </div>
+            <div class="mb-3">
+              <label for="selectPBITaskStatus" class="form-label">Task Status</label>
+              <select class="form-select" id="selectPBITaskStatus">
+                <option selected>Select</option>
+                <option value="1">not started</option>
+                <option value="2">in progress</option>
+                <option value="3">developing</option>
+                <option value="4">testing</option>
+                <option value="5">completed</option>
+              </select>
             </div>
           </div>
           <div class="modal-footer">
