@@ -1,10 +1,11 @@
 // Class to hold all the product backlog items
-class product_backlog {
+class Inventory {
     constructor () {
         this._product_backlog = [];
     }
     // Accessors
     get get_product_backlog() { return this._product_backlog; }
+    
     add_item(item) {
         this._product_backlog.push(item);
     }
