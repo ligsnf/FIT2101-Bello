@@ -1,0 +1,1 @@
+// Functions and classes which are used by all files
