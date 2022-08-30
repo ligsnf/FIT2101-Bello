@@ -18,7 +18,7 @@ headerTemplate.innerHTML = `
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
-      <img src="./bello-logo-text.png" alt="" width="98.4" height="23.75">
+      <img src="./assets/img/bello-logo-text.png" alt="" width="98.4" height="23.75">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
