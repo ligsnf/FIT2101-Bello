@@ -13,7 +13,6 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <div><p>This is a test modal pop-up box.</p></div>
             <div class="mb-3">
               <label for="exampleFormControlInput1" class="form-label">Task Name</label>
               <input class="form-control" id="exampleFormControlInput1" placeholder="name of the task">
@@ -23,50 +22,62 @@
               <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
             <div class="mb-3">
-              <label for="exampleFormControlInput2" class="form-label">Assignee</label>
-              <input class="form-control" id="exampleFormControlInput2">
+              <div class="row">
+                <div class="col">
+                  <label for="exampleFormControlInput2" class="form-label">Assignee</label>
+                  <input class="form-control" id="exampleFormControlInput2">
+                </div>
+                <div class="col">
+                  <label for="selectPBITaskStoryPoints" class="form-label">Story Points</label>
+                  <input type="number" class="form-control" id="selectPBITaskStoryPoints">
+                </div>
+              </div>
             </div>
             <div class="mb-3">
-              <label for="selectPBITaskType" class="form-label">Task Type</label>
-              <select class="form-select" id="selectPBITaskType">
-                <option selected>Select</option>
-                <option value="1">Story</option>
-                <option value="2">Bug</option>
-              </select>
+              <div class="row">
+                <div class="col">
+                  <label for="selectPBITaskType" class="form-label">Task Type</label>
+                  <select class="form-select" id="selectPBITaskType">
+                    <option selected></option>
+                    <option value="1">Story</option>
+                    <option value="2">Bug</option>
+                  </select>
+                </div>
+                <div class="col">
+                  <label for="selectPBITaskTag" class="form-label">Task Tag</label>
+                  <select class="form-select" id="selectPBITaskTag">
+                    <option selected></option>
+                    <option value="1">All</option>
+                    <option value="2">UI</option>
+                    <option value="3">Core</option>
+                    <option value="4">Testing</option>
+                  </select>
+                </div>
+              </div>
             </div>
             <div class="mb-3">
-              <label for="selectPBITaskTag" class="form-label">Task Tag</label>
-              <select class="form-select" id="selectPBITaskTag">
-                <option selected>Select</option>
-                <option value="1">All</option>
-                <option value="2">UI</option>
-                <option value="3">Core</option>
-                <option value="4">Testing</option>
-              </select>
-            </div>
-            <div class="mb-3">
-              <label for="selectPBITaskPriority" class="form-label">Task Priority</label>
-              <select class="form-select" id="selectPBITaskPriority">
-                <option selected>Select</option>
-                <option value="1">High</option>
-                <option value="2">Medium</option>
-                <option value="3">Low</option>
-              </select>
-            </div>
-            <div class="mb-3">
-              <label for="selectPBITaskStoryPoints" class="form-label">Story Points</label>
-              <input type="number" class="form-control" id="selectPBITaskStoryPoints">
-            </div>
-            <div class="mb-3">
-              <label for="selectPBITaskStatus" class="form-label">Task Status</label>
-              <select class="form-select" id="selectPBITaskStatus">
-                <option selected>Select</option>
-                <option value="1">not started</option>
-                <option value="2">in progress</option>
-                <option value="3">developing</option>
-                <option value="4">testing</option>
-                <option value="5">completed</option>
-              </select>
+              <div class="row">
+                <div class="col">
+                  <label for="selectPBITaskPriority" class="form-label">Task Priority</label>
+                  <select class="form-select" id="selectPBITaskPriority">
+                    <option selected></option>
+                    <option value="1">High</option>
+                    <option value="2">Medium</option>
+                    <option value="3">Low</option>
+                  </select>
+                </div>
+                <div class="col">
+                  <label for="selectPBITaskStatus" class="form-label">Task Status</label>
+                  <select class="form-select" id="selectPBITaskStatus">
+                    <option selected></option>
+                    <option value="1">not started</option>
+                    <option value="2">in progress</option>
+                    <option value="3">developing</option>
+                    <option value="4">testing</option>
+                    <option value="5">completed</option>
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
           <div class="modal-footer">
