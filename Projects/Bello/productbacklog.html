@@ -11,6 +11,7 @@
     $(function(){
       $("#header").load("/Projects/Bello/assets/components/header.html"); 
       $("#footer").load("/Projects/Bello/assets/components/footer.html"); 
+      $("#PBIPopUp").load("/Projects/Bello/assets/components/addPBIPopUp.html"); 
     });
   </script> 
 </head>
@@ -64,80 +65,9 @@
     </table>
 
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add product backlog item </button>
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Add new product backlog item</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div><p>This is a test modal pop-up box.</p></div>
-            <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label">Task Name</label>
-              <input class="form-control" id="exampleFormControlInput1" placeholder="name of the task">
-            </div>
-            <div class="mb-3">
-              <label for="exampleFormControlTextarea1" class="form-label">Task Description</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            </div>
-            <div class="mb-3">
-              <label for="exampleFormControlInput2" class="form-label">Assignee</label>
-              <input class="form-control" id="exampleFormControlInput2">
-            </div>
-            <div class="mb-3">
-              <label for="selectPBITaskType" class="form-label">Task Type</label>
-              <select class="form-select" id="selectPBITaskType">
-                <option selected>Select</option>
-                <option value="1">Story</option>
-                <option value="2">Bug</option>
-              </select>
-            </div>
-            <div class="mb-3">
-              <label for="selectPBITaskTag" class="form-label">Task Type</label>
-              <select class="form-select" id="selectPBITaskTag">
-                <option selected>Select</option>
-                <option value="1">All</option>
-                <option value="2">UI</option>
-                <option value="3">Core</option>
-                <option value="4">Testing</option>
-              </select>
-            </div>
-            <div class="mb-3">
-              <label for="selectPBITaskPriority" class="form-label">Task Type</label>
-              <select class="form-select" id="selectPBITaskPriority">
-                <option selected>Select</option>
-                <option value="1">High</option>
-                <option value="2">Medium</option>
-                <option value="3">Low</option>
-              </select>
-            </div>
-            <div class="mb-3">
-              <label for="selectPBITaskStoryPoints" class="form-label">Story Points</label>
-              <input type="number" class="form-control" id="selectPBITaskStoryPoints">
-            </div>
-            <div class="mb-3">
-              <label for="selectPBITaskStatus" class="form-label">Task Status</label>
-              <select class="form-select" id="selectPBITaskStatus">
-                <option selected>Select</option>
-                <option value="1">not started</option>
-                <option value="2">in progress</option>
-                <option value="3">developing</option>
-                <option value="4">testing</option>
-                <option value="5">completed</option>
-              </select>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPBIPopUp"> Add product backlog item </button>
+    <div id="PBIPopUp"></div>
+    
   </div>
   <div id="footer"></div>
 </body>
