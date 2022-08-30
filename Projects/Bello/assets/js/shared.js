@@ -5,17 +5,17 @@ const PRODUCT_BACKLOG_KEY = "currentProductBacklogData"
 // Class to hold all the product backlog items
 class Inventory {
     constructor () {
-        this._product_backlog = [];
+        this._productBacklog = [];
     }
     // Accessors
-    get get_product_backlog() { return this._product_backlog; }
+    get productBacklog() { return this._productBacklog; }
     
-    add_item(item) {
-        this._product_backlog.push(item);
+    addItem(item) {
+        this._productBacklog.push(item);
     }
 
     fromData(data) {
-        this._product_backlog = data._product_backlog;
+        this._productBacklog = data._productBacklog;
     }
 }
 
@@ -108,3 +108,6 @@ function updateLSData(key, data)
     let json = JSON.stringify(data);
     localStorage.setItem(key, json);
 }
+
+// Global inventory variable
+let inventory = new Inventory();
