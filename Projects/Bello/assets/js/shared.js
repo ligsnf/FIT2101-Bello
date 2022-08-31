@@ -111,3 +111,11 @@ function updateLSData(key, data)
 
 // Global inventory variable
 let inventory = new Inventory();
+// Check if data available in LS before continuing
+if (checkLSData(PRODUCT_BACKLOG_KEY))
+{
+    // If data exists, retrieve it
+    let data = retrieveLSData(PRODUCT_BACKLOG_KEY);
+    // Restore data into inventory
+    inventory.fromData(data);
+}
