@@ -43,17 +43,87 @@ function addPBI() {
     $('#addPBIPopUp').modal('toggle');
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function deletePBI(TaskName){
     // Prase string in localStorage to JSON
     var PBIs = JSON.parse(localStorage.getItem(PRODUCT_BACKLOG_KEY));
 
     //Remove the selected item
-    for (var i = 0; i < PBIs.length; i++){
-        var PBI = JSON.parse(PBIs[i]);
-        if (PBI._name == TaskName) {
+    //for (var i = 0; i < PBIs.length; i++){
+    //    var PBI = JSON.parse(PBIs[i]);
+    //    if (PBI._name == TaskName) {
             PBIs.splice(i,1);
-        }
-    }
+    //    }
+    //}
 
     // JSON to String
     PBIs = JSON.stringify(PBIs);
