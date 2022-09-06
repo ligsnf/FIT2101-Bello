@@ -50,7 +50,7 @@ function deletePBI(TaskName){
     //Remove the selected item
     for (var i = 0; i < PBIs.length; i++){
         var PBI = JSON.parse(PBIs[i]);
-        if (PBI.name == TaskName) {
+        if (PBI._name == TaskName) {
             PBIs.splice(i,1);
         }
     }
@@ -68,7 +68,7 @@ function sortPBIbyPointHTL(){
 
     // sort by story point from high to low
     PBIs.sort(function(a, b){
-        return parseFloat(a.storyPoints) - parseFloat(b.storyPoints);
+        return parseFloat(b._numStoryPoints) - parseFloat(a._numStoryPoints);
     });
 
     // JSON to String
@@ -84,7 +84,7 @@ function sortPBIbyPointLTH(){
 
     // sort by story point from high to low
     PBIs.sort(function(a, b){
-        return parseFloat(a.storyPoints) - parseFloat(b.storyPoints);
+        return parseFloat(a._numStoryPoints) - parseFloat(b._numStoryPoints);
     });
     
     // JSON to String
@@ -100,7 +100,7 @@ function sortPBIbyTag(tag){
 
     // sort by selected tag
     PBIs.sort(function(a,b){
-        return a == tag ? -1 : b == tag ? 1 : 0;
+        return a._tag == tag ? -1 : b._tag == tag ? 1 : 0;
     });
 
     // JSON to String
