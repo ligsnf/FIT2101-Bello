@@ -14,38 +14,38 @@
           </div>
           <div class="modal-body">
             <div class="mb-3">
-              <label for="PBITaskName" class="form-label">Task Name</label>
-              <input class="form-control" id="PBITaskName" placeholder="name of the task">
+              <label for="editPBIName" class="form-label">Task Name</label>
+              <input class="form-control" id="editPBIName">
             </div>
             <div class="mb-3">
-              <label for="PBITaskDescription" class="form-label">Task Description</label>
-              <textarea class="form-control" id="PBITaskDescription" rows="3"></textarea>
+              <label for="editPBIDescription" class="form-label">Task Description</label>
+              <textarea class="form-control" id="editPBIDescription" rows="3"></textarea>
             </div>
             <div class="mb-3">
               <div class="row">
                 <div class="col">
-                  <label for="PBITaskAssignee" class="form-label">Assignee</label>
-                  <input class="form-control" id="PBITaskAssignee">
+                  <label for="editAssignee" class="form-label">Assignee</label>
+                  <input class="form-control" id="editPBIAssignee">
                 </div>
                 <div class="col">
-                  <label for="PBITaskStoryPoint_" class="form-label">Story Points</label>
-                  <input type="number" class="form-control" id="PBITaskStoryPoints">
+                  <label for="editPBIStoryPoints" class="form-label">Story Points</label>
+                  <input type="number" class="form-control" id="editPBIStoryPoints">
                 </div>
               </div>
             </div>
             <div class="mb-3">
               <div class="row">
                 <div class="col">
-                  <label for="selectPBITaskType_" class="form-label">Task Type</label>
-                  <select class="form-select" id="selectPBITaskType_">
+                  <label for="editPBIType" class="form-label">Task Type</label>
+                  <select class="form-select" id="editPBIType">
                     <option selected></option>
                     <option value="Story">Story</option>
                     <option value="Bug">Bug</option>
                   </select>
                 </div>
                 <div class="col">
-                  <label for="selectPBITaskTag_" class="form-label">Task Tag</label>
-                  <select class="form-select" id="selectPBITaskTag_">
+                  <label for="editPBITag" class="form-label">Task Tag</label>
+                  <select class="form-select" id="editPBITag">
                     <option selected></option>
                     <option value="UI">UI</option>
                     <option value="Code-related">Code-related</option>
@@ -59,8 +59,8 @@
             <div class="mb-3">
               <div class="row">
                 <div class="col">
-                  <label for="selectPBITaskPriority_" class="form-label">Task Priority</label>
-                  <select class="form-select" id="selectPBITaskPriority_">
+                  <label for="editPBIPriority" class="form-label">Task Priority</label>
+                  <select class="form-select" id="editPBIPriority">
                     <option selected></option>
                     <option value="High">High</option>
                     <option value="Medium">Medium</option>
@@ -68,8 +68,8 @@
                   </select>
                 </div>
                 <div class="col">
-                  <label for="selectPBITaskStatus_" class="form-label">Task Status</label>
-                  <select class="form-select" id="selectPBITaskStatus_">
+                  <label for="editPBIStatus" class="form-label">Task Status</label>
+                  <select class="form-select" id="editPBIStatus">
                     <option selected></option>
                     <option value="Not started">Not started</option>
                     <option value="In progress">In progress</option>
@@ -84,7 +84,7 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Delete</button>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-primary" onclick="submit()" data-bs-dismiss="modal">Save changes</button>
           </div>
         </div>
       </div>

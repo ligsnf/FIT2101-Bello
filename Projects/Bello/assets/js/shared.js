@@ -1,6 +1,8 @@
 "use strict";
 // Keys
 const PRODUCT_BACKLOG_KEY = "currentProductBacklogData"
+const PBI_KEY = "currentPbiIndex";
+
 
 // Class to hold all the product backlog items
 class Inventory {
