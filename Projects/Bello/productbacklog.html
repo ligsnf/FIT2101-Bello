@@ -15,6 +15,7 @@
       $("#header").load("assets/components/header.html"); 
       $("#footer").load("assets/components/footer.html"); 
       $("#addPBI").load("assets/components/addPBIPopUp.html"); 
+      $("#viewPBI").load("assets/components/viewPBIPopUp.html"); 
       $("#editPBI").load("assets/components/editPBIPopUp.html"); 
     });
   </script> 
@@ -38,21 +39,21 @@
           </tr>
         </thead>
         <tbody class="table-group-divider">
-          <tr data-bs-toggle="modal" data-bs-target="#editPBIPopUp">
+          <tr data-bs-toggle="modal" data-bs-target="#viewPBIPopUp">
             <th scope="row">1</th>
             <td>Adding PBIs</td>
             <td>UI</td>
             <td>High</td>
             <td>5</td>
           </tr>
-          <tr data-bs-toggle="modal" data-bs-target="#editPBIPopUp">
+          <tr data-bs-toggle="modal" data-bs-target="#viewPBIPopUp">
             <th scope="row">2</th>
             <td>Basic PBI Information</td>
             <td>Code Related</td>
             <td>Medium</td>
             <td>8</td>
           </tr>
-          <tr data-bs-toggle="modal" data-bs-target="#editPBIPopUp">
+          <tr data-bs-toggle="modal" data-bs-target="#viewPBIPopUp">
             <th scope="row">3</th>
             <td>Obama</td>
             <td>Back End</td>
@@ -62,11 +63,12 @@
         </tbody>
       </table>
     </div>
-    <div id="editPBI"></div>
+    <div id="viewPBI"></div>
 
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPBIPopUp"> Add product backlog item </button>
     <div id="addPBI"></div>
+    <div id="editPBI"></div>
     
   </div>
   <div id="footer"></div>
