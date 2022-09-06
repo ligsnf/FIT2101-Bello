@@ -11,11 +11,18 @@ class Inventory {
     get productBacklog() { return this._productBacklog; }
     
     addItem(item) {
-        this._productBacklog.push(item);
+        if (item instanceof PBI){
+            this._productBacklog.push(item);
+        }
     }
 
     fromData(data) {
-        this._productBacklog = data._productBacklog;
+        this._productBacklog = [];
+        for (let i = 0; i < data._productBacklog.length;i++){
+            let tempPBI = new PBI();
+            tempPBI.fromData(data._productBacklog[i]);
+            this._productBacklog.push(tempPBI);
+        }
     }
 }
 
@@ -54,7 +61,7 @@ class PBI {
         this._name = data._name;
         this._description = data._description;
         this._type = data._type;
-        this._tag = tag;
+        this._tag = data._tag;
         this._numStoryPoints = data._numStoryPoints;
         this._status = data._status;
         this._priority = data._priority;

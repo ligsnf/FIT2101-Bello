@@ -39,6 +39,9 @@ function addPBI() {
     // Save data
     updateLSData(PRODUCT_BACKLOG_KEY, inventory)
 
+    // Update display
+    displayProductBacklog(inventory);
+
     // Close modal popup
     $('#addPBIPopUp').modal('toggle');
 }
