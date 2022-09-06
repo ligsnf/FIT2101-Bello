@@ -106,3 +106,70 @@ function displayProductBacklog(inventory){
 
 // Displays product backlog when the page loads
 displayProductBacklog(inventory);
+
+function deletePBI(i){
+    // Prase string in localStorage to JSON
+    var PBIs = JSON.parse(localStorage.getItem(PRODUCT_BACKLOG_KEY));
+
+    //Remove the selected item
+    //for (var i = 0; i < PBIs.length; i++){
+    //    var PBI = JSON.parse(PBIs[i]);
+    //    if (PBI._name == TaskName) {
+            PBIs.splice(i,1);
+    //    }
+    //}
+
+    // JSON to String
+    PBIs = JSON.stringify(PBIs);
+
+    // reset in localstorage
+    localStorage.setItem(PRODUCT_BACKLOG_KEY,PBIs);
+}
+
+function sortPBIbyPointHTL(){
+    // Prase string in localStorage to JSON
+    var PBIs = JSON.parse(localStorage.getItem(PRODUCT_BACKLOG_KEY));
+
+    // sort by story point from high to low
+    PBIs.sort(function(a, b){
+        return parseFloat(b._numStoryPoints) - parseFloat(a._numStoryPoints);
+    });
+
+    // JSON to String
+    PBIs = JSON.stringify(PBIs);
+
+    // reset in localstorage
+    localStorage.setItem(PRODUCT_BACKLOG_KEY,PBIs);
+}
+
+function sortPBIbyPointLTH(){
+    // Prase string in localStorage to JSON
+    var PBIs = JSON.parse(localStorage.getItem(PRODUCT_BACKLOG_KEY));
+
+    // sort by story point from high to low
+    PBIs.sort(function(a, b){
+        return parseFloat(a._numStoryPoints) - parseFloat(b._numStoryPoints);
+    });
+    
+    // JSON to String
+    PBIs = JSON.stringify(PBIs);
+
+    // reset in localstorage
+    localStorage.setItem(PRODUCT_BACKLOG_KEY,PBIs);
+}
+
+function sortPBIbyTag(tag){
+    // Prase string in localStorage to JSON
+    var PBIs = JSON.parse(localStorage.getItem(PRODUCT_BACKLOG_KEY));
+
+    // sort by selected tag
+    PBIs.sort(function(a,b){
+        return a._tag == tag ? -1 : b._tag == tag ? 1 : 0;
+    });
+
+    // JSON to String
+    PBIs = JSON.stringify(PBIs);
+
+    // reset in localstorage
+    localStorage.setItem(PRODUCT_BACKLOG_KEY,PBIs);
+}
