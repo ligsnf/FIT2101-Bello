@@ -61,7 +61,7 @@ class PBI {
         this._name = data._name;
         this._description = data._description;
         this._type = data._type;
-        this._tag = tag;
+        this._tag = data._tag;
         this._numStoryPoints = data._numStoryPoints;
         this._status = data._status;
         this._priority = data._priority;
