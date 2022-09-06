@@ -46,6 +46,35 @@ function addPBI() {
     $('#addPBIPopUp').modal('toggle');
 }
 
+function edit(pbi)
+{
+    // store data in LS
+    localStorage.setItem(PBI_KEY,pbi);
+
+    // Global code to retrieve data to be edited
+    let pbiIndex = localStorage.getItem(PBI_KEY);
+
+    // define reference variables
+    let editPBINameRef = document.getElementById("editPBIName");
+    let editPBIDescriptionRef = document.getElementById("editPBIDescription");
+    let editPBIAssigneeRef = document.getElementById("editPBIAssignee");
+    let editPBIStoryPointsRef = document.getElementById("editPBIStoryPoints");
+    let editPBITypeRef = document.getElementById("editPBIType");
+    let editPBITagRef = document.getElementById("editeditPBITag");
+    let editPBIPriorityRef = document.getElementById("editPBIPriority");
+    let editPBIStatusRef = document.getElementById("editPBIStatus");
+
+    //set the reference variables as the information as the item information that is already stored in the object
+    editPBINameRef.value = inventory.productBacklog[pbiIndex].name;
+    editPBIDescriptionRef.value = inventory.productBacklog[pbiIndex].description;
+    editPBIAssigneeRef.value = inventory.productBacklog[pbiIndex].assignee;
+    editPBIStoryPointsRef.value = inventory.productBacklog[pbiIndex].numStoryPoints;
+    editPBITypeRef.value = inventory.productBacklog[pbiIndex].type;
+    // editPBITagRef.value = inventory.productBacklog[pbiIndex].tag;
+    editPBIPriorityRef.value = inventory.productBacklog[pbiIndex].priority;
+    editPBIStatusRef.value = inventory.productBacklog[pbiIndex].status;
+}
+
 function displayProductBacklog(inventory){
     let inventoryDisplayRef = document.getElementById("productBacklogTable");
     let output = ''
@@ -62,7 +91,7 @@ function displayProductBacklog(inventory){
     <tbody class="table-group-divider">`
     for (let i=0; i < inventory.productBacklog.length; i++)
     {
-        output += `<tr id="${i}" data-bs-toggle="modal" data-bs-target="#editPBIPopUp">
+        output += `<tr id="${i}" data-bs-toggle="modal" data-bs-target="#editPBIPopUp" onclick="edit(${i})">
         <th scope="row">${i+1}</th>
         <td>${inventory.productBacklog[i].name}</td>
         <td>${inventory.productBacklog[i].tag}</td>
