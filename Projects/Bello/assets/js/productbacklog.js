@@ -39,6 +39,41 @@ function addPBI() {
     // Save data
     updateLSData(PRODUCT_BACKLOG_KEY, inventory)
 
+    // Update display
+    displayProductBacklog(inventory);
+
     // Close modal popup
     $('#addPBIPopUp').modal('toggle');
 }
+
+function displayProductBacklog(inventory){
+    let inventoryDisplayRef = document.getElementById("productBacklogTable");
+    let output = ''
+    output += `<table class="table table-hover">
+    <thead>
+        <tr>
+        <th scope="col">#</th>
+        <th scope="col">Task</th>
+        <th scope="col">Tag</th>
+        <th scope="col">Priority</th>
+        <th scope="col">Story Points</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">`
+    for (let i=0; i < inventory.productBacklog.length; i++)
+    {
+        output += `<tr id="${i}" data-bs-toggle="modal" data-bs-target="#editPBIPopUp">
+        <th scope="row">${i+1}</th>
+        <td>${inventory.productBacklog[i].name}</td>
+        <td>${inventory.productBacklog[i].tag}</td>
+        <td>${inventory.productBacklog[i].priority}</td>
+        <td>${inventory.productBacklog[i].numStoryPoints}</td>
+        </tr>`
+    }
+    output += `</tbody>
+    </table>`
+    inventoryDisplayRef.innerHTML = output
+}
+
+// Displays product backlog when the page loads
+displayProductBacklog(inventory);
