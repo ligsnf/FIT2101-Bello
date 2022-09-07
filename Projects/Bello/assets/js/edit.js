@@ -10,7 +10,7 @@ function submit()
     let editPBIAssigneeRef = document.getElementById("editPBIAssignee");
     let editPBIStoryPointsRef = document.getElementById("editPBIStoryPoints");
     let editPBITypeRef = document.getElementById("editPBIType");
-    let editPBITagRef = document.getElementById("editeditPBITag");
+    let editPBITagRef = document.getElementById("editPBITag");
     let editPBIPriorityRef = document.getElementById("editPBIPriority");
     let editPBIStatusRef = document.getElementById("editPBIStatus");
 
@@ -19,7 +19,7 @@ function submit()
     inventory.productBacklog[pbiIndex].assignee = editPBIAssigneeRef.value;
     inventory.productBacklog[pbiIndex].numStoryPoints = editPBIStoryPointsRef.value;
     inventory.productBacklog[pbiIndex].type = editPBITypeRef.value;
-    // inventory.productBacklog[pbiIndex].tag = editPBITagRef.value;
+    inventory.productBacklog[pbiIndex].tag = editPBITagRef.value;
     inventory.productBacklog[pbiIndex].priority = editPBIPriorityRef.value;
     inventory.productBacklog[pbiIndex].status = editPBIStatusRef.value;
     updateLSData(PRODUCT_BACKLOG_KEY, inventory); //update localstorage

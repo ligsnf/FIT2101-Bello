@@ -60,7 +60,7 @@ function edit(pbi)
     let editPBIAssigneeRef = document.getElementById("editPBIAssignee");
     let editPBIStoryPointsRef = document.getElementById("editPBIStoryPoints");
     let editPBITypeRef = document.getElementById("editPBIType");
-    let editPBITagRef = document.getElementById("editeditPBITag");
+    let editPBITagRef = document.getElementById("editPBITag");
     let editPBIPriorityRef = document.getElementById("editPBIPriority");
     let editPBIStatusRef = document.getElementById("editPBIStatus");
 
@@ -70,9 +70,16 @@ function edit(pbi)
     editPBIAssigneeRef.value = inventory.productBacklog[pbiIndex].assignee;
     editPBIStoryPointsRef.value = inventory.productBacklog[pbiIndex].numStoryPoints;
     editPBITypeRef.value = inventory.productBacklog[pbiIndex].type;
-    // editPBITagRef.value = inventory.productBacklog[pbiIndex].tag;
+    editPBITagRef.value = inventory.productBacklog[pbiIndex].tag;
     editPBIPriorityRef.value = inventory.productBacklog[pbiIndex].priority;
     editPBIStatusRef.value = inventory.productBacklog[pbiIndex].status;
+
+    let editButtonsRef = document.getElementById("editButtons");
+    editButtonsRef.innerHTML = `
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="deletePBI(${pbi})">Delete</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="submit()" data-bs-dismiss="modal">Save changes</button>
+    `;
 }
 
 function displayProductBacklog(inventory){
@@ -239,7 +246,7 @@ function viewPBI(i) {
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editPBIPopUp">Edit PBI</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editPBIPopUp" onclick="edit(${i})">Edit PBI</button>
             </div>
             </div>
         </div>
