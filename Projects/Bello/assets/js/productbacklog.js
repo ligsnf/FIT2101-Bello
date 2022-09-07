@@ -46,6 +46,35 @@ function addPBI() {
     $('#addPBIPopUp').modal('toggle');
 }
 
+function edit(pbi)
+{
+    // store data in LS
+    localStorage.setItem(PBI_KEY,pbi);
+
+    // Global code to retrieve data to be edited
+    let pbiIndex = localStorage.getItem(PBI_KEY);
+
+    // define reference variables
+    let editPBINameRef = document.getElementById("editPBIName");
+    let editPBIDescriptionRef = document.getElementById("editPBIDescription");
+    let editPBIAssigneeRef = document.getElementById("editPBIAssignee");
+    let editPBIStoryPointsRef = document.getElementById("editPBIStoryPoints");
+    let editPBITypeRef = document.getElementById("editPBIType");
+    let editPBITagRef = document.getElementById("editeditPBITag");
+    let editPBIPriorityRef = document.getElementById("editPBIPriority");
+    let editPBIStatusRef = document.getElementById("editPBIStatus");
+
+    //set the reference variables as the information as the item information that is already stored in the object
+    editPBINameRef.value = inventory.productBacklog[pbiIndex].name;
+    editPBIDescriptionRef.value = inventory.productBacklog[pbiIndex].description;
+    editPBIAssigneeRef.value = inventory.productBacklog[pbiIndex].assignee;
+    editPBIStoryPointsRef.value = inventory.productBacklog[pbiIndex].numStoryPoints;
+    editPBITypeRef.value = inventory.productBacklog[pbiIndex].type;
+    // editPBITagRef.value = inventory.productBacklog[pbiIndex].tag;
+    editPBIPriorityRef.value = inventory.productBacklog[pbiIndex].priority;
+    editPBIStatusRef.value = inventory.productBacklog[pbiIndex].status;
+}
+
 function displayProductBacklog(inventory){
     let inventoryDisplayRef = document.getElementById("productBacklogTable");
     let output = ''
@@ -77,6 +106,73 @@ function displayProductBacklog(inventory){
 
 // Displays product backlog when the page loads
 displayProductBacklog(inventory);
+
+function deletePBI(i){
+    // Prase string in localStorage to JSON
+    var PBIs = JSON.parse(localStorage.getItem(PRODUCT_BACKLOG_KEY));
+
+    //Remove the selected item
+    //for (var i = 0; i < PBIs.length; i++){
+    //    var PBI = JSON.parse(PBIs[i]);
+    //    if (PBI._name == TaskName) {
+            PBIs.splice(i,1);
+    //    }
+    //}
+
+    // JSON to String
+    PBIs = JSON.stringify(PBIs);
+
+    // reset in localstorage
+    localStorage.setItem(PRODUCT_BACKLOG_KEY,PBIs);
+}
+
+function sortPBIbyPointHTL(){
+    // Prase string in localStorage to JSON
+    var PBIs = JSON.parse(localStorage.getItem(PRODUCT_BACKLOG_KEY));
+
+    // sort by story point from high to low
+    PBIs.sort(function(a, b){
+        return parseFloat(b._numStoryPoints) - parseFloat(a._numStoryPoints);
+    });
+
+    // JSON to String
+    PBIs = JSON.stringify(PBIs);
+
+    // reset in localstorage
+    localStorage.setItem(PRODUCT_BACKLOG_KEY,PBIs);
+}
+
+function sortPBIbyPointLTH(){
+    // Prase string in localStorage to JSON
+    var PBIs = JSON.parse(localStorage.getItem(PRODUCT_BACKLOG_KEY));
+
+    // sort by story point from high to low
+    PBIs.sort(function(a, b){
+        return parseFloat(a._numStoryPoints) - parseFloat(b._numStoryPoints);
+    });
+    
+    // JSON to String
+    PBIs = JSON.stringify(PBIs);
+
+    // reset in localstorage
+    localStorage.setItem(PRODUCT_BACKLOG_KEY,PBIs);
+}
+
+function sortPBIbyTag(tag){
+    // Prase string in localStorage to JSON
+    var PBIs = JSON.parse(localStorage.getItem(PRODUCT_BACKLOG_KEY));
+
+    // sort by selected tag
+    PBIs.sort(function(a,b){
+        return a._tag == tag ? -1 : b._tag == tag ? 1 : 0;
+    });
+
+    // JSON to String
+    PBIs = JSON.stringify(PBIs);
+
+    // reset in localstorage
+    localStorage.setItem(PRODUCT_BACKLOG_KEY,PBIs);
+}
 
 function viewPBI(i) {
     // store data in LS
