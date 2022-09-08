@@ -86,14 +86,14 @@ function displayProductBacklog(inventory){
     let inventoryDisplayRef = document.getElementById("productBacklogTable");
 
     let output = `
-    <div class="container">
-        <div class="row" style="height:40px">
+    <div>
+        <div class="row" style="height:25px">
             <div class="col-sm-2">
                 <h6>Sort by Story Points:</h6>
             </div>
             <div class="col-sm-2">
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-1">
             </div>
             <div class="col-sm-2">
                 <h6>Filter by:</h6>
@@ -106,14 +106,13 @@ function displayProductBacklog(inventory){
             <div class="col-sm-2">
                 <button type="button" class="btn btn-primary icon" onclick="sortPBIbyPointLTH()">Low to High &#xF57B;</button>
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-1">
             </div>
             <div class="col-sm-2">
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sortByTagPopUp"> Tag </button>
             </div>
         </div>
     </div>
-    <br></br>
     `
 
     output += `<div class="row">`
