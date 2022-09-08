@@ -84,37 +84,72 @@ function edit(pbi)
 
 function displayProductBacklog(inventory){
     let inventoryDisplayRef = document.getElementById("productBacklogTable");
-    let output = ''
-    output += `<table class="table table-hover">
-    <thead>
-        <tr>
-        <th scope="col">#</th>
-        <th scope="col">Task</th>
-        <th scope="col">Tag &#160;<button type="button" class="btn btn-info icon float-right" onclick="">&#xF57B;</button></th>
-        <th scope="col">Priority</th>
-        <th scope="col">Story Points
-              <button type="button" class="btn btn-primary icon" onclick="sortPBIbyPointHTL()">
-                &#xF575;
-              </button>
-              <button type="button" class="btn btn-primary icon" onclick="sortPBIbyPointLTH()">
-                &#xF57B;
-              </button>
-            </th>
-        </tr>
-    </thead>
-    <tbody class="table-group-divider">`
+
+    let output = `
+    <div class="container">
+        <div class="row" style="height:40px">
+            <div class="col-sm-2">
+                <h6>Sort by Story Points:</h6>
+            </div>
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-2">
+                <h6>Filter by:</h6>
+            </div>
+        </div>
+        <div class="row" style="height:40px">
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-primary icon" onclick="sortPBIbyPointHTL()">High to Low &#xF575;</button>
+            </div>
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-primary icon" onclick="sortPBIbyPointLTH()">Low to High &#xF57B;</button>
+            </div>
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-2">
+            <th scope="col">Tag &#160;<button type="button" class="btn btn-info icon float-right" onclick="">&#xF57B;</button></th>
+            </div>
+        </div>
+    </div>
+    <br></br>
+    `
+
+    output += `<div class="row">`
+
     for (let i=0; i < inventory.productBacklog.length; i++)
     {
-        output += `<tr id="${i}" data-bs-toggle="modal" data-bs-target="#viewPBIPopUp" onclick="viewPBI(${i})">
-        <th scope="row">${i+1}</th>
-        <td>${inventory.productBacklog[i].name}</td>
-        <td>${inventory.productBacklog[i].tag}</td>
-        <td>${inventory.productBacklog[i].priority}</td>
-        <td>${inventory.productBacklog[i].numStoryPoints}</td>
-        </tr>`
+        output += `
+        <div class="col-sm-3">
+            <div class="card" style="width: 20rem;">
+                <div class="card-body">
+                    <h5 class="card-title">#${i+1}: ${inventory.productBacklog[i].name}</h5> 
+                    <table style="width:100%">
+                        <tr style="height:40px">
+                            <th style="width:50%">Tag:</th>
+                            <td>${inventory.productBacklog[i].tag}</td>
+                        </tr>
+                        <tr style="height:40px">
+                            <th style="width:50%">Priority:</th>
+                            <td>${inventory.productBacklog[i].priority}</td>
+                        </tr>
+                        <tr style="height:40px">
+                            <th style="width:50%">Story Points:</th>
+                            <td>${inventory.productBacklog[i].numStoryPoints}</td>
+                        </tr>
+                    </table>
+                    <p></p>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#viewPBIPopUp" onclick="viewPBI(${i})">View</button>
+                </div>
+            </div>
+            <p></p>
+        </div>
+    `
     }
-    output += `</tbody>
-    </table>`
+
+    output += `</div><p></p>`
+
     inventoryDisplayRef.innerHTML = output
 }
 
