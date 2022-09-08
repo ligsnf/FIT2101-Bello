@@ -87,6 +87,8 @@ function displayProductBacklog(inventory){
 
     let output = `
     <div>
+        <div class="row" style="height:10px">
+        </div>
         <div class="row" style="height:25px">
             <div class="col-sm-2">
                 <h6>Sort by Story Points:</h6>
@@ -111,6 +113,8 @@ function displayProductBacklog(inventory){
             <div class="col-sm-2">
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sortByTagPopUp"> Tag </button>
             </div>
+        </div>
+        <div class="row" style="height:15px">
         </div>
     </div>
     `
