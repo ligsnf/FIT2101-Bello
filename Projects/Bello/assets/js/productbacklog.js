@@ -140,7 +140,7 @@ function sortPBIbyPointHTL(){
     var PBIs = JSON.parse(localStorage.getItem(PRODUCT_BACKLOG_KEY));
 
     // sort by story point from high to low
-    PBIs.sort(function(a, b){
+    PBIs._productBacklog.sort(function(a, b){
         return parseFloat(b._numStoryPoints) - parseFloat(a._numStoryPoints);
     });
 
@@ -156,7 +156,7 @@ function sortPBIbyPointLTH(){
     var PBIs = JSON.parse(localStorage.getItem(PRODUCT_BACKLOG_KEY));
 
     // sort by story point from high to low
-    PBIs.sort(function(a, b){
+    PBIs._productBacklog.sort(function(a, b){
         return parseFloat(a._numStoryPoints) - parseFloat(b._numStoryPoints);
     });
     
@@ -172,7 +172,7 @@ function sortPBIbyTag(tag){
     var PBIs = JSON.parse(localStorage.getItem(PRODUCT_BACKLOG_KEY));
 
     // sort by selected tag
-    PBIs.sort(function(a,b){
+    PBIs._productBacklog.sort(function(a,b){
         return a._tag == tag ? -1 : b._tag == tag ? 1 : 0;
     });
 
