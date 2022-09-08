@@ -122,7 +122,7 @@ function deletePBI(i){
     //for (var i = 0; i < PBIs.length; i++){
     //    var PBI = JSON.parse(PBIs[i]);
     //    if (PBI._name == TaskName) {
-            PBIs.splice(i,1);
+            PBIs._productBacklog.splice(i,1);
     //    }
     //}
 
@@ -131,6 +131,8 @@ function deletePBI(i){
 
     // reset in localstorage
     localStorage.setItem(PRODUCT_BACKLOG_KEY,PBIs);
+
+    location.reload();
 }
 
 function sortPBIbyPointHTL(){
@@ -245,6 +247,7 @@ function viewPBI(i) {
                 </div>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="deletePBI(${i})">Delete</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editPBIPopUp" onclick="edit(${i})">Edit PBI</button>
             </div>
