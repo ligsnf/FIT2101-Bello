@@ -24,14 +24,18 @@
     <br>
     <form class="row g-3">
       <div class="mb-3">
-        <label for="taskName" class="form-label">Task Name</label>
-        <input class="form-control" type="text" id="taskName" value="${inventory.productBacklog[pbiIndex].name}" disabled readonly>
-      </div>
-      <div class="mb-3">
-        <label for="taskDescription" class="form-label">Task Description</label>
-        <input class="form-control" type="text" id="taskDescription" value="${inventory.productBacklog[pbiIndex].description}" disabled readonly>
-      </div>
-      <div class="mb-3">
+        <div class="row">
+          <div class="col">
+            <label for="taskName" class="form-label">Task Name</label>
+            <input class="form-control" type="text" id="taskName" value="${inventory.productBacklog[pbiIndex].name}" disabled readonly>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label for="taskDescription" class="form-label">Task Description</label>
+            <input class="form-control" type="text" id="taskDescription" value="${inventory.productBacklog[pbiIndex].description}" disabled readonly>
+          </div>
+        </div>
         <div class="row">
           <div class="col">
             <label for="assignee" class="form-label">Assignee</label>
@@ -42,8 +46,6 @@
             <input class="form-control" type="text" id="storyPoints" value="${inventory.productBacklog[pbiIndex].numStoryPoints}" disabled readonly>
           </div>
         </div>
-      </div>
-      <div class="mb-3">
         <div class="row">
           <div class="col">
             <label for="taskType" class="form-label">Task Type</label>
@@ -54,8 +56,6 @@
             <input class="form-control" type="text" id="taskTag" value="${inventory.productBacklog[pbiIndex].tag}" disabled readonly>
           </div>
         </div>
-      </div>
-      <div class="mb-3">
         <div class="row">
           <div class="col">
             <label for="priority" class="form-label">Task Priority</label>

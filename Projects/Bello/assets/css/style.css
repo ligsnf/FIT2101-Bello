@@ -1,3 +1,7 @@
 .container {
   margin-top: 100px;
 }
+
+.row {
+  margin-bottom: 15px;
+}
