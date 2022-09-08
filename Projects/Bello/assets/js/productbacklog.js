@@ -85,11 +85,12 @@ function edit(pbi)
 function displayProductBacklog(inventory){
     let inventoryDisplayRef = document.getElementById("productBacklogTable");
 
-    let output = `<div class="card-deck">`
+    let output = `<div class="row">`
 
     for (let i=0; i < inventory.productBacklog.length; i++)
     {
         output += `
+        <div class="col-sm-3">
             <div class="card" style="width: 20rem;">
                 <div class="card-body">
                     <h5 class="card-title">#${i+1}: ${inventory.productBacklog[i].name}</h5> 
@@ -112,6 +113,7 @@ function displayProductBacklog(inventory){
                 </div>
             </div>
             <p></p>
+        </div>
     `
     }
 
