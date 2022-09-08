@@ -25,6 +25,8 @@
       $("#addPBI").load("assets/components/addPBIPopUp.html"); 
       $("#viewPBI").load("assets/components/viewPBIPopUp.html"); 
       $("#editPBI").load("assets/components/editPBIPopUp.html"); 
+      $("#sortByTag").load("assets/components/sortByTagPopUp.html"); 
+      
     });
   </script> 
 </head>
@@ -43,7 +45,14 @@
             <th scope="col">Task</th>
             <th scope="col">Tag</th>
             <th scope="col">Priority</th>
-            <th scope="col">Story Points</th>
+            <th scope="col">Story Points
+              <button type="button" class="btn btn-primary icon" onclick="sortPBIbyPointHTL()">
+                &#xF575;
+              </button>
+              <button type="button" class="btn btn-primary icon" onclick="sortPBIbyPointLTH()">
+                &#xF57B;
+              </button>
+            </th>
           </tr>
         </thead>
         <tbody class="table-group-divider">
@@ -75,8 +84,10 @@
 
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPBIPopUp"> Add product backlog item </button>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sortByTagPopUp"> Sort by tag </button>
     <div id="addPBI"></div>
     <div id="editPBI"></div>
+    <div id="sortByTag"></div>
     
   </div>
   <div id="footer"></div>

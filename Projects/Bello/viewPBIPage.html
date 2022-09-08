@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bello - Product Backlog Item</title>
+  <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script> 
+    $(function(){
+      $("#header").load("assets/components/header.html"); 
+      $("#footer").load("assets/components/footer.html"); 
+    });
+  </script> 
+</head>
+<body>
+  <div id="header"></div>
+  <div class="container" id="viewPBIPage">
+    <h1>Product Backlog Item</h1>
+    <br>
+    <form class="row g-3">
+      <div class="mb-3">
+        <div class="row">
+          <div class="col">
+            <label for="taskName" class="form-label">Task Name</label>
+            <input class="form-control" type="text" id="taskName" value="${inventory.productBacklog[pbiIndex].name}" disabled readonly>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label for="taskDescription" class="form-label">Task Description</label>
+            <input class="form-control" type="text" id="taskDescription" value="${inventory.productBacklog[pbiIndex].description}" disabled readonly>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label for="assignee" class="form-label">Assignee</label>
+            <input class="form-control" type="text" id="assignee" value="${inventory.productBacklog[pbiIndex].assignee}" disabled readonly>
+          </div>
+          <div class="col">
+            <label for="storyPoints" class="form-label">Story Points</label>
+            <input class="form-control" type="text" id="storyPoints" value="${inventory.productBacklog[pbiIndex].numStoryPoints}" disabled readonly>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label for="taskType" class="form-label">Task Type</label>
+            <input class="form-control" type="text" id="taskType" value="${inventory.productBacklog[pbiIndex].type}" disabled readonly>
+          </div>
+          <div class="col">
+            <label for="taskTag" class="form-label">Task Tag</label>
+            <input class="form-control" type="text" id="taskTag" value="${inventory.productBacklog[pbiIndex].tag}" disabled readonly>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label for="priority" class="form-label">Task Priority</label>
+            <input class="form-control" type="text" id="priority" value="${inventory.productBacklog[pbiIndex].priority}" disabled readonly>
+          </div>
+          <div class="col">
+            <label for="status" class="form-label">Task Status</label>
+            <input class="form-control" type="text" id="status" value="${inventory.productBacklog[pbiIndex].status}" disabled readonly>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <button type="button" class="btn btn-secondary" >Close</button>
+        <button type="button" class="btn btn-primary" data-bs-target="#editPBIPopUp" onclick="edit()">Edit PBI</button>
+      </div>
+    </form>
+  </div>
+  <div id="footer"></div>
+</body>
+</html>

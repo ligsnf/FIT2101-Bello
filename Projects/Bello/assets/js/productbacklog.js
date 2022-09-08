@@ -85,7 +85,38 @@ function edit(pbi)
 function displayProductBacklog(inventory){
     let inventoryDisplayRef = document.getElementById("productBacklogTable");
 
-    let output = `<div class="row">`
+    let output = `
+    <div class="container">
+        <div class="row" style="height:40px">
+            <div class="col-sm-2">
+                <h6>Sort by Story Points:</h6>
+            </div>
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-2">
+                <h6>Filter by:</h6>
+            </div>
+        </div>
+        <div class="row" style="height:40px">
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-primary icon" onclick="sortPBIbyPointHTL()">High to Low &#xF575;</button>
+            </div>
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-primary icon" onclick="sortPBIbyPointLTH()">Low to High &#xF57B;</button>
+            </div>
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-2">
+            <th scope="col">Tag &#160;<button type="button" class="btn btn-info icon float-right" onclick="">&#xF57B;</button></th>
+            </div>
+        </div>
+    </div>
+    <br></br>
+    `
+
+    output += `<div class="row">`
 
     for (let i=0; i < inventory.productBacklog.length; i++)
     {
@@ -133,7 +164,7 @@ function deletePBI(i){
     //for (var i = 0; i < PBIs.length; i++){
     //    var PBI = JSON.parse(PBIs[i]);
     //    if (PBI._name == TaskName) {
-            PBIs.splice(i,1);
+            PBIs._productBacklog.splice(i,1);
     //    }
     //}
 
@@ -142,6 +173,8 @@ function deletePBI(i){
 
     // reset in localstorage
     localStorage.setItem(PRODUCT_BACKLOG_KEY,PBIs);
+
+    location.reload();
 }
 
 function sortPBIbyPointHTL(){
@@ -149,7 +182,7 @@ function sortPBIbyPointHTL(){
     var PBIs = JSON.parse(localStorage.getItem(PRODUCT_BACKLOG_KEY));
 
     // sort by story point from high to low
-    PBIs.sort(function(a, b){
+    PBIs._productBacklog.sort(function(a, b){
         return parseFloat(b._numStoryPoints) - parseFloat(a._numStoryPoints);
     });
 
@@ -158,6 +191,8 @@ function sortPBIbyPointHTL(){
 
     // reset in localstorage
     localStorage.setItem(PRODUCT_BACKLOG_KEY,PBIs);
+
+    location.reload();
 }
 
 function sortPBIbyPointLTH(){
@@ -165,7 +200,7 @@ function sortPBIbyPointLTH(){
     var PBIs = JSON.parse(localStorage.getItem(PRODUCT_BACKLOG_KEY));
 
     // sort by story point from high to low
-    PBIs.sort(function(a, b){
+    PBIs._productBacklog.sort(function(a, b){
         return parseFloat(a._numStoryPoints) - parseFloat(b._numStoryPoints);
     });
     
@@ -174,15 +209,19 @@ function sortPBIbyPointLTH(){
 
     // reset in localstorage
     localStorage.setItem(PRODUCT_BACKLOG_KEY,PBIs);
+
+    location.reload();
 }
 
-function sortPBIbyTag(tag){
+function sortPBIbyTag(){
     // Prase string in localStorage to JSON
     var PBIs = JSON.parse(localStorage.getItem(PRODUCT_BACKLOG_KEY));
 
+    let sortTag = document.getElementById("sortTag").value;
+
     // sort by selected tag
-    PBIs.sort(function(a,b){
-        return a._tag == tag ? -1 : b._tag == tag ? 1 : 0;
+    PBIs._productBacklog.sort(function(a,b){
+        return a._tag == sortTag ? -1 : b._tag == sortTag ? 1 : 0;
     });
 
     // JSON to String
@@ -190,6 +229,8 @@ function sortPBIbyTag(tag){
 
     // reset in localstorage
     localStorage.setItem(PRODUCT_BACKLOG_KEY,PBIs);
+
+    location.reload();
 }
 
 function viewPBI(i) {
@@ -256,6 +297,7 @@ function viewPBI(i) {
                 </div>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="deletePBI(${i})">Delete</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editPBIPopUp" onclick="edit(${i})">Edit PBI</button>
             </div>
