@@ -93,9 +93,9 @@ function displayProductBacklog(inventory){
             <div class="card" style="width: 20rem;">
                 <div class="card-body">
                     <h5 class="card-title">#${i+1}: ${inventory.productBacklog[i].name}</h5> 
-                    <table>
+                    <table style="width:100%">
                         <tr>
-                            <th>Tag:</th>
+                            <th style="width:50%">Tag:</th>
                             <td>${inventory.productBacklog[i].tag}</td>
                         </tr>
                         <tr>
