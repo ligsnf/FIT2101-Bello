@@ -109,7 +109,7 @@ function displayProductBacklog(inventory){
             <div class="col-sm-2">
             </div>
             <div class="col-sm-2">
-            <th scope="col">Tag &#160;<button type="button" class="btn btn-info icon float-right" onclick="">&#xF57B;</button></th>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sortByTagPopUp"> Tag </button>
             </div>
         </div>
     </div>
