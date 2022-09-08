@@ -84,31 +84,39 @@ function edit(pbi)
 
 function displayProductBacklog(inventory){
     let inventoryDisplayRef = document.getElementById("productBacklogTable");
-    let output = ''
-    output += `<table class="table table-hover">
-    <thead>
-        <tr>
-        <th scope="col">#</th>
-        <th scope="col">Task</th>
-        <th scope="col">Tag &#160;<button type="button" class="btn btn-info icon float-right" onclick="">&#xF57B;</button></th>
-        <th scope="col">Priority</th>
-        <th scope="col">Story Points &#160;<button type="button" class="btn btn-info icon float-right" onclick="">&#xF57B;</button></th>
 
-        </tr>
-    </thead>
-    <tbody class="table-group-divider">`
+    let output = `<div class="card-deck">`
+
     for (let i=0; i < inventory.productBacklog.length; i++)
     {
-        output += `<tr id="${i}" data-bs-toggle="modal" data-bs-target="#viewPBIPopUp" onclick="viewPBI(${i})">
-        <th scope="row">${i+1}</th>
-        <td>${inventory.productBacklog[i].name}</td>
-        <td>${inventory.productBacklog[i].tag}</td>
-        <td>${inventory.productBacklog[i].priority}</td>
-        <td>${inventory.productBacklog[i].numStoryPoints}</td>
-        </tr>`
+        output += `
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">#${i+1}: ${inventory.productBacklog[i].name}</h5> 
+                    <table>
+                        <tr>
+                            <th>Tag:</th>
+                            <td>${inventory.productBacklog[i].tag}</td>
+                        </tr>
+                        <tr>
+                            <th>Priority:</th>
+                            <td>${inventory.productBacklog[i].priority}</td>
+                        </tr>
+                        <tr>
+                            <th>Story Points:</th>
+                            <td>${inventory.productBacklog[i].numStoryPoints}</td>
+                        </tr>
+                    </table>
+                    <p></p>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#viewPBIPopUp" onclick="viewPBI(${i})">View</button>
+                </div>
+            </div>
+            <p></p>
+    `
     }
-    output += `</tbody>
-    </table>`
+
+    output += `</div><p></p>`
+
     inventoryDisplayRef.innerHTML = output
 }
 
