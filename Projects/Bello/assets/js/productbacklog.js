@@ -90,7 +90,7 @@ function displayProductBacklog(inventory){
     for (let i=0; i < inventory.productBacklog.length; i++)
     {
         output += `
-            <div class="card">
+            <div class="card" style="width: 20rem;">
                 <div class="card-body">
                     <h5 class="card-title">#${i+1}: ${inventory.productBacklog[i].name}</h5> 
                     <table>
