@@ -76,9 +76,17 @@ function edit(pbi)
 
     let editButtonsRef = document.getElementById("editButtons");
     editButtonsRef.innerHTML = `
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="deletePBI(${pbi})">Delete</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="submit()" data-bs-dismiss="modal">Save changes</button>
+            <div class="col">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" style="float: left;" onclick="deletePBI(${pbi})">Delete</button>
+            </div>
+            <div class="col-6">
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="float: right;">Close</button>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-primary" style="float: right;" onclick="submit()" data-bs-dismiss="modal">Save</button>
+            </div>     
     `;
 }
 
@@ -294,7 +302,6 @@ function viewPBI(i) {
 
     let PBIDisplayFooterRef = document.getElementById("viewPBIPopUpFotter");
     PBIDisplayFooterRef.innerHTML = `
-    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="deletePBI(${i})">Delete</button>
     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editPBIPopUp" onclick="edit(${i})">Edit PBI</button>
     `
