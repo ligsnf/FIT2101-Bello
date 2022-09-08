@@ -90,9 +90,10 @@ function displayProductBacklog(inventory){
         <tr>
         <th scope="col">#</th>
         <th scope="col">Task</th>
-        <th scope="col">Tag</th>
+        <th scope="col">Tag &#160;<button type="button" class="btn btn-info icon float-right" onclick="">&#xF57B;</button></th>
         <th scope="col">Priority</th>
-        <th scope="col">Story Points</th>
+        <th scope="col">Story Points &#160;<button type="button" class="btn btn-info icon float-right" onclick="">&#xF57B;</button></th>
+
         </tr>
     </thead>
     <tbody class="table-group-divider">`
@@ -201,21 +202,21 @@ function viewPBI(i) {
             <div class="modal-body">
                 <div class="mb-3">
                 <label for="taskName" class="form-label">Task Name</label>
-                <text class="form-control" id="taskName">${inventory.productBacklog[pbiIndex].name}</text>
+                <input class="form-control" type="text" id="taskName" value="${inventory.productBacklog[pbiIndex].name}" disabled readonly>
                 </div>
                 <div class="mb-3">
                 <label for="taskDescription" class="form-label">Task Description</label>
-                <text class="form-control" id="taskDescription">${inventory.productBacklog[pbiIndex].description}</text>
+                <input class="form-control" type="text" id="taskDescription" value="${inventory.productBacklog[pbiIndex].description}" disabled readonly>
                 </div>
                 <div class="mb-3">
                 <div class="row">
                     <div class="col">
                     <label for="assignee" class="form-label">Assignee</label>
-                    <text class="form-control" id="assignee">${inventory.productBacklog[pbiIndex].assignee}</text>
+                    <input class="form-control" type="text" id="assignee" value="${inventory.productBacklog[pbiIndex].assignee}" disabled readonly>
                     </div>
                     <div class="col">
                     <label for="storyPoints" class="form-label">Story Points</label>
-                    <text type="number" class="form-control" id="storyPoints">${inventory.productBacklog[pbiIndex].numStoryPoints}</text>
+                    <input class="form-control" type="text" id="storyPoints" value="${inventory.productBacklog[pbiIndex].numStoryPoints}" disabled readonly>
                     </div>
                 </div>
                 </div>
@@ -223,11 +224,11 @@ function viewPBI(i) {
                 <div class="row">
                     <div class="col">
                     <label for="taskType" class="form-label">Task Type</label>
-                    <text class="form-control" id="taskType">${inventory.productBacklog[pbiIndex].type}</text>
+                    <input class="form-control" type="text" id="taskType" value="${inventory.productBacklog[pbiIndex].type}" disabled readonly>
                     </div>
                     <div class="col">
                     <label for="taskTag" class="form-label">Task Tag</label>
-                    <text class="form-control" id="taskTag">${inventory.productBacklog[pbiIndex].tag}</text>
+                    <input class="form-control" type="text" id="taskTag" value="${inventory.productBacklog[pbiIndex].tag}" disabled readonly>
                     </div>
                 </div>
                 </div>
@@ -235,11 +236,11 @@ function viewPBI(i) {
                 <div class="row">
                     <div class="col">
                     <label for="priority" class="form-label">Task Priority</label>
-                    <text class="form-control" id="priority">${inventory.productBacklog[pbiIndex].priority}</text>
+                    <input class="form-control" type="text" id="priority" value="${inventory.productBacklog[pbiIndex].priority}" disabled readonly>
                     </div>
                     <div class="col">
                     <label for="status" class="form-label">Task Status</label>
-                    <text class="form-control" id="status">${inventory.productBacklog[pbiIndex].status}</text>
+                    <input class="form-control" type="text" id="status" value="${inventory.productBacklog[pbiIndex].status}" disabled readonly>
                     </div>
                 </div>
                 </div>
