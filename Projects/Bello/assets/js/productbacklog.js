@@ -93,73 +93,54 @@ function edit(pbi)
 function displayProductBacklog(inventory){
     let inventoryDisplayRef = document.getElementById("productBacklogTable");
 
-    let output = `
-    <div>
-        <div class="row" style="height:10px">
-        </div>
-        <div class="row" style="height:25px">
-            <div class="col-sm-2">
-                <h6>Sort by Story Points:</h6>
-            </div>
-            <div class="col-sm-2">
-            </div>
-            <div class="col-sm-1">
-            </div>
-            <div class="col-sm-2">
-                <h6>Filter by:</h6>
-            </div>
-        </div>
-        <div class="row" style="height:40px">
-            <div class="col-sm-2">
-                <button type="button" class="btn btn-primary icon" onclick="sortPBIbyPointHTL()">High to Low &#xF575;</button>
-            </div>
-            <div class="col-sm-2">
-                <button type="button" class="btn btn-primary icon" onclick="sortPBIbyPointLTH()">Low to High &#xF57B;</button>
-            </div>
-            <div class="col-sm-1">
-            </div>
-            <div class="col-sm-2">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sortByTagPopUp"> Tag </button>
-            </div>
-        </div>
-        <div class="row" style="height:15px">
-        </div>
-    </div>
-    `
+    let output = ``
 
-    output += `<div class="row">`
+    output += `<div class="row justify-content-start" id="display-product-backlog">`
 
-    for (let i=0; i < inventory.productBacklog.length; i++)
-    {
+    for (let i=0; i < inventory.productBacklog.length; i++) {
         output += `
-        <div class="col-sm-3">
-            <div class="card" style="width: 20rem;">
+        <div class="col">
+            <div class="card" style="width: 15rem;">
+                <div class="card-header">${i+1}) ${inventory.productBacklog[i].name}</div>
                 <div class="card-body">
-                    <h5 class="card-title">#${i+1}: ${inventory.productBacklog[i].name}</h5> 
                     <table style="width:100%">
                         <tr style="height:40px">
                             <th style="width:50%">Tag:</th>
-                            <td>${inventory.productBacklog[i].tag}</td>
+                            <td style="text-align: right">${inventory.productBacklog[i].tag}</td>
                         </tr>
                         <tr style="height:40px">
                             <th style="width:50%">Priority:</th>
-                            <td>${inventory.productBacklog[i].priority}</td>
+                            <td style="text-align: right">${inventory.productBacklog[i].priority}</td>
                         </tr>
                         <tr style="height:40px">
                             <th style="width:50%">Story Points:</th>
-                            <td>${inventory.productBacklog[i].numStoryPoints}</td>
+                            <td style="text-align: right">${inventory.productBacklog[i].numStoryPoints}</td>
                         </tr>
-                    </table>
-                    <p></p>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#viewPBIPopUp" onclick="viewPBI(${i})">View</button>
+                    </table>                    
+                </div>
+                <div class="card-footer d-grid gap-2" style="background:white; height:25px; padding:0px">
+                    <button type="button" id="view-PBI-button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#viewPBIPopUp" onclick="viewPBI(${i})">View</button>
                 </div>
             </div>
-            <p></p>
         </div>
     `
     }
+    const PBIitemsPerRow = 5;
+    // make empty elements to align bottom row left
+    let numPBIitems = inventory.productBacklog.length;
+    while (numPBIitems % PBIitemsPerRow != 0) {
+        numPBIitems++;
+    }
+    for (let i=0; i < numPBIitems - inventory.productBacklog.length; i++) {
+        output += `
+        <div class="col" style="visibility: hidden;">
+            <div class="card" style="width: 15rem;">
+            </div>
+        </div>
+        `
+    }
 
-    output += `</div><p></p>`
+    output += `</div><br>`
 
     inventoryDisplayRef.innerHTML = output
 }
