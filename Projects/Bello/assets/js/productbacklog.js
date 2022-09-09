@@ -211,18 +211,81 @@ function sortPBIbyTag(){
 
     let sortTag = document.getElementById("sortTag").value;
 
+    let length = PBIs._productBacklog.length;
+
     // sort by selected tag
-    PBIs._productBacklog.sort(function(a,b){
-        return a._tag == sortTag ? -1 : b._tag == sortTag ? 1 : 0;
-    });
+    //PBIs._productBacklog.sort(function(a,b){
+    //    return a._tag == sortTag ? -1 : b._tag == sortTag ? 1 : 0;
+    //});
+    let filterlist = []
+    for(i = 0; i < length; i++){
+        var tag = PBIs._productBacklog[i]._tag;
+        if (tag == sortTag){
+            filterlist.push(PBIs._productBacklog[i])
+        }
+    }
+
+    //displayProductBacklog(sortlist);
+    let inventoryDisplayRef = document.getElementById("productBacklogTable");
+
+    let output = ``
+
+    output += `<div class="row justify-content-start" id="display-product-backlog">`
+
+    for (let i=0; i < filterlist.length; i++) {
+        output += `
+        <div class="col">
+            <div class="card" style="width: 15rem;">
+                <div class="card-header">${i+1}) ${filterlist[i]._name}</div>
+                <div class="card-body">
+                    <table style="width:100%">
+                        <tr style="height:40px">
+                            <th style="width:50%">Tag:</th>
+                            <td style="text-align: right">${filterlist[i]._tag}</td>
+                        </tr>
+                        <tr style="height:40px">
+                            <th style="width:50%">Priority:</th>
+                            <td style="text-align: right">${filterlist[i]._priority}</td>
+                        </tr>
+                        <tr style="height:40px">
+                            <th style="width:50%">Story Points:</th>
+                            <td style="text-align: right">${filterlist[i]._numStoryPoints}</td>
+                        </tr>
+                    </table>                    
+                </div>
+                <div class="card-footer d-grid gap-2" style="background:white; height:25px; padding:0px">
+                    <button type="button" id="view-PBI-button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#viewPBIPopUp" onclick="viewPBI(${i})">View</button>
+                </div>
+            </div>
+        </div>
+    `
+    }
+    const PBIitemsPerRow = 5;
+    // make empty elements to align bottom row left
+    let numPBIitems = filterlist.length;
+    while (numPBIitems % PBIitemsPerRow != 0) {
+        numPBIitems++;
+    }
+    for (let i=0; i < numPBIitems - filterlist.length; i++) {
+        output += `
+        <div class="col" style="visibility: hidden;">
+            <div class="card" style="width: 15rem;">
+            </div>
+        </div>
+        `
+    }
+
+    output += `</div><br>`
+
+    inventoryDisplayRef.innerHTML = output
 
     // JSON to String
-    PBIs = JSON.stringify(PBIs);
+    //PBIs = JSON.stringify(PBIs);
 
     // reset in localstorage
-    localStorage.setItem(PRODUCT_BACKLOG_KEY,PBIs);
+    //localStorage.setItem(PRODUCT_BACKLOG_KEY,PBIs);
 
-    location.reload();
+    //location.reload();
 }
 
 function viewPBI(i) {
