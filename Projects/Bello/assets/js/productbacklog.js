@@ -220,7 +220,14 @@ function sortPBIbyTag(){
     let filterlist = []
     for(i = 0; i < length; i++){
         var tag = PBIs._productBacklog[i]._tag;
-        if (tag == sortTag){
+
+        if (sortTag=="All") {
+            filterlist.push(PBIs._productBacklog[i])
+        } else if (sortTag=="UI" && tag=="UI") {
+            filterlist.push(PBIs._productBacklog[i])
+        } else if (sortTag=="Core" && (tag=="Code-related"|tag=="Front-end"|tag=="Back-end")) {
+            filterlist.push(PBIs._productBacklog[i])
+        } else if (sortTag=="Testing" && tag=="QA") {
             filterlist.push(PBIs._productBacklog[i])
         }
     }
@@ -235,21 +242,21 @@ function sortPBIbyTag(){
     for (let i=0; i < filterlist.length; i++) {
         output += `
         <div class="col">
-            <div class="card" style="width: 15rem;">
-                <div class="card-header">${i+1}) ${filterlist[i]._name}</div>
+            <div class="card" style="width: 16rem;">
+                <div class="card-header" style="height:40px">${i+1}) <strong>${inventory.productBacklog[i].name}</strong></div>
                 <div class="card-body">
                     <table style="width:100%">
                         <tr style="height:40px">
-                            <th style="width:50%">Tag:</th>
-                            <td style="text-align: right">${filterlist[i]._tag}</td>
+                            <th style="width:55%">Tag:</th>
+                            <td style="text-align: left">${filterlist[i]._tag}</td>
                         </tr>
                         <tr style="height:40px">
-                            <th style="width:50%">Priority:</th>
-                            <td style="text-align: right">${filterlist[i]._priority}</td>
+                            <th style="width:55%">Priority:</th>
+                            <td style="text-align: left">${filterlist[i]._priority}</td>
                         </tr>
                         <tr style="height:40px">
-                            <th style="width:50%">Story Points:</th>
-                            <td style="text-align: right">${filterlist[i]._numStoryPoints}</td>
+                            <th style="width:55%">Story Points:</th>
+                            <td style="text-align: left">${filterlist[i]._numStoryPoints}</td>
                         </tr>
                     </table>                    
                 </div>
