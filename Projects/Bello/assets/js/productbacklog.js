@@ -100,21 +100,21 @@ function displayProductBacklog(inventory){
     for (let i=0; i < inventory.productBacklog.length; i++) {
         output += `
         <div class="col">
-            <div class="card" style="width: 15rem;">
-                <div class="card-header">${i+1}) ${inventory.productBacklog[i].name}</div>
+            <div class="card" style="width: 16rem;">
+                <div class="card-header" style="height:40px">${i+1}) <strong>${inventory.productBacklog[i].name}</strong></div>
                 <div class="card-body">
                     <table style="width:100%">
                         <tr style="height:40px">
-                            <th style="width:50%">Tag:</th>
-                            <td style="text-align: right">${inventory.productBacklog[i].tag}</td>
+                            <th style="width:55%">Tag:</th>
+                            <td style="text-align: left">${inventory.productBacklog[i].tag}</td>
                         </tr>
                         <tr style="height:40px">
-                            <th style="width:50%">Priority:</th>
-                            <td style="text-align: right">${inventory.productBacklog[i].priority}</td>
+                            <th style="width:55%">Priority:</th>
+                            <td style="text-align: left">${inventory.productBacklog[i].priority}</td>
                         </tr>
                         <tr style="height:40px">
-                            <th style="width:50%">Story Points:</th>
-                            <td style="text-align: right">${inventory.productBacklog[i].numStoryPoints}</td>
+                            <th style="width:55%">Story Points:</th>
+                            <td style="text-align: left">${inventory.productBacklog[i].numStoryPoints}</td>
                         </tr>
                     </table>                    
                 </div>
