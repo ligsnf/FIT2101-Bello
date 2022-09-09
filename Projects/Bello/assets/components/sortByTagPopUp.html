@@ -9,7 +9,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="sortByTagPopUpLabel">Select a tag for sorting</h5>
+            <h5 class="modal-title" id="sortByTagPopUpLabel">Select a Tag for Filtering</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
@@ -18,12 +18,11 @@
                 <div class="col">
                   <label for="sortTag" class="form-label">Task Tag</label>
                   <select class="form-select" id="sortTag">
-                    <option selected></option>
+                    <!-- <option selected></option> -->
+                    <option value="All">All</option>
                     <option value="UI">UI</option>
-                    <option value="Code-related">Code-related</option>
-                    <option value="Front-end">Front-end</option>
-                    <option value="Back-end">Back-end</option>
-                    <option value="QA">QA</option>
+                    <option value="Core">Core</option>
+                    <option value="Testing">Testing</option>
                   </select>
                 </div>
               </div>
@@ -31,7 +30,7 @@
           </div>
           <div class="modal-footer" id="sortButtons">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" onclick="sortPBIbyTag()" data-bs-dismiss="modal">Sort</button>
+            <button type="button" class="btn btn-primary" onclick="sortPBIbyTag()" data-bs-dismiss="modal">Filter</button>
           </div>
         </div>
       </div>
