@@ -1,6 +1,8 @@
 FIT2101 readme file for Bello
 
-The application is stored inside /Projects/Bello
+The application is stored inside /Projects/Bello/
+
+Google Drive folder: https://drive.google.com/drive/folders/1W23DCXTM4hrHzcHZIvJMMM-QmKbNX9v-?usp=sharing
 
 Time & Task tracking tools:
 - Google Docs (https://www.google.com.au/docs/about/)
