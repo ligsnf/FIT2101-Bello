@@ -221,13 +221,9 @@ function sortPBIbyTag(){
     for(i = 0; i < length; i++){
         var tag = PBIs._productBacklog[i]._tag;
 
-        if (sortTag=="All") {
+        if (sortTag == "All") {
             filterlist.push(PBIs._productBacklog[i])
-        } else if (sortTag=="UI" && tag=="UI") {
-            filterlist.push(PBIs._productBacklog[i])
-        } else if (sortTag=="Core" && (tag=="Code-related"|tag=="Front-end"|tag=="Back-end")) {
-            filterlist.push(PBIs._productBacklog[i])
-        } else if (sortTag=="Testing" && tag=="QA") {
+        } else if (sortTag == tag) {
             filterlist.push(PBIs._productBacklog[i])
         }
     }
