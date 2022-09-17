@@ -133,7 +133,7 @@ function displayProductBacklog(inventory){
         </div>
     `
     }
-    const PBIitemsPerRow = 6;
+    const PBIitemsPerRow = 30;
     // make empty elements to align bottom row left
     let numPBIitems = inventory.productBacklog.length;
     while (numPBIitems % PBIitemsPerRow != 0) {
@@ -141,8 +141,8 @@ function displayProductBacklog(inventory){
     }
     for (let i=0; i < numPBIitems - inventory.productBacklog.length; i++) {
         output += `
-        <div class="col" style="visibility: hidden;">
-            <div class="card" style="width: 15rem;">
+        <div class="col" style="visibility: hidden; height: 0px;">
+            <div class="card" style="width: 14rem;">
             </div>
         </div>
         `
@@ -274,7 +274,7 @@ function sortPBIbyTag(){
         </div>
     `
     }
-    const PBIitemsPerRow = 6;
+    const PBIitemsPerRow = 30;
     // make empty elements to align bottom row left
     let numPBIitems = filterlist.length;
     while (numPBIitems % PBIitemsPerRow != 0) {
@@ -282,8 +282,8 @@ function sortPBIbyTag(){
     }
     for (let i=0; i < numPBIitems - filterlist.length; i++) {
         output += `
-        <div class="col" style="visibility: hidden;">
-            <div class="card" style="width: 15rem;">
+        <div class="col" style="visibility: hidden; height: 0px;">
+            <div class="card" style="width: 14rem;">
             </div>
         </div>
         `
