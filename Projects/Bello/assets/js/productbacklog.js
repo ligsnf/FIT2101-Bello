@@ -133,7 +133,7 @@ function displayProductBacklog(inventory){
         </div>
     `
     }
-    const PBIitemsPerRow = 5;
+    const PBIitemsPerRow = 6;
     // make empty elements to align bottom row left
     let numPBIitems = inventory.productBacklog.length;
     while (numPBIitems % PBIitemsPerRow != 0) {
@@ -274,7 +274,7 @@ function sortPBIbyTag(){
         </div>
     `
     }
-    const PBIitemsPerRow = 5;
+    const PBIitemsPerRow = 6;
     // make empty elements to align bottom row left
     let numPBIitems = filterlist.length;
     while (numPBIitems % PBIitemsPerRow != 0) {
