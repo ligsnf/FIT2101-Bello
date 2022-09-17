@@ -118,8 +118,11 @@ function displayProductBacklog(inventory){
                         </tr>
                     </table>                    
                 </div>
-                <div class="card-footer d-grid gap-2" style="background:white; height:25px; padding:0px">
-                    <button type="button" id="view-PBI-button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#viewPBIPopUp" onclick="viewPBI(${i})">View</button>
+                <div class="card-footer" style="background:white; height:30px; padding:0px">
+                    <div class="button-wrapper">
+                        <button type="button" id="view-PBI-button" class="btn btn-danger" onclick="deletePBI(${i})">Delete</button>
+                        <button type="button" id="view-PBI-button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#viewPBIPopUp" onclick="viewPBI(${i})">View</button>
+                    </div>
                 </div>
             </div>
         </div>
