@@ -101,7 +101,7 @@ function displayProductBacklog(inventory){
     let output = ``
 
     output += `<div class="row justify-content-start" id="display-product-backlog">`
-    
+
     for (let i=0; i < inventory.productBacklog.length; i++) {
         output += `
         <div class="col">
@@ -247,8 +247,8 @@ function sortPBIbyTag(){
         output += `
         <div class="col">
             <div class="card" style="width: 16rem;">
-                <div class="card-header" style="height:40px">${i+1}) <strong>${inventory.productBacklog[i].name}</strong></div>
-                <div class="card-body">
+                <div class="card-header" style="height:40px">${i+1}) <strong>${filterlist[i]._name}</strong></div>
+                <div class="card-body" style="${TAG_TO_COLOR[filterlist[i]._tag]}">
                     <table style="width:100%">
                         <tr style="height:40px">
                             <th style="width:55%">Tag:</th>
@@ -264,8 +264,11 @@ function sortPBIbyTag(){
                         </tr>
                     </table>                    
                 </div>
-                <div class="card-footer d-grid gap-2" style="background:white; height:25px; padding:0px">
-                    <button type="button" id="view-PBI-button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#viewPBIPopUp" onclick="viewPBI(${i})">View</button>
+                <div class="card-footer" style="background-color: white; height:30px; padding:0px">
+                    <div class="button-wrapper">
+                        <button type="button" id="view-PBI-button" class="btn btn-danger" onclick="deletePBI(${i})">Delete</button>
+                        <button type="button" id="view-PBI-button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#viewPBIPopUp" onclick="viewPBI(${i})">View</button>
+                    </div>
                 </div>
             </div>
         </div>
