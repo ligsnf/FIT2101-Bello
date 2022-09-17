@@ -105,25 +105,25 @@ function displayProductBacklog(inventory){
     for (let i=0; i < inventory.productBacklog.length; i++) {
         output += `
         <div class="col">
-            <div class="card" style="width: 16rem";>
+            <div class="card" style="width: 14rem";>
                 <div class="card-header" style="height:40px">${i+1}) <strong>${inventory.productBacklog[i].name}</strong></div>
                 <div class="card-body" style="${TAG_TO_COLOR[inventory.productBacklog[i].tag]}">
                     <table style="width:100%">
                         <tr style="height:40px">
                             <th style="width:55%">Tag:</th>
-                            <td style="text-align: left">${inventory.productBacklog[i].tag}</td>
+                            <td style="text-align: right">${inventory.productBacklog[i].tag}</td>
                         </tr>
                         <tr style="height:40px">
                             <th style="width:55%">Priority:</th>
-                            <td style="text-align: left">${inventory.productBacklog[i].priority}</td>
+                            <td style="text-align: right">${inventory.productBacklog[i].priority}</td>
                         </tr>
                         <tr style="height:40px">
                             <th style="width:55%">Story Points:</th>
-                            <td style="text-align: left">${inventory.productBacklog[i].numStoryPoints}</td>
+                            <td style="text-align: right">${inventory.productBacklog[i].numStoryPoints}</td>
                         </tr>
                     </table>                    
                 </div>
-                <div class="card-footer" style="background-color: white; height:30px; padding:0px">
+                <div class="card-footer" style="background-color: white; height:30px; padding:0px 0px 0px 97px;">
                     <div class="button-wrapper">
                         <button type="button" id="view-PBI-button" class="btn btn-danger" onclick="deletePBI(${i})">Delete</button>
                         <button type="button" id="view-PBI-button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#viewPBIPopUp" onclick="viewPBI(${i})">View</button>
@@ -246,25 +246,25 @@ function sortPBIbyTag(){
     for (let i=0; i < filterlist.length; i++) {
         output += `
         <div class="col">
-            <div class="card" style="width: 16rem;">
+            <div class="card" style="width: 14rem;">
                 <div class="card-header" style="height:40px">${i+1}) <strong>${filterlist[i]._name}</strong></div>
                 <div class="card-body" style="${TAG_TO_COLOR[filterlist[i]._tag]}">
                     <table style="width:100%">
                         <tr style="height:40px">
                             <th style="width:55%">Tag:</th>
-                            <td style="text-align: left">${filterlist[i]._tag}</td>
+                            <td style="text-align: right">${filterlist[i]._tag}</td>
                         </tr>
                         <tr style="height:40px">
                             <th style="width:55%">Priority:</th>
-                            <td style="text-align: left">${filterlist[i]._priority}</td>
+                            <td style="text-align: right">${filterlist[i]._priority}</td>
                         </tr>
                         <tr style="height:40px">
                             <th style="width:55%">Story Points:</th>
-                            <td style="text-align: left">${filterlist[i]._numStoryPoints}</td>
+                            <td style="text-align: right">${filterlist[i]._numStoryPoints}</td>
                         </tr>
                     </table>                    
                 </div>
-                <div class="card-footer" style="background-color: white; height:30px; padding:0px">
+                <div class="card-footer" style="background-color: white; height:30px; padding:0px 0px 0px 97px;">
                     <div class="button-wrapper">
                         <button type="button" id="view-PBI-button" class="btn btn-danger" onclick="deletePBI(${i})">Delete</button>
                         <button type="button" id="view-PBI-button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#viewPBIPopUp" onclick="viewPBI(${i})">View</button>
