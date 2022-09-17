@@ -47,7 +47,22 @@
           <div class="card mb-3" style="max-width: 10rem; border-style: none;">
             <div class="card-body" style="padding: 0px;">
               <h6>Filter by Tag:</h6>
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sortByTagPopUp"> Tag </button>
+              <table style="width:100%">
+                <tr style="height:40px">
+                    <th style="width:100%">
+                      <select class="form-select" id="sortTag">
+                        <!-- <option selected></option> -->
+                        <option value="All">All</option>
+                        <option value="UI">UI</option>
+                        <option value="Core">Core</option>
+                        <option value="Testing">Testing</option>
+                      </select>
+                    </th>
+                    <td style="text-align: left">
+                      <button type="button" class="btn btn-primary" onclick="sortPBIbyTag()" data-bs-dismiss="modal">Filter</button>                      
+                    </td>
+                </tr>
+              </table> 
             </div>
           </div>
         </div>
