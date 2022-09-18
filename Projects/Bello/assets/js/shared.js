@@ -2,6 +2,8 @@
 // Keys
 const PRODUCT_BACKLOG_KEY = "currentProductBacklogData"
 const PBI_KEY = "currentPbiIndex";
+const SPRINT_INVENTORY_KEY = "currentSprintInventoryData"
+const ITEM_KEY = "ItemKey";
 
 
 // Class to hold all the product backlog items
@@ -71,6 +73,72 @@ class PBI {
     }
 }
 
+// Sprint Inventory Class
+class SprintInventory{
+    constructor () {
+        // First element is for started sprints while second element is for future sprints
+        this._inventory = [[],[]];
+    }
+    // Accessors
+    get inventory() { return this._inventory; }
+    
+    startSprint(index){
+        this._inventory[0].push(this._inventory[1][index]);
+        this._inventory[1].splice(index,index);
+    }
+    addSprint(sprint) {
+        if (sprint instanceof Sprint){
+            this._inventory[1].push(sprint);
+        }
+    }
+
+    fromData(data) {
+        this._inventory = [[],[]];
+        for (let i = 0; i < data._inventory.length;i++){
+            for (let j = 0; j <data._inventory[i].length; j++){
+                let tempSprint = new Sprint();
+                tempSprint.fromData(data._inventory[i][j]);
+                this._inventory[i].push(tempSprint);
+            }
+        }
+    }
+}
+
+class Sprint{
+    constructor (name, startDate, endDate) {
+        this._name = name;
+        this._startDate = startDate;
+        this._endDate = endDate;
+        this._items = [];
+    }
+
+    // Getters
+    get name() { return this._name; }
+    get startDate() { return this._startDate; }
+    get endDate() { return this._endDate; }
+    get items() { return this._items; }
+    // Setters
+    set name(newName) { this._name = newName; }
+    set startDate(newStartDate) { this._startDate = newStartDate; }
+    set endDate(newEndDate) { return this._endDate = newEndDate; }
+
+    addItem(item) {
+        if (item instanceof PBI){ this._items.push(item) }
+    }
+
+    fromData(data) {
+        this._name = data._name;
+        this._startDate = data._startDate;
+        this._endDate = data._endDate;
+
+        this._items = [];
+        for (let i = 0; i < data._items.length;i++){
+            let tempPBI = new PBI();
+            tempPBI.fromData(data._items[i]);
+            this._items.push(tempPBI);
+        }
+    }
+}
 /**
  * checkLSData function
  * Used to check if any data in LS exists at a specific key
@@ -127,4 +195,15 @@ if (checkLSData(PRODUCT_BACKLOG_KEY))
     let data = retrieveLSData(PRODUCT_BACKLOG_KEY);
     // Restore data into inventory
     inventory.fromData(data);
+}
+
+// Global sprint inventory variable
+let sprintInventory = new SprintInventory();
+// Check if data available in LS before continuing
+if (checkLSData(SPRINT_INVENTORY_KEY))
+{
+    // If data exists, retrieve it
+    let data = retrieveLSData(SPRINT_INVENTORY_KEY);
+    // Restore data into inventory
+    sprintInventory.fromData(data);
 }
