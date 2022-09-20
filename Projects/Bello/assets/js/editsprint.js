@@ -25,8 +25,9 @@ function editSprint(){
     document.getElementById("editButton").remove()
 
     let buttonRef = document.getElementById("buttonDiv");
-    let finishButton = `<button id="saveButton" type="button" class="btn btn-primary icon" onclick="saveEdit()">Save</button>`;
-    buttonRef.innerHTML += finishButton;
+    let finishButton = `<p>All PBIs; Sprint PBIs</p>
+    <button id="saveButton" type="button" class="btn btn-primary icon" onclick="saveEdit()">Save</button>`;
+    buttonRef.innerHTML = finishButton;
 
 }
 
