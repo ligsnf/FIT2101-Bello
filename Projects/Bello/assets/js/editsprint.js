@@ -45,3 +45,13 @@ function saveEdit(){
     <button type="button" class="btn btn-primary icon" onclick="startSprint()">Start Sprint</button>`;
     document.getElementById("buttonDiv").innerHTML = resetButtonOutput;
 }
+
+function deleteSprint(){
+    var sprints = JSON.parse(localStorage.getItem(SPRINT_INVENTORY_KEY));
+
+
+    sprints._inventory[1].splice(index,1);
+
+    updateLSData(SPRINT_INVENTORY_KEY, sprints)
+    window.location = "sprintBoard.html"
+}
