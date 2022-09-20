@@ -22,8 +22,25 @@ function editSprint(){
     </div>`;
     nameDiv.innerHTML = outputEditName;
 
+    document.getElementById("editButton").remove()
+
     let buttonRef = document.getElementById("buttonDiv");
-    let finishButton = `<button type="button" class="btn btn-primary icon" onclick="saveEdit()">Save</button>`;
+    let finishButton = `<button id="saveButton" type="button" class="btn btn-primary icon" onclick="saveEdit()">Save</button>`;
     buttonRef.innerHTML += finishButton;
 
+}
+
+function saveEdit(){
+    let newName = document.getElementById("editSprintName").value;
+    sprint.name = newName
+    updateLSData(SPRINT_INVENTORY_KEY,sprintInventory)
+
+    let nameDiv = document.getElementById("sprintNameDiv");
+    outputNewName = `<h1 id="sprintName">${sprint.name}</h1>`;
+    nameDiv.innerHTML = outputNewName
+
+    let resetButtonOutput = `<p>All PBIs; Sprint PBIs</p>
+    <button id="editButton" type="button" class="btn btn-primary icon" onclick="editSprint()">Edit Details</button>
+    <button type="button" class="btn btn-primary icon" onclick="startSprint()">Start Sprint</button>`;
+    document.getElementById("buttonDiv").innerHTML = resetButtonOutput;
 }
