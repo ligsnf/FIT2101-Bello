@@ -21,7 +21,8 @@
 }
 
 #view-PBI-button {
-  height: 24px;
+  height: 28px;
+  width: 60px;
   padding: 0px;
   text-align: center;
   font-size: small;
