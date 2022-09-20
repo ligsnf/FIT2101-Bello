@@ -49,7 +49,7 @@ function displaySprintInventory(sprintInventory) {
         let sprint = sprintInventory.inventory[1][i]
         futureInventory += `
         <div class="col">
-        <div class="card" style="width: 40rem;">
+        <div class="card" style="width: 100%">
             <div class="card-body">
                 <table style="width:100%">
                     <tr style="height:35px">
