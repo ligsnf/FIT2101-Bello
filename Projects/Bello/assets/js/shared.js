@@ -77,7 +77,7 @@ class PBI {
 class SprintInventory{
     constructor () {
         // First element is for started sprints while second element is for future sprints
-        this._inventory = [[],[]];
+        this._inventory = [[],[],[]];
     }
     // Accessors
     get inventory() { return this._inventory; }
@@ -91,9 +91,13 @@ class SprintInventory{
             this._inventory[1].push(sprint);
         }
     }
+    completeSprint(index){
+        this._inventory[2].push(this._inventory[0][index]);
+        this._inventory[0].splice(index,1);
+    }
 
     fromData(data) {
-        this._inventory = [[],[]];
+        this._inventory = [[],[],[]];
         for (let i = 0; i < data._inventory.length;i++){
             for (let j = 0; j <data._inventory[i].length; j++){
                 let tempSprint = new Sprint();

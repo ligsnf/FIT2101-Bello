@@ -23,8 +23,10 @@ function addSprint() {
 function displaySprintInventory(sprintInventory) {
     let startedInventoryDisplayRef = document.getElementById("startedSprints");
     let futureInventoryDisplayRef = document.getElementById("futureSprints");
+    let completedInventoryDisplayRef = document.getElementById("completedSprints");
     let startedInventory = ``;
     let futureInventory = ``;
+    let completedInventory = ``;
 
     for (let i=0; i < sprintInventory.inventory[0].length; i++) {
         let sprint = sprintInventory.inventory[0][i]
@@ -45,11 +47,12 @@ function displaySprintInventory(sprintInventory) {
         `
     }
     startedInventoryDisplayRef.innerHTML = startedInventory;
+
     for (let i=0; i < sprintInventory.inventory[1].length; i++) {
         let sprint = sprintInventory.inventory[1][i]
         futureInventory += `
         <div class="col">
-        <div class="card" style="width: 100%">
+        <div class="card" style="width: 100%;">
             <div class="card-body">
                 <table style="width:100%">
                     <tr style="height:35px">
@@ -64,6 +67,26 @@ function displaySprintInventory(sprintInventory) {
         `
     }
     futureInventoryDisplayRef.innerHTML = futureInventory;
+
+    for (let i=0; i < sprintInventory.inventory[2].length; i++) {
+        let sprint = sprintInventory.inventory[2][i]
+        completedInventory += `
+        <div class="col">
+        <div class="card" style="width: 100%;">
+            <div class="card-body">
+                <table style="width:100%">
+                    <tr style="height:35px">
+                        <th>${sprint.name}</th>
+                        <td style="text-align: right">
+                            <button type="button" class="btn btn-info" data-bs-toggle="modal" onclick="viewCompleted(${i})"> View </button>
+                        </td>
+                    </tr>
+                </table>                    
+            </div>
+        </div>
+        `;
+    }
+    completedInventoryDisplayRef.innerHTML = completedInventory;
 }
 
 displaySprintInventory(sprintInventory);
