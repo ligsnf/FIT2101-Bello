@@ -84,7 +84,7 @@ class SprintInventory{
     
     startSprint(index){
         this._inventory[0].push(this._inventory[1][index]);
-        this._inventory[1].splice(index,index);
+        this._inventory[1].splice(index,1);
     }
     addSprint(sprint) {
         if (sprint instanceof Sprint){

@@ -39,6 +39,12 @@ function displaySprintInventory(sprintInventory) {
                             <button type="button" class="btn btn-info" data-bs-toggle="modal" onclick="view(${i})"> View </button>
                         </td>
                     </tr>
+                    <tr style="height:35px">
+                        <th>${sprint.startDate}</th>
+                    </tr>
+                    <tr style="height:35px">
+                        <th>${sprint.endDate}</th>
+                    </tr>
                 </table>                    
             </div>
         </div>
