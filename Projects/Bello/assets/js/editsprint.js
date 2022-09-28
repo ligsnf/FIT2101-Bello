@@ -4,6 +4,12 @@ let sprint = sprintInventory.inventory[1][index];
 let sprintNameDisplayRef = document.getElementById("sprintName");
 sprintNameDisplayRef.innerHTML = sprint.name;
 
+let sprintStartDateDisplayRef = document.getElementById("startDate");
+sprintStartDateDisplayRef.innerHTML = sprint.startDate;
+
+let sprintEndDateDisplayRef = document.getElementById("endDate");
+sprintEndDateDisplayRef.innerHTML = sprint.endDate;
+
 function startSprint() {
     sprintInventory.startSprint(index);
     updateLSData(SPRINT_INVENTORY_KEY, sprintInventory)

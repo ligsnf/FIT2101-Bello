@@ -100,3 +100,8 @@ function edit(index) {
     localStorage.setItem(ITEM_KEY, index);
     window.location = "editsprint.html";
 }
+
+function viewCompleted(index) {
+    localStorage.setItem(ITEM_KEY, index);
+    window.location = "completedsprint.html";
+}
