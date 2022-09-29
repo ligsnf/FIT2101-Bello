@@ -124,7 +124,7 @@ function displaySprintBacklog(currentSprint) {
                 </div>
                 <div class="card-footer" style="background-color: white; height:30px; padding:0px 0px 0px 97px;">
                     <div class="button-wrapper">
-                        <button type="button" id="view-PBI-button" class="btn btn-success" onclick="complete(${notStarted[i][0]})">Complete</button>
+                        <button type="button" id="view-PBI-button" class="btn btn-success" onclick="complete(${inProgress[i][0]})">Complete</button>
                         <button type="button" id="view-PBI-button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#viewSprintTaskPopUp" onclick="viewPBI(${inProgress[i][0]})">View</button>
                     </div>
                 </div>
@@ -188,6 +188,24 @@ function start(task) {
 
     // start task
     sprint.items[taskIndex].status = "In progress"
+
+    // store data in LS
+    localStorage.setItem(PBI_KEY, task)
+    updateLSData(SPRINT_INVENTORY_KEY, sprintInventory)
+
+    location.reload();
+}
+
+
+function complete(task) {
+    // store data in LS
+    localStorage.setItem(PBI_KEY, task);
+
+    // Global code to retrieve data to be edited
+    let taskIndex = localStorage.getItem(PBI_KEY);
+
+    // start task
+    sprint.items[taskIndex].status = "Completed"
 
     // store data in LS
     localStorage.setItem(PBI_KEY, task)
