@@ -29,7 +29,7 @@ const TAG_TO_COLOR = {
 
 /**
  * Display all items within a sprint in 3 columns based on their status (Not started, In progress, Completed)
- * @param {Sprint} currentSprint 
+ * @param {Sprint} currentSprint The sprint that is currently being viewed
  */
 function displaySprintBacklog(currentSprint) {
     let sprintBacklogDisplayRef = document.getElementById("display-sprint-backlog");
@@ -87,7 +87,7 @@ function displaySprintBacklog(currentSprint) {
                 <div class="card-footer" style="background-color: white; height:30px; padding:0px 0px 0px 97px;">
                     <div class="button-wrapper">
                         <button type="button" id="view-PBI-button" class="btn btn-primary" onclick="start(${notStarted[i][0]})">Start</button>
-                        <button type="button" id="view-PBI-button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#viewSprintTaskPopUp" onclick="viewPBI(${notStarted[i][0]})">View</button>
+                        <button type="button" id="view-PBI-button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#viewSprintTaskPopUp" onclick="viewTask(${notStarted[i][0]})">View</button>
                     </div>
                 </div>
             </div>
@@ -125,7 +125,7 @@ function displaySprintBacklog(currentSprint) {
                 <div class="card-footer" style="background-color: white; height:30px; padding:0px 0px 0px 97px;">
                     <div class="button-wrapper">
                         <button type="button" id="view-PBI-button" class="btn btn-success" onclick="complete(${inProgress[i][0]})">Complete</button>
-                        <button type="button" id="view-PBI-button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#viewSprintTaskPopUp" onclick="viewPBI(${inProgress[i][0]})">View</button>
+                        <button type="button" id="view-PBI-button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#viewSprintTaskPopUp" onclick="viewTask(${inProgress[i][0]})">View</button>
                     </div>
                 </div>
             </div>
@@ -162,7 +162,7 @@ function displaySprintBacklog(currentSprint) {
                 </div>
                 <div class="card-footer" style="background-color: white; height:30px; padding:0px 0px 0px 162px;">
                     <div class="button-wrapper">
-                        <button type="button" id="view-PBI-button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#viewSprintTaskPopUp" onclick="viewPBI(${completed[i][0]})">View</button>
+                        <button type="button" id="view-PBI-button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#viewSprintTaskPopUp" onclick="viewTask(${completed[i][0]})">View</button>
                     </div>
                 </div>
             </div>
@@ -176,9 +176,14 @@ function displaySprintBacklog(currentSprint) {
 }
 
 
+// diplsay sprint backlog
 displaySprintBacklog(sprint)
 
 
+/**
+ * Change the status of a sprint task from Not Started to In Progress
+ * @param {PBI} task The sprint task whose status is being changed to In Progress
+ */
 function start(task) {
     // store data in LS
     localStorage.setItem(PBI_KEY, task);
@@ -197,6 +202,10 @@ function start(task) {
 }
 
 
+/**
+ * Change the status of a sprint task from In Progress to Completed
+ * @param {PBI} task The sprint task whose status is being changed to Completed
+ */
 function complete(task) {
     // store data in LS
     localStorage.setItem(PBI_KEY, task);
@@ -212,4 +221,65 @@ function complete(task) {
     updateLSData(SPRINT_INVENTORY_KEY, sprintInventory)
 
     location.reload();
+}
+
+
+/**
+ * Open ViewSprintTaskPopUp to view the selected sprint task's details
+ * @param {int} i The index number of the task to be viewed with the current sprint
+ */
+function viewTask(i) {
+    let taskDisplayRef = document.getElementById("viewSprintTaskPopUpBody");
+
+    taskDisplayRef.innerHTML = `
+                <div class="mb-3">
+                <label for="taskName" class="form-label">Task Name</label>
+                <input class="form-control" type="text" id="taskName" value="${sprint.items[i].name}" disabled readonly>
+                </div>
+                <div class="mb-3">
+                <label for="taskDescription" class="form-label">Task Description</label>
+                <input class="form-control" type="text" id="taskDescription" value="${sprint.items[i].description}" disabled readonly>
+                </div>
+                <div class="mb-3">
+                <div class="row">
+                    <div class="col">
+                    <label for="assignee" class="form-label">Assignee</label>
+                    <input class="form-control" type="text" id="assignee" value="${sprint.items[i].assignee}" disabled readonly>
+                    </div>
+                    <div class="col">
+                    <label for="storyPoints" class="form-label">Story Points</label>
+                    <input class="form-control" type="text" id="storyPoints" value="${sprint.items[i].numStoryPoints}" disabled readonly>
+                    </div>
+                </div>
+                </div>
+                <div class="mb-3">
+                <div class="row">
+                    <div class="col">
+                    <label for="taskType" class="form-label">Task Type</label>
+                    <input class="form-control" type="text" id="taskType" value="${sprint.items[i].type}" disabled readonly>
+                    </div>
+                    <div class="col">
+                    <label for="taskTag" class="form-label">Task Tag</label>
+                    <input class="form-control" type="text" id="taskTag" value="${sprint.items[i].tag}" disabled readonly>
+                    </div>
+                </div>
+                </div>
+                <div class="mb-3">
+                <div class="row">
+                    <div class="col">
+                    <label for="priority" class="form-label">Task Priority</label>
+                    <input class="form-control" type="text" id="priority" value="${sprint.items[i].priority}" disabled readonly>
+                    </div>
+                    <div class="col">
+                    <label for="status" class="form-label">Task Status</label>
+                    <input class="form-control" type="text" id="status" value="${sprint.items[i].status}" disabled readonly>
+                    </div>
+                </div>
+                </div>
+    `
+
+    let taskDisplayFooterRef = document.getElementById("viewSprintTaskPopUpFooter");
+    taskDisplayFooterRef.innerHTML = `
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    `
 }
