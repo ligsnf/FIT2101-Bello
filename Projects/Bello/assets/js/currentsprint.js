@@ -29,9 +29,9 @@ const TAG_TO_COLOR = {
 
 /**
  * Display all items within a sprint in 3 columns based on their status (Not started, In progress, Completed)
- * @param {Sprint} sprint 
+ * @param {Sprint} currentSprint 
  */
-function displaySprintBacklog(sprint){
+function displaySprintBacklog(currentSprint) {
     let sprintBacklogDisplayRef = document.getElementById("display-sprint-backlog");
 
     // separate sprint PBIs into 3 categories (not started, in progress, completed)
@@ -39,19 +39,19 @@ function displaySprintBacklog(sprint){
     let inProgress = []
     let completed = []
 
-    for (let i=0 ; i<sprint.items.length ; i++) {
-        taskStatus = sprint.items[i].status
+    for (let i=0 ; i<currentSprint.items.length ; i++) {
+        taskStatus = currentSprint.items[i].status
         // add tasks to not started category
         if (taskStatus=="Not started") {
-            let item = [i, sprint.items[i]]
+            let item = [i, currentSprint.items[i]]
             notStarted.push(item)
         }
         else if (taskStatus=="In progress") {
-            let item = [i, sprint.items[i]]
+            let item = [i, currentSprint.items[i]]
             inProgress.push(item)
         }
         else if (taskStatus=="Completed"){
-            let item = [i, sprint.items[i]]
+            let item = [i, currentSprint.items[i]]
             completed.push(item)
         }
     }
@@ -86,7 +86,7 @@ function displaySprintBacklog(sprint){
                 </div>
                 <div class="card-footer" style="background-color: white; height:30px; padding:0px 0px 0px 97px;">
                     <div class="button-wrapper">
-                        <button type="button" id="view-PBI-button" class="btn btn-primary" onclick="startPBI(${notStarted[i][0]})">Start</button>
+                        <button type="button" id="view-PBI-button" class="btn btn-primary" onclick="start(${notStarted[i][0]})">Start</button>
                         <button type="button" id="view-PBI-button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#viewSprintTaskPopUp" onclick="viewPBI(${notStarted[i][0]})">View</button>
                     </div>
                 </div>
@@ -175,4 +175,23 @@ function displaySprintBacklog(sprint){
     sprintBacklogDisplayRef.innerHTML = output
 }
 
+
 displaySprintBacklog(sprint)
+
+
+function start(task) {
+    // store data in LS
+    localStorage.setItem(PBI_KEY, task);
+
+    // Global code to retrieve data to be edited
+    let taskIndex = localStorage.getItem(PBI_KEY);
+
+    // start task
+    sprint.items[taskIndex].status = "In progress"
+
+    // store data in LS
+    localStorage.setItem(PBI_KEY, task)
+    updateLSData(SPRINT_INVENTORY_KEY, sprintInventory)
+
+    location.reload();
+}
