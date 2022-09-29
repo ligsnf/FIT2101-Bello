@@ -14,6 +14,7 @@
     $(function(){
       $("#header").load("assets/components/header.html"); 
       $("#footer").load("assets/components/footer.html"); 
+      $("#viewTask").load("assets/components/viewSprintTaskPopUp.html"); 
     });
   </script> 
 </head>
@@ -49,6 +50,8 @@
     <div>
       <button id="completedButton" type="button" class="btn btn-primary icon" onclick="completeSprint()">Complete</button>
     </div>
+
+    <div id="viewTask"></div>
   </div>
   <div id="footer"></div>
   <script src="assets/js/shared.js"></script>
