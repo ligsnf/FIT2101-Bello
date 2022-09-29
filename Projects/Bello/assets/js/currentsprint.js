@@ -28,11 +28,11 @@ const TAG_TO_COLOR = {
 
 
 /**
- * Display all items within a sprint in 3 columns based on their status (Not started, In progress, Completed)
+ * Display sprint backlog and show all tasks within the sprint in 3 columns based on their status (Not started, In progress, Completed)
  * @param {Sprint} currentSprint The sprint that is currently being viewed
  */
-function displaySprintBacklog(currentSprint) {
-    let sprintBacklogDisplayRef = document.getElementById("display-sprint-backlog");
+function displaySprintBacklog(currentSprint, currentIndex) {
+    let sprintBacklogDisplayRef = document.getElementById("display-sprint-backlog")
 
     // separate sprint PBIs into 3 categories (not started, in progress, completed)
     let notStarted = []
@@ -173,11 +173,18 @@ function displaySprintBacklog(currentSprint) {
     output += `</div></div>`
 
     sprintBacklogDisplayRef.innerHTML = output
+
+
+    let sprintBacklogButtonsRef = document.getElementById("currentSprintButtons")
+    sprintBacklogButtonsRef.innerHTML = `
+        <button id="completedButton" type="button" class="btn btn-success icon" onclick="completeSprint(${currentIndex})">Complete</button>
+        <button id="viewBurndownChartButton" type="button" class="btn btn-primary icon" onclick="viewBurndownChart(${currentIndex})">View Burndown Chart</button>`
+
 }
 
 
 // diplsay sprint backlog
-displaySprintBacklog(sprint)
+displaySprintBacklog(sprint, index)
 
 
 /**
@@ -282,4 +289,14 @@ function viewTask(i) {
     taskDisplayFooterRef.innerHTML = `
     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
     `
+}
+
+
+/**
+ * View the burndown chart of the current sprint
+ * @param {int} currentIndex The index number of the sprint
+ */
+function viewBurndownChart(currentIndex) {
+    localStorage.setItem(ITEM_KEY, currentIndex);
+    window.location = "burndownChart.html";
 }
