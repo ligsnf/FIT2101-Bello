@@ -47,12 +47,19 @@
 
     <br>
 
-    <div>
-      <button id="completedButton" type="button" class="btn btn-primary icon" onclick="completeSprint()">Complete</button>
+    <div id="currentSprintButtons">
+      <button id="completedButton" type="button" class="btn btn-success icon" onclick="completeSprint()">Complete</button>
+      <button id="viewBurndownChartButton" type="button" class="btn btn-primary icon" onclick="viewBurndownChart()">View Burndown Chart</button>
     </div>
 
-    <div id="viewTask"></div>
+    <br>
+    <br>
+
   </div>
+
+  <div id="viewTask"></div>
+  <div id="viewBurndownChart"></div>
+
   <div id="footer"></div>
   <script src="assets/js/shared.js"></script>
   <script src="assets/js/currentsprint.js"></script>
