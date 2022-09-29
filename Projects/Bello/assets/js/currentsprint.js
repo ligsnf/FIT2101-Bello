@@ -10,6 +10,7 @@ sprintStartDateDisplayRef.innerHTML = sprint.startDate;
 let sprintEndDateDisplayRef = document.getElementById("endDate");
 sprintEndDateDisplayRef.innerHTML = sprint.endDate;
 
+
 function completeSprint() {
     sprintInventory.completeSprint(index);
     updateLSData(SPRINT_INVENTORY_KEY, sprintInventory)
@@ -17,7 +18,7 @@ function completeSprint() {
 }
 
 
- /**
+/**
  * Colour code tasks by their tags (UI, Core, Testing)
  */
 const TAG_TO_COLOR = {
@@ -233,7 +234,7 @@ function complete(task) {
 
 /**
  * Open ViewSprintTaskPopUp to view the selected sprint task's details
- * @param {int} i The index number of the task to be viewed with the current sprint
+ * @param {int} i The index number of the task to be viewed within the current sprint
  */
 function viewTask(i) {
     let taskDisplayRef = document.getElementById("viewSprintTaskPopUpBody");
