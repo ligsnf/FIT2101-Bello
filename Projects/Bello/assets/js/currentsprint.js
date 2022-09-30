@@ -105,26 +105,31 @@ function displaySprintBacklog(currentSprint, currentIndex) {
     for (let i=0 ; i<inProgress.length ; i++) {
         output += `
         <div class="col">
-            <div class="card" style="width: 14rem";>
+            <div class="card" style="width: 15rem";>
                 <div class="card-header" style="height:40px">${i+1}) <strong>${inProgress[i][1].name}</strong></div>
                 <div class="card-body" style="${TAG_TO_COLOR[inProgress[i][1].tag]}">
                     <table style="width:100%">
                         <tr style="height:40px">
-                            <th style="width:55%">Tag:</th>
+                            <th style="width:70%">Tag:</th>
                             <td style="text-align: right">${inProgress[i][1].tag}</td>
                         </tr>
                         <tr style="height:40px">
-                            <th style="width:55%">Priority:</th>
+                            <th style="width:70%">Priority:</th>
                             <td style="text-align: right">${inProgress[i][1].priority}</td>
                         </tr>
                         <tr style="height:40px">
-                            <th style="width:55%">Story Points:</th>
+                            <th style="width:70%">Story Points:</th>
                             <td style="text-align: right">${inProgress[i][1].numStoryPoints}</td>
+                        </tr>
+                        <tr style="height:40px">
+                            <th style="width:70%">Time Spent (mins):</th>
+                            <td style="text-align: right">${inProgress[i][1].time}</td>
                         </tr>
                     </table>                    
                 </div>
-                <div class="card-footer" style="background-color: white; height:30px; padding:0px 0px 0px 97px;">
+                <div class="card-footer" style="background-color: white; height:30px; padding:0px 0px 0px 48px;">
                     <div class="button-wrapper">
+                        <button type="button" id="view-PBI-button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#logTimePopUp" onclick="logTimeTask(${inProgress[i][0]})" >Log time</button>
                         <button type="button" id="view-PBI-button" class="btn btn-success" onclick="complete(${inProgress[i][0]})">Complete</button>
                         <button type="button" id="view-PBI-button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#viewSprintTaskPopUp" onclick="viewTask(${inProgress[i][0]})">View</button>
                     </div>
@@ -143,25 +148,29 @@ function displaySprintBacklog(currentSprint, currentIndex) {
     for (let i=0 ; i<completed.length ; i++) {
         output += `
         <div class="col">
-            <div class="card" style="width: 14rem";>
+            <div class="card" style="width: 15rem";>
                 <div class="card-header" style="height:40px">${i+1}) <strong>${completed[i][1].name}</strong></div>
                 <div class="card-body" style="${TAG_TO_COLOR[completed[i][1].tag]}">
                     <table style="width:100%">
                         <tr style="height:40px">
-                            <th style="width:55%">Tag:</th>
+                            <th style="width:70%">Tag:</th>
                             <td style="text-align: right">${completed[i][1].tag}</td>
                         </tr>
                         <tr style="height:40px">
-                            <th style="width:55%">Priority:</th>
+                            <th style="width:70%">Priority:</th>
                             <td style="text-align: right">${completed[i][1].priority}</td>
                         </tr>
                         <tr style="height:40px">
-                            <th style="width:55%">Story Points:</th>
+                            <th style="width:70%">Story Points:</th>
                             <td style="text-align: right">${completed[i][1].numStoryPoints}</td>
+                        </tr>
+                        <tr style="height:40px">
+                            <th style="width:70%">Time Spent (mins):</th>
+                            <td style="text-align: right">${completed[i][1].time}</td>
                         </tr>
                     </table>                    
                 </div>
-                <div class="card-footer" style="background-color: white; height:30px; padding:0px 0px 0px 162px;">
+                <div class="card-footer" style="background-color: white; height:30px; padding:0px 0px 0px 176px;">
                     <div class="button-wrapper">
                         <button type="button" id="view-PBI-button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#viewSprintTaskPopUp" onclick="viewTask(${completed[i][0]})">View</button>
                     </div>
@@ -185,6 +194,16 @@ function displaySprintBacklog(currentSprint, currentIndex) {
 
 
 // diplsay sprint backlog
+if (sprint.items.length==0) {
+    let pbi1 = new PBI("Test Task 1", "text 1", "Story", "UI", "1", "Not started", "Low", "A")
+    sprint.addItem(pbi1)
+    let pbi2 = new PBI("Test Task 2", "text 2", "Bug", "Core", "2", "Not started", "High", "B")
+    sprint.addItem(pbi2)
+    let pbi3 = new PBI("Test Task 3", "text 3", "Bug", "Testing", "3", "Not started", "Medium", "C")
+    sprint.addItem(pbi3)
+    let pbi4 = new PBI("Test Task 4", "text 4", "Story", "Core", "4", "Not started", "High", "D")
+    sprint.addItem(pbi4)
+}
 displaySprintBacklog(sprint, index)
 
 
@@ -300,4 +319,42 @@ function viewTask(i) {
 function viewBurndownChart(currentIndex) {
     localStorage.setItem(ITEM_KEY, currentIndex);
     window.location = "burndownChart.html";
+}
+
+var taskIndex = 0
+var timetask = null;
+
+function logTimeTask(task) {
+
+    timetask = task;
+    // store data in LS
+    localStorage.setItem(PBI_KEY, task);
+
+    // Global code to retrieve data to be edited
+    taskIndex = localStorage.getItem(PBI_KEY);
+
+}
+
+/**
+ * Log time spent to the item in current sprint
+ */
+function logTime() {
+
+    let tasktime = document.getElementById("PBITaskTime").value;
+    tasktime = parseInt(tasktime);
+    // start task
+    let newTaskTime = parseInt(sprint.items[taskIndex]._time);
+    newTaskTime += tasktime;
+    sprint.items[taskIndex]._time = newTaskTime;
+
+    document.getElementById("PBITaskTime").value = "";
+
+    // store data in LS
+    localStorage.setItem(PBI_KEY, timetask)
+    updateLSData(SPRINT_INVENTORY_KEY, sprintInventory)
+
+    // Close modal popup
+    $('#logTimePopUp').modal('toggle');
+    
+    location.reload();;
 }
