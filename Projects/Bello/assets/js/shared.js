@@ -8,18 +8,30 @@ const ITEM_KEY = "ItemKey";
 
 // Class to hold all the product backlog items
 class Inventory {
+    /**
+     * Constructor of the Inventory class
+     * Initialises an array of product backlog items
+     */
     constructor () {
         this._productBacklog = [];
     }
     // Accessors
     get productBacklog() { return this._productBacklog; }
     
+    /**
+     * This function adds a new PBI onto the product backlog array 
+     * @param {item} PBI class object 
+     */
     addItem(item) {
         if (item instanceof PBI){
             this._productBacklog.push(item);
         }
     }
 
+    /**
+     * This function restores product backlog data from local storage
+     * @param {*} data data from local storage
+     */
     fromData(data) {
         this._productBacklog = [];
         for (let i = 0; i < data._productBacklog.length;i++){
@@ -32,6 +44,17 @@ class Inventory {
 
 // Product Backlog Item Class 
 class PBI {
+    /**
+     * 
+     * @param {*} name name of the PBI 
+     * @param {*} description description of the PBI
+     * @param {*} type type of the PBI
+     * @param {*} tag tags of the PBI
+     * @param {int} numStoryPoints number of story points for this PBI
+     * @param {*} status status of the PBI
+     * @param {*} priority priority of the PBI
+     * @param {*} assignee assignee of the PBI
+     */
     constructor(name, description, type, tag, numStoryPoints, status, priority, assignee) {
         this._name = name;
         this._description = description;
@@ -61,6 +84,10 @@ class PBI {
     set priority(newPriority) { this._priority = newPriority; }
     set assignee(newAssignee) { this._assignee = newAssignee; }
 
+    /**
+     * This function restores PBI data from local storage
+     * @param {*} data data of PBI
+     */
     fromData(data) {
         this._name = data._name;
         this._description = data._description;
@@ -75,23 +102,40 @@ class PBI {
 
 // Sprint Inventory Class
 class SprintInventory{
+    /**
+     * Constructor of SprintInventory class
+     * initialises the inventory as a array of 3 arrays for current, future and finished sprints, respectively
+     */
     constructor () {
         // First element is for started sprints while second element is for future sprints
-        this._inventory = [[],[]];
+        this._inventory = [[],[],[]];
     }
     // Accessors
     get inventory() { return this._inventory; }
     
+    /**
+     * Removes a sprint from the future sprints list and puts it into current sprints list
+     * @param {int} index the index of the sprint selected
+     */
     startSprint(index){
         this._inventory[0].push(this._inventory[1][index]);
         this._inventory[1].splice(index,1);
     }
+
+    /**
+     * Adds a sprint into the future sprints list
+     * @param {Sprint} sprint the sprint to be added
+     */
     addSprint(sprint) {
         if (sprint instanceof Sprint){
             this._inventory[1].push(sprint);
         }
     }
 
+    /**
+     * This function restores SprintInventory data from local storage
+     * @param {*} data data from local storage
+     */
     fromData(data) {
         this._inventory = [[],[]];
         for (let i = 0; i < data._inventory.length;i++){
@@ -105,6 +149,12 @@ class SprintInventory{
 }
 
 class Sprint{
+    /**
+     * Constructor of the Sprint class
+     * @param {*} name name of the sprint
+     * @param {*} startDate start date of the sprint
+     * @param {*} endDate end date of the sprint
+     */
     constructor (name, startDate, endDate) {
         this._name = name;
         this._startDate = startDate;
@@ -122,10 +172,18 @@ class Sprint{
     set startDate(newStartDate) { this._startDate = newStartDate; }
     set endDate(newEndDate) { return this._endDate = newEndDate; }
 
+    /**
+     * Adds a PBI onto the sprint
+     * @param {PBI} item item to be added to the sprint
+     */
     addItem(item) {
         if (item instanceof PBI){ this._items.push(item) }
     }
 
+    /**
+     * This function restores Sprint data from local storage
+     * @param {*} data data from local storage
+     */
     fromData(data) {
         this._name = data._name;
         this._startDate = data._startDate;

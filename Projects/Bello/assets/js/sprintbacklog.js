@@ -26,7 +26,7 @@ function addSprint() {
 
 /**
  * This function updates the page with the list of sprints, showing each sprint as a card, seperated into started, future and finished
- * @param {sprintInventory} the list of sprints
+ * @param {SprintInventory} sprintInventory the list of sprints
  */
 function displaySprintInventory(sprintInventory) {
     let startedInventoryDisplayRef = document.getElementById("startedSprints");
@@ -109,7 +109,7 @@ displaySprintInventory(sprintInventory);
 
 /**
  * This function retrieves a sprint from the sprint inventory and changes window to currentsprint.html to allow that sprint to be viewed
- * @param {index} the index of the sprint 
+ * @param {int} index the index of the sprint 
  */
 function view(index) {
     localStorage.setItem(ITEM_KEY, index);
@@ -118,7 +118,7 @@ function view(index) {
 
 /**
  * This function retrieves a sprint from the sprint inventory and changes window to editsprint.html to allow that sprint to be edited
- * @param {index} the index of the sprint  
+ * @param {int} index the index of the sprint  
  */
 function edit(index) {
     localStorage.setItem(ITEM_KEY, index);
