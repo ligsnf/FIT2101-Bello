@@ -121,6 +121,10 @@ function displaySprintBacklog(currentSprint, currentIndex) {
                             <th style="width:55%">Story Points:</th>
                             <td style="text-align: right">${inProgress[i][1].numStoryPoints}</td>
                         </tr>
+                        <tr style="height:40px">
+                            <th style="width:55%">Time spent (minutes):</th>
+                            <td style="text-align: right">${inProgress[i][1].time}</td>
+                        </tr>
                     </table>                    
                 </div>
                 <div class="card-footer" style="background-color: white; height:30px; padding:0px 0px 0px 97px;">
@@ -159,6 +163,10 @@ function displaySprintBacklog(currentSprint, currentIndex) {
                         <tr style="height:40px">
                             <th style="width:55%">Story Points:</th>
                             <td style="text-align: right">${completed[i][1].numStoryPoints}</td>
+                        </tr>
+                        <tr style="height:40px">
+                            <th style="width:55%">Time spent (minutes):</th>
+                            <td style="text-align: right">${completed[i][1].time}</td>
                         </tr>
                     </table>                    
                 </div>

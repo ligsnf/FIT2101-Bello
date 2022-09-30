@@ -76,6 +76,10 @@ sprintEndDateDisplayRef.innerHTML = sprint.endDate;
                             <th style="width:55%">Story Points:</th>
                             <td style="text-align: right">${notStarted[i][1].numStoryPoints}</td>
                         </tr>
+                        <tr style="height:40px">
+                            <th style="width:55%">Time spent (minutes):</th>
+                            <td style="text-align: right">${notStarted[i][1].time}</td>
+                        </tr>
                     </table>                    
                 </div>
                 <div class="card-footer" style="background-color: white; height:30px; padding:0px 0px 0px 162px;">
@@ -149,6 +153,10 @@ sprintEndDateDisplayRef.innerHTML = sprint.endDate;
                         <tr style="height:40px">
                             <th style="width:55%">Story Points:</th>
                             <td style="text-align: right">${completed[i][1].numStoryPoints}</td>
+                        </tr>
+                        <tr style="height:40px">
+                            <th style="width:55%">Time spent (minutes):</th>
+                            <td style="text-align: right">${completed[i][1].time}</td>
                         </tr>
                     </table>                    
                 </div>
