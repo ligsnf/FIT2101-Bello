@@ -315,10 +315,20 @@ function viewBurndownChart(currentIndex) {
 
 var taskIndex = 0
 var timetask = null;
+
+function logTimeTask(task) {
+
+    timetask = task;
+    // store data in LS
+    localStorage.setItem(PBI_KEY, task);
+
+    // Global code to retrieve data to be edited
+    taskIndex = localStorage.getItem(PBI_KEY);
+
+}
+
 /**
  * Log time spent to the item in current sprint
- * @param {PBI} task The sprint task whose be seleted to log time
- * @param {int} time the time spent in task with unit of minutes 
  */
 function logTime() {
 
@@ -337,15 +347,4 @@ function logTime() {
 
     // Close modal popup
     $('#logTimePopUp').modal('toggle');
-}
-
-function logTimeTask(task) {
-
-    timetask = task;
-    // store data in LS
-    localStorage.setItem(PBI_KEY, task);
-
-    // Global code to retrieve data to be edited
-    taskIndex = localStorage.getItem(PBI_KEY);
-
 }
