@@ -1,3 +1,12 @@
+/**
+ * FILENAME :   productbacklog.js             
+ * PURPOSE  :   Contains the funtionality for adding, editing, deleting and viewing PBIs in the product backlog.
+ * LAST MODIFIED : 1 Oct 22
+ */
+
+/**
+ * Add a new PBI to the product backlog
+ */
 function addPBI() {
     // Getting the user inputs
     let name = document.getElementById("PBITaskName").value;
@@ -11,12 +20,11 @@ function addPBI() {
     
     // Checking to see if everything has been filled out
     // An alert pops up if something has not been filled in
-    /*
     if (!name || !description || !assignee || !storyPoints || !type || !tag || !priority || !status) {
         alert("Please fill in all the blanks");
         return
     }
-    */
+    
     // Creates a new PBI object based on user inputs
     let pbi = new PBI(name, description, type, tag, storyPoints, status, priority, assignee);
     
@@ -46,6 +54,11 @@ function addPBI() {
     $('#addPBIPopUp').modal('toggle');
 }
 
+
+/**
+ * 
+ * @param {PBI} pbi The instance of PBI being edited
+ */
 function edit(pbi)
 {
     // store data in LS
@@ -90,11 +103,21 @@ function edit(pbi)
     `;
 }
 
+
+/**
+ * Colour code PBI according to their tag
+ */
 const TAG_TO_COLOR = {
     "UI": "background-color: rgba(0, 255, 255, 0.4);",
     "Core": "background-color: rgba(144, 238, 144, 0.4);",
     "Testing": "background-color: rgba(255, 191, 0, 0.4);"
-};
+}
+
+
+/**
+ * Display the product backlog of the project
+ * @param {Inventory} inventory The instance of Inventory where PBIs are being stored
+ */
 function displayProductBacklog(inventory){
     let inventoryDisplayRef = document.getElementById("productBacklogTable");
 
@@ -133,7 +156,9 @@ function displayProductBacklog(inventory){
         </div>
     `
     }
+
     const PBIitemsPerRow = 30;
+
     // make empty elements to align bottom row left
     let numPBIitems = inventory.productBacklog.length;
     while (numPBIitems % PBIitemsPerRow != 0) {
@@ -153,20 +178,21 @@ function displayProductBacklog(inventory){
     inventoryDisplayRef.innerHTML = output
 }
 
+
 // Displays product backlog when the page loads
 displayProductBacklog(inventory);
 
+
+/**
+ * Delete a PBI from the product backlog
+ * @param {int} i The index of the PBI being deleted
+ */
 function deletePBI(i){
     // Prase string in localStorage to JSON
     var PBIs = JSON.parse(localStorage.getItem(PRODUCT_BACKLOG_KEY));
 
     //Remove the selected item
-    //for (var i = 0; i < PBIs.length; i++){
-    //    var PBI = JSON.parse(PBIs[i]);
-    //    if (PBI._name == TaskName) {
-            PBIs._productBacklog.splice(i,1);
-    //    }
-    //}
+    PBIs._productBacklog.splice(i,1);
 
     // JSON to String
     PBIs = JSON.stringify(PBIs);
@@ -177,6 +203,10 @@ function deletePBI(i){
     location.reload();
 }
 
+
+/**
+ * Sort the PBIs in the product backlog based on their story points (highest first)
+ */
 function sortPBIbyPointHTL(){
     // Prase string in localStorage to JSON
     var PBIs = JSON.parse(localStorage.getItem(PRODUCT_BACKLOG_KEY));
@@ -195,6 +225,10 @@ function sortPBIbyPointHTL(){
     location.reload();
 }
 
+
+/**
+ * Sort the PBIs in the product backlog based on their story points (lowest first)
+ */
 function sortPBIbyPointLTH(){
     // Prase string in localStorage to JSON
     var PBIs = JSON.parse(localStorage.getItem(PRODUCT_BACKLOG_KEY));
@@ -213,6 +247,10 @@ function sortPBIbyPointLTH(){
     location.reload();
 }
 
+
+/**
+ * Filter the PBIs in the product backlog by their tag
+ */
 function sortPBIbyTag(){
     // Prase string in localStorage to JSON
     var PBIs = JSON.parse(localStorage.getItem(PRODUCT_BACKLOG_KEY));
@@ -221,10 +259,6 @@ function sortPBIbyTag(){
 
     let length = PBIs._productBacklog.length;
 
-    // sort by selected tag
-    //PBIs._productBacklog.sort(function(a,b){
-    //    return a._tag == sortTag ? -1 : b._tag == sortTag ? 1 : 0;
-    //});
     let filterlist = []
     for(i = 0; i < length; i++){
         var tag = PBIs._productBacklog[i]._tag;
@@ -292,16 +326,13 @@ function sortPBIbyTag(){
     output += `</div><br>`
 
     inventoryDisplayRef.innerHTML = output
-
-    // JSON to String
-    //PBIs = JSON.stringify(PBIs);
-
-    // reset in localstorage
-    //localStorage.setItem(PRODUCT_BACKLOG_KEY,PBIs);
-
-    //location.reload();
 }
 
+
+/**
+ * View the details of the selected PBI
+ * @param {int} i The index of the PBI being viewed
+ */
 function viewPBI(i) {
     // store data in LS
     localStorage.setItem(PBI_KEY, i);

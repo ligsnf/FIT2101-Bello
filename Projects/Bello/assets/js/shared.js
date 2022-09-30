@@ -1,3 +1,9 @@
+/**
+ * FILENAME :   shared.js             
+ * PURPOSE  :   Contains all classes required for the application, keys for local storage, and global code that can be accessed by other files.
+ * LAST MODIFIED : 1 Oct 22
+ */
+
 "use strict";
 // Keys
 const PRODUCT_BACKLOG_KEY = "currentProductBacklogData"
@@ -6,7 +12,9 @@ const SPRINT_INVENTORY_KEY = "currentSprintInventoryData"
 const ITEM_KEY = "ItemKey";
 
 
-// Class to hold all the product backlog items
+/**
+ * Inventory class to hold all PBIs in the product backlog
+ */
 class Inventory {
     constructor () {
         this._productBacklog = [];
@@ -30,7 +38,10 @@ class Inventory {
     }
 }
 
-// Product Backlog Item Class 
+
+/**
+ * Product Backlog Item class representing a PBI
+ */
 class PBI {
     constructor(name, description, type, tag, numStoryPoints, status, priority, assignee) {
         this._name = name;
@@ -73,7 +84,10 @@ class PBI {
     }
 }
 
-// Sprint Inventory Class
+
+/**
+ * Sprint Inventory class to hold all future, ongoing and past sprints
+ */
 class SprintInventory{
     constructor () {
         // First element is for started sprints while second element is for future sprints
@@ -108,6 +122,10 @@ class SprintInventory{
     }
 }
 
+
+/**
+ * Sprint class representing a sprint
+ */
 class Sprint{
     constructor (name, startDate, endDate) {
         this._name = name;
@@ -143,6 +161,8 @@ class Sprint{
         }
     }
 }
+
+
 /**
  * checkLSData function
  * Used to check if any data in LS exists at a specific key
@@ -157,6 +177,7 @@ function checkLSData(key)
     }
     return false;
 }
+
 
 /**
  * retrieveLSData function
@@ -178,6 +199,7 @@ function checkLSData(key)
      }
  }
 
+
  /**
  * updateLSData function
  * Used to store JS data in LS at a specific key
@@ -190,8 +212,10 @@ function updateLSData(key, data)
     localStorage.setItem(key, json);
 }
 
+
 // Global inventory variable
 let inventory = new Inventory();
+
 // Check if data available in LS before continuing
 if (checkLSData(PRODUCT_BACKLOG_KEY))
 {
@@ -203,6 +227,7 @@ if (checkLSData(PRODUCT_BACKLOG_KEY))
 
 // Global sprint inventory variable
 let sprintInventory = new SprintInventory();
+
 // Check if data available in LS before continuing
 if (checkLSData(SPRINT_INVENTORY_KEY))
 {

@@ -1,3 +1,10 @@
+/**
+ * FILENAME :   currentsprint.js             
+ * PURPOSE  :   Contains the funtionality for displaying the sprint backlog of an ongoing sprint,
+ *              viewing, starting and completing tasks within a sprint, and a button for marking the sprint as "Completed".
+ * LAST MODIFIED : 1 Oct 22
+ */
+
 let index = localStorage.getItem(ITEM_KEY);
 let sprint = sprintInventory.inventory[0][index];
 
@@ -11,6 +18,9 @@ let sprintEndDateDisplayRef = document.getElementById("endDate");
 sprintEndDateDisplayRef.innerHTML = sprint.endDate;
 
 
+/**
+ * Complete a sprint by changing the status of the sprint from "In progress" to "Completed"
+ */
 function completeSprint() {
     sprintInventory.completeSprint(index);
     updateLSData(SPRINT_INVENTORY_KEY, sprintInventory)
@@ -185,6 +195,16 @@ function displaySprintBacklog(currentSprint, currentIndex) {
 
 
 // diplsay sprint backlog
+if (sprint.items.length==0) {
+    let pbi1 = new PBI("Test Task 1", "text 1", "Story", "UI", "1", "Not started", "Low", "A")
+    sprint.addItem(pbi1)
+    let pbi2 = new PBI("Test Task 2", "text 2", "Bug", "Core", "2", "Not started", "High", "B")
+    sprint.addItem(pbi2)
+    let pbi3 = new PBI("Test Task 3", "text 3", "Bug", "Testing", "3", "Not started", "Medium", "C")
+    sprint.addItem(pbi3)
+    let pbi4 = new PBI("Test Task 4", "text 4", "Story", "Core", "4", "Not started", "High", "D")
+    sprint.addItem(pbi4)
+}
 displaySprintBacklog(sprint, index)
 
 

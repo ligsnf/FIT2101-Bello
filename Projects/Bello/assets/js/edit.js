@@ -1,8 +1,16 @@
+/**
+ * FILENAME :   edit.js             
+ * PURPOSE  :   Contains the funtionality for saving the details of a PBI after it being edited.
+ * LAST MODIFIED : 1 Oct 22
+ */
+
 "use strict";
 
+/**
+ * Update and save the details of a PBI after it being edited
+ */
 function submit()
 {
-
     let pbiIndex = localStorage.getItem(PBI_KEY);
 
     let editPBINameRef = document.getElementById("editPBIName");

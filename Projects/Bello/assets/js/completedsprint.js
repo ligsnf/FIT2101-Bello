@@ -1,3 +1,10 @@
+/**
+ * FILENAME :   completedsprint.js             
+ * PURPOSE  :   Contains the funtionality for displaying the sprint backlog of a completed sprint,
+ *              viewing tasks within the sprint, and a button for viewing the sprint's burndown chart.
+ * LAST MODIFIED : 1 Oct 22
+ */
+
 let index = localStorage.getItem(ITEM_KEY);
 let sprint = sprintInventory.inventory[2][index];
 

@@ -1,3 +1,12 @@
+/**
+ * FILENAME :   sprintboard.js             
+ * PURPOSE  :   Contains the funtionality for adding, editing and viewing sprints on the sprint board page.
+ * LAST MODIFIED : 1 Oct 22
+ */
+
+/**
+ * Add a new sprint to the sprint board page
+ */
 function addSprint() {
     let name = document.getElementById("sprintName").value;
     let startDate = document.getElementById("startDate").value;
@@ -20,6 +29,11 @@ function addSprint() {
     $('#addSprintPopUp').modal('toggle');
 }
 
+
+/**
+ * Display all future, ongoing and past sprints on the sprint board page
+ * @param {sprintInventory} sprintInventory The instance of SprintInventory that holds all future, ongoing and past sprints
+ */
 function displaySprintInventory(sprintInventory) {
     let startedInventoryDisplayRef = document.getElementById("startedSprints");
     let futureInventoryDisplayRef = document.getElementById("futureSprints");
@@ -89,18 +103,35 @@ function displaySprintInventory(sprintInventory) {
     completedInventoryDisplayRef.innerHTML = completedInventory;
 }
 
+
+// Display all sprints on the sprint board page
 displaySprintInventory(sprintInventory);
 
+
+/**
+ * View an ongoing sprint listed on the sprint board page
+ * @param {int} index The index number of the ongoing sprint to be edited
+ */
 function view(index) {
     localStorage.setItem(ITEM_KEY, index);
     window.location = "currentsprint.html";
 }
 
+
+/**
+ * Edit a future sprint listed on the sprint board page
+ * @param {int} index The index number of the sprint to be edited
+ */
 function edit(index) {
     localStorage.setItem(ITEM_KEY, index);
     window.location = "editsprint.html";
 }
 
+
+/**
+ * View a completed sprint listed on the sprint board page
+ * @param {int} index The index number of the completed sprint to be viewed
+ */
 function viewCompleted(index) {
     localStorage.setItem(ITEM_KEY, index);
     window.location = "completedsprint.html";
