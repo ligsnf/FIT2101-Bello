@@ -355,4 +355,6 @@ function logTime() {
 
     // Close modal popup
     $('#logTimePopUp').modal('toggle');
+    
+    location.reload();;
 }
