@@ -153,19 +153,19 @@ function displaySprintBacklog(currentSprint, currentIndex) {
                 <div class="card-body" style="${TAG_TO_COLOR[completed[i][1].tag]}">
                     <table style="width:100%">
                         <tr style="height:40px">
-                            <th style="width:55%">Tag:</th>
+                            <th style="width:76%">Tag:</th>
                             <td style="text-align: right">${completed[i][1].tag}</td>
                         </tr>
                         <tr style="height:40px">
-                            <th style="width:55%">Priority:</th>
+                            <th style="width:76%">Priority:</th>
                             <td style="text-align: right">${completed[i][1].priority}</td>
                         </tr>
                         <tr style="height:40px">
-                            <th style="width:55%">Story Points:</th>
+                            <th style="width:76%">Story Points:</th>
                             <td style="text-align: right">${completed[i][1].numStoryPoints}</td>
                         </tr>
                         <tr style="height:40px">
-                            <th style="width:55%">Time spent (minutes):</th>
+                            <th style="width:76%">Time Spent (mins):</th>
                             <td style="text-align: right">${completed[i][1].time}</td>
                         </tr>
                     </table>                    
