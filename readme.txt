@@ -9,7 +9,7 @@ Time & Task tracking tools:
 
 Product Backlog: https://docs.google.com/document/d/1SOFdhy9svccMhvy32lBlIXk0e_12MY0cAvm3NkdyPYY/edit?usp=sharing
 
-Current stage: Sprint 1
-Test Plan: https://docs.google.com/document/d/1wGFehkCINHF2RqOYjaA-qyFoKXuU2bQhc4OrOh1vKDg/edit?usp=sharing
-Project Management Plan: https://docs.google.com/document/d/1cfdoHl2W5wLFXsq79whhUTTfiSoYggXg1xqz7COwTrI/edit?usp=sharing
-Sprint Backlog: https://docs.google.com/document/d/16YgzNN5ce7iIgCqHyHHZK1xPSRyTE13ErqICYyBkB_g/edit?usp=sharing
+Current stage: Sprint 2
+Test Plan: https://docs.google.com/document/d/16SXceQjPRynMFCxCV_DhZUpVkZjmm0fT1Eux_eklhPo/edit?usp=sharing
+Project Management Plan: https://docs.google.com/document/d/1OZ_fYlXx7FMTxnIMPF9cpZb7eitymHTfIurQDpySVQU/edit?usp=sharing
+Sprint Backlog: https://docs.google.com/document/d/1-U4I9MtdapQPEpOxJMytAKo2LrcHxsPzAMWCY4fT57Q/edit?usp=sharing
