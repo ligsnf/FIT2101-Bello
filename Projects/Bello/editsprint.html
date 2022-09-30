@@ -20,11 +20,22 @@
 <body>
   <div id="header"></div>
   <div class="container">
-    <h1 id="sprintName"></h1>
-    <div>
+    <div id="sprintNameDiv">
+      <h1 id="sprintName"></h1>
+      <div>
+        Start Date:
+        <a id="startDate">
+        </a>&nbsp;&nbsp;&nbsp;&nbsp;
+        End Date:
+        <a id="endDate">
+        </a>
+      </div>
+    </div>
+    <div id="buttonDiv">
       <p>All PBIs; Sprint PBIs</p>
+      <button id="editButton" type="button" class="btn btn-primary icon" onclick="editSprint()">Edit Details</button>
       <button type="button" class="btn btn-primary icon" onclick="startSprint()">Start Sprint</button>
-      <button type="button" class="btn btn-danger" onclick="deleteSprint()">Delete Sprint</button>
+      <button type="button" class="btn btn-danger icon" onclick="deleteSprint()">Delete Sprint</button>
     </div>
   </div>
   <div id="footer"></div>

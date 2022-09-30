@@ -1,12 +1,12 @@
 /**
- * FILENAME :   currentsprint.js             
- * PURPOSE  :   Contains the funtionality for displaying the sprint backlog of an ongoing sprint,
- *              viewing, starting and completing tasks within a sprint, and a button for marking the sprint as "Completed".
+ * FILENAME :   completedsprint.js             
+ * PURPOSE  :   Contains the funtionality for displaying the sprint backlog of a completed sprint,
+ *              viewing tasks within the sprint, and a button for viewing the sprint's burndown chart.
  * LAST MODIFIED : 1 Oct 22
  */
 
 let index = localStorage.getItem(ITEM_KEY);
-let sprint = sprintInventory.inventory[0][index];
+let sprint = sprintInventory.inventory[2][index];
 
 let sprintNameDisplayRef = document.getElementById("sprintName");
 sprintNameDisplayRef.innerHTML = sprint.name;
@@ -19,30 +19,20 @@ sprintEndDateDisplayRef.innerHTML = sprint.endDate;
 
 
 /**
- * Complete a sprint by changing the status of the sprint from "In progress" to "Completed"
- */
-function completeSprint() {
-    sprintInventory.completeSprint(index);
-    updateLSData(SPRINT_INVENTORY_KEY, sprintInventory)
-    window.location = "sprintBoard.html"
-}
-
-
-/**
  * Colour code tasks by their tags (UI, Core, Testing)
  */
-const TAG_TO_COLOR = {
+ const TAG_TO_COLOR = {
     "UI": "background-color: rgba(0, 255, 255, 0.4);",
     "Core": "background-color: rgba(144, 238, 144, 0.4);",
     "Testing": "background-color: rgba(255, 191, 0, 0.4);"
-};
+}
 
 
 /**
  * Display sprint backlog and show all tasks within the sprint in 3 columns based on their status (Not started, In progress, Completed)
  * @param {Sprint} currentSprint The sprint that is currently being viewed
  */
-function displaySprintBacklog(currentSprint, currentIndex) {
+ function displaySprintBacklog(currentSprint, currentIndex) {
     let sprintBacklogDisplayRef = document.getElementById("display-sprint-backlog")
 
     // separate sprint PBIs into 3 categories (not started, in progress, completed)
@@ -95,9 +85,8 @@ function displaySprintBacklog(currentSprint, currentIndex) {
                         </tr>
                     </table>                    
                 </div>
-                <div class="card-footer" style="background-color: white; height:30px; padding:0px 0px 0px 97px;">
+                <div class="card-footer" style="background-color: white; height:30px; padding:0px 0px 0px 162px;">
                     <div class="button-wrapper">
-                        <button type="button" id="view-PBI-button" class="btn btn-primary" onclick="start(${notStarted[i][0]})">Start</button>
                         <button type="button" id="view-PBI-button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#viewSprintTaskPopUp" onclick="viewTask(${notStarted[i][0]})">View</button>
                     </div>
                 </div>
@@ -137,10 +126,8 @@ function displaySprintBacklog(currentSprint, currentIndex) {
                         </tr>
                     </table>                    
                 </div>
-                <div class="card-footer" style="background-color: white; height:30px; padding:0px 0px 0px 48px;">
+                <div class="card-footer" style="background-color: white; height:30px; padding:0px 0px 0px 177px;">
                     <div class="button-wrapper">
-                        <button type="button" id="view-PBI-button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#logTimePopUp" onclick="logTimeTask(${inProgress[i][0]})" >Log time</button>
-                        <button type="button" id="view-PBI-button" class="btn btn-success" onclick="complete(${inProgress[i][0]})">Complete</button>
                         <button type="button" id="view-PBI-button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#viewSprintTaskPopUp" onclick="viewTask(${inProgress[i][0]})">View</button>
                     </div>
                 </div>
@@ -180,7 +167,7 @@ function displaySprintBacklog(currentSprint, currentIndex) {
                         </tr>
                     </table>                    
                 </div>
-                <div class="card-footer" style="background-color: white; height:30px; padding:0px 0px 0px 176px;">
+                <div class="card-footer" style="background-color: white; height:30px; padding:0px 0px 0px 177px;">
                     <div class="button-wrapper">
                         <button type="button" id="view-PBI-button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#viewSprintTaskPopUp" onclick="viewTask(${completed[i][0]})">View</button>
                     </div>
@@ -197,9 +184,7 @@ function displaySprintBacklog(currentSprint, currentIndex) {
 
     let sprintBacklogButtonsRef = document.getElementById("currentSprintButtons")
     sprintBacklogButtonsRef.innerHTML = `
-        <button id="completedButton" type="button" class="btn btn-success icon" onclick="completeSprint(${currentIndex})">Complete</button>
         <button id="viewBurndownChartButton" type="button" class="btn btn-primary icon" onclick="viewBurndownChart(${currentIndex})">View Burndown Chart</button>`
-
 }
 
 
@@ -208,54 +193,10 @@ displaySprintBacklog(sprint, index)
 
 
 /**
- * Change the status of a sprint task from Not Started to In Progress
- * @param {PBI} task The sprint task whose status is being changed to In Progress
- */
-function start(task) {
-    // store data in LS
-    localStorage.setItem(PBI_KEY, task);
-
-    // Global code to retrieve data to be edited
-    let taskIndex = localStorage.getItem(PBI_KEY);
-
-    // start task
-    sprint.items[taskIndex].status = "In progress"
-
-    // store data in LS
-    localStorage.setItem(PBI_KEY, task)
-    updateLSData(SPRINT_INVENTORY_KEY, sprintInventory)
-
-    location.reload();
-}
-
-
-/**
- * Change the status of a sprint task from In Progress to Completed
- * @param {PBI} task The sprint task whose status is being changed to Completed
- */
-function complete(task) {
-    // store data in LS
-    localStorage.setItem(PBI_KEY, task);
-
-    // Global code to retrieve data to be edited
-    let taskIndex = localStorage.getItem(PBI_KEY);
-
-    // start task
-    sprint.items[taskIndex].status = "Completed"
-
-    // store data in LS
-    localStorage.setItem(PBI_KEY, task)
-    updateLSData(SPRINT_INVENTORY_KEY, sprintInventory)
-
-    location.reload();
-}
-
-
-/**
  * Open ViewSprintTaskPopUp to view the selected sprint task's details
- * @param {int} i The index number of the task to be viewed within the current sprint
+ * @param {int} i The index number of the task to be viewed within the completed sprint
  */
-function viewTask(i) {
+ function viewTask(i) {
     let taskDisplayRef = document.getElementById("viewSprintTaskPopUpBody");
 
     taskDisplayRef.innerHTML = `
@@ -313,54 +254,10 @@ function viewTask(i) {
 
 
 /**
- * View the burndown chart of the current sprint
- * @param {int} currentIndex The index number of the sprint
+ * View the burndown chart of the completed sprint
+ * @param {int} currentIndex The index number of the currently viewing completed sprint
  */
-function viewBurndownChart(currentIndex) {
+ function viewBurndownChart(currentIndex) {
     localStorage.setItem(ITEM_KEY, currentIndex);
-    window.location = "burndownChart.html";
-}
-
-
-var taskIndex = 0
-var timetask = null;
-
-
-/**
- * Open up a popup window to log time spent on a task
- * @param {PBI} task The sprint task whose status is being changed to In Progress
- */
-function logTimeTask(task) {
-
-    timetask = task;
-    // store data in LS
-    localStorage.setItem(PBI_KEY, task);
-
-    // Global code to retrieve data to be edited
-    taskIndex = localStorage.getItem(PBI_KEY);
-
-}
-
-/**
- * Log the time spent on a task item in current sprint
- */
-function logTime() {
-
-    let tasktime = document.getElementById("PBITaskTime").value;
-    tasktime = parseInt(tasktime);
-    // start task
-    let newTaskTime = parseInt(sprint.items[taskIndex]._time);
-    newTaskTime += tasktime;
-    sprint.items[taskIndex]._time = newTaskTime;
-
-    document.getElementById("PBITaskTime").value = "";
-
-    // store data in LS
-    localStorage.setItem(PBI_KEY, timetask)
-    updateLSData(SPRINT_INVENTORY_KEY, sprintInventory)
-
-    // Close modal popup
-    $('#logTimePopUp').modal('toggle');
-    
-    location.reload();;
+    window.location = "completedBurndownChart.html";
 }

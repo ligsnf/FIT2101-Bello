@@ -1,6 +1,11 @@
 /**
- * This function gets user data from the html page to create a new sprint
- * The sprint is then saved into local storage and the page is updated with the new data
+ * FILENAME :   sprintboard.js             
+ * PURPOSE  :   Contains the funtionality for adding, editing and viewing sprints on the sprint board page.
+ * LAST MODIFIED : 1 Oct 22
+ */
+
+/**
+ * Add a new sprint to the sprint board page
  */
 function addSprint() {
     let name = document.getElementById("sprintName").value;
@@ -24,23 +29,24 @@ function addSprint() {
     $('#addSprintPopUp').modal('toggle');
 }
 
+
 /**
- * This function updates the page with the list of sprints, showing each sprint as a card, seperated into started, future and finished
- * @param {SprintInventory} sprintInventory the list of sprints
+ * Display all future, ongoing and past sprints on the sprint board page
+ * @param {sprintInventory} sprintInventory The instance of SprintInventory that holds all future, ongoing and past sprints
  */
 function displaySprintInventory(sprintInventory) {
     let startedInventoryDisplayRef = document.getElementById("startedSprints");
     let futureInventoryDisplayRef = document.getElementById("futureSprints");
-    let finishedInventoryDisplayRef = document.getElementById("finishedSprints");
+    let completedInventoryDisplayRef = document.getElementById("completedSprints");
     let startedInventory = ``;
     let futureInventory = ``;
-    let finishedInventory = ``;
+    let completedInventory = ``;
 
     for (let i=0; i < sprintInventory.inventory[0].length; i++) {
         let sprint = sprintInventory.inventory[0][i]
         startedInventory += `
         <div class="col">
-        <div class="card" style="width: 40rem;">
+        <div class="card" style="width: 100%;">
             <div class="card-body">
                 <table style="width:100%">
                     <tr style="height:35px">
@@ -49,23 +55,18 @@ function displaySprintInventory(sprintInventory) {
                             <button type="button" class="btn btn-info" data-bs-toggle="modal" onclick="view(${i})"> View </button>
                         </td>
                     </tr>
-                    <tr style="height:35px">
-                        <th>${sprint.startDate}</th>
-                    </tr>
-                    <tr style="height:35px">
-                        <th>${sprint.endDate}</th>
-                    </tr>
                 </table>                    
             </div>
         </div>
         `
     }
     startedInventoryDisplayRef.innerHTML = startedInventory;
+
     for (let i=0; i < sprintInventory.inventory[1].length; i++) {
         let sprint = sprintInventory.inventory[1][i]
         futureInventory += `
         <div class="col">
-        <div class="card" style="width: 40rem;">
+        <div class="card" style="width: 100%;">
             <div class="card-body">
                 <table style="width:100%">
                     <tr style="height:35px">
@@ -81,46 +82,57 @@ function displaySprintInventory(sprintInventory) {
     }
     futureInventoryDisplayRef.innerHTML = futureInventory;
 
-    for (let i=0; i < sprintInventory.inventory[0].length; i++) {
-        let sprint = sprintInventory.inventory[0][i]
-        startedInventory += `
+    for (let i=0; i < sprintInventory.inventory[2].length; i++) {
+        let sprint = sprintInventory.inventory[2][i]
+        completedInventory += `
         <div class="col">
-        <div class="card" style="width: 40rem;">
+        <div class="card" style="width: 100%;">
             <div class="card-body">
                 <table style="width:100%">
                     <tr style="height:35px">
                         <th>${sprint.name}</th>
-                    </tr>
-                    <tr style="height:35px">
-                        <th>${sprint.startDate}</th>
-                    </tr>
-                    <tr style="height:35px">
-                        <th>${sprint.endDate}</th>
+                        <td style="text-align: right">
+                            <button type="button" class="btn btn-info" data-bs-toggle="modal" onclick="viewCompleted(${i})"> View </button>
+                        </td>
                     </tr>
                 </table>                    
             </div>
         </div>
-        `
+        `;
     }
-    finishedInventoryDisplayRef.innerHTML = finishedInventory;
+    completedInventoryDisplayRef.innerHTML = completedInventory;
 }
 
+
+// Display all sprints on the sprint board page
 displaySprintInventory(sprintInventory);
 
+
 /**
- * This function retrieves a sprint from the sprint inventory and changes window to currentsprint.html to allow that sprint to be viewed
- * @param {int} index the index of the sprint 
+ * View an ongoing sprint listed on the sprint board page
+ * @param {int} index The index number of the ongoing sprint to be edited
  */
 function view(index) {
     localStorage.setItem(ITEM_KEY, index);
     window.location = "currentsprint.html";
 }
 
+
 /**
- * This function retrieves a sprint from the sprint inventory and changes window to editsprint.html to allow that sprint to be edited
- * @param {int} index the index of the sprint  
+ * Edit a future sprint listed on the sprint board page
+ * @param {int} index The index number of the sprint to be edited
  */
 function edit(index) {
     localStorage.setItem(ITEM_KEY, index);
     window.location = "editsprint.html";
+}
+
+
+/**
+ * View a completed sprint listed on the sprint board page
+ * @param {int} index The index number of the completed sprint to be viewed
+ */
+function viewCompleted(index) {
+    localStorage.setItem(ITEM_KEY, index);
+    window.location = "completedsprint.html";
 }

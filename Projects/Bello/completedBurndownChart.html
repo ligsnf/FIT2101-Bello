@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,34 +17,27 @@
     $(function(){
       $("#header").load("assets/components/header.html"); 
       $("#footer").load("assets/components/footer.html"); 
-      $("#addSprint").load("assets/components/addSprintPopUp.html"); 
     });
   </script> 
 </head>
+
 <body>
   <div id="header"></div>
-  <div class="container">
-    <h1>Sprint Board</h1>
-    <div>
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSprintPopUp" style="margin-bottom:25px"> Add New Sprint </button>
-      <div id="addSprint"></div>
+    <div class="container">
+      <h1>Burndown Chart</h1>
+      <div id="burndownChart">
+        <p>this is where the burndown chart would go</p>
+      </div>
+      <div id="goBackButton">
+        <button id="goBackButton" type="button" class="btn btn-secondary icon" onclick="goBack()">Go Back</button>
+      </div>
+      <div id="goBack"></div>
     </div>
-    <!-- Started Sprints -->
-    <h3>Started Sprints</h3>
-    <div id="startedSprints"></div>
-    <!-- Future Sprints-->
-    <h3>Future Sprints</h3>
-    <div id="futureSprints"></div>
-    <!-- Started Sprints -->
-    <h3>Completed Sprints</h3>
-    <div id="completedSprints"></div>
   </div>
-</div>
-  </div>
-  <div id="footer"></div>
+
   <div id="footer"></div>
   <script src="assets/js/shared.js"></script>
-  <script src="assets/js/sprintboard.js"></script>
-  <script src="assets/js/edit.js"></script>
+  <script src="assets/js/completedBurndownChart.js"></script>
 </body>
+
 </html>

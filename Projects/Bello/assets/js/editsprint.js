@@ -1,15 +1,35 @@
+/**
+ * FILENAME :   editsprint.js             
+ * PURPOSE  :   Contains the funtionality for editing, starting and deleting an existing sprint.
+ * LAST MODIFIED : 1 Oct 22
+ */
+
 let index = localStorage.getItem(ITEM_KEY);
 let sprint = sprintInventory.inventory[1][index];
 
 let sprintNameDisplayRef = document.getElementById("sprintName");
 sprintNameDisplayRef.innerHTML = sprint.name;
 
+let sprintStartDateDisplayRef = document.getElementById("startDate");
+sprintStartDateDisplayRef.innerHTML = sprint.startDate;
+
+let sprintEndDateDisplayRef = document.getElementById("endDate");
+sprintEndDateDisplayRef.innerHTML = sprint.endDate;
+
+
+/**
+ * Start a future sprint listed on the sprint board page
+ */
 function startSprint() {
     sprintInventory.startSprint(index);
     updateLSData(SPRINT_INVENTORY_KEY, sprintInventory)
     window.location = "sprintBoard.html"
 }
 
+
+/**
+ * Edit the sprint name for a future sprint
+ */
 function editSprint(){
     let nameHeader = document.getElementById("sprintName");
     let currentSprintName = nameHeader.innerHTML;
@@ -31,6 +51,10 @@ function editSprint(){
 
 }
 
+
+/**
+ * Update and save the changes made to a future sprint
+ */
 function saveEdit(){
     let newName = document.getElementById("editSprintName").value;
     sprint.name = newName
@@ -46,17 +70,15 @@ function saveEdit(){
     document.getElementById("buttonDiv").innerHTML = resetButtonOutput;
 }
 
+
+/**
+ * Delete a future sprint listed on the sprint board page
+ */
 function deleteSprint(){
     var sprints = JSON.parse(localStorage.getItem(SPRINT_INVENTORY_KEY));
 
-    
-    sprints._inventory.splice(index,1);
-    
-    // JSON to String
-    sprints = JSON.stringify(sprints);
+    sprints._inventory[1].splice(index,1);
 
-    // reset in localstorage
-    localStorage.setItem(SPRINT_INVENTORY_KEY,sprints);
-
-    window.location = "sprintBoard.html";
+    updateLSData(SPRINT_INVENTORY_KEY, sprints)
+    window.location = "sprintBoard.html"
 }

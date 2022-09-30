@@ -14,6 +14,8 @@
     $(function(){
       $("#header").load("assets/components/header.html"); 
       $("#footer").load("assets/components/footer.html"); 
+      $("#viewTask").load("assets/components/viewSprintTaskPopUp.html"); 
+      $("#logTime").load("assets/components/logTimePopUp.html");
     });
   </script> 
 </head>
@@ -22,9 +24,44 @@
   <div class="container">
     <h1 id="sprintName"></h1>
     <div>
-      <p>Not Done; Doing; Done</p>
+      Start Date:
+      <a id="startDate">
+      </a>&nbsp;&nbsp;&nbsp;&nbsp;
+      End Date:
+      <a id="endDate">
+      </a>
     </div>
+
+    <br>
+
+    <div class="row" id="display-sprint-backlog">
+      <div class="col-sm" id="notStarted">
+        <h3>Not Started</h3>
+      </div>
+      <div class="col-sm" id="inProgress">
+        <h3>In Progress</h3>
+      </div>
+      <div class="col-sm" id="completed">
+        <h3>Completed</h3>
+      </div>
+    </div>
+
+    <br>
+
+    <div id="currentSprintButtons">
+      <button id="completedButton" type="button" class="btn btn-success icon" onclick="completeSprint()">Complete</button>
+      <button id="viewBurndownChartButton" type="button" class="btn btn-primary icon" onclick="viewBurndownChart()">View Burndown Chart</button>
+    </div>
+
+    <br>
+    <br>
+
   </div>
+
+  <div id="viewTask"></div>
+  <div id="logTime"></div>
+  <div id="viewBurndownChart"></div>
+
   <div id="footer"></div>
   <script src="assets/js/shared.js"></script>
   <script src="assets/js/currentsprint.js"></script>
