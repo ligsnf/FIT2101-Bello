@@ -125,6 +125,7 @@ function displaySprintBacklog(currentSprint, currentIndex) {
                 </div>
                 <div class="card-footer" style="background-color: white; height:30px; padding:0px 0px 0px 97px;">
                     <div class="button-wrapper">
+                        <button type="button" id="view-PBI-button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#logTimePopUp" onclick="logTimeTask(${inProgress[i][0]})" >Log time</button>
                         <button type="button" id="view-PBI-button" class="btn btn-success" onclick="complete(${inProgress[i][0]})">Complete</button>
                         <button type="button" id="view-PBI-button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#viewSprintTaskPopUp" onclick="viewTask(${inProgress[i][0]})">View</button>
                     </div>
@@ -185,6 +186,16 @@ function displaySprintBacklog(currentSprint, currentIndex) {
 
 
 // diplsay sprint backlog
+if (sprint.items.length==0) {
+    let pbi1 = new PBI("Test Task 1", "text 1", "Story", "UI", "1", "Not started", "Low", "A")
+    sprint.addItem(pbi1)
+    let pbi2 = new PBI("Test Task 2", "text 2", "Bug", "Core", "2", "Not started", "High", "B")
+    sprint.addItem(pbi2)
+    let pbi3 = new PBI("Test Task 3", "text 3", "Bug", "Testing", "3", "Not started", "Medium", "C")
+    sprint.addItem(pbi3)
+    let pbi4 = new PBI("Test Task 4", "text 4", "Story", "Core", "4", "Not started", "High", "D")
+    sprint.addItem(pbi4)
+}
 displaySprintBacklog(sprint, index)
 
 
@@ -302,25 +313,37 @@ function viewBurndownChart(currentIndex) {
     window.location = "burndownChart.html";
 }
 
-
+var taskIndex = 0
 /**
  * Log time spent to the item in current sprint
  * @param {PBI} task The sprint task whose be seleted to log time
  * @param {int} time the time spent in task with unit of minutes 
  */
-function logTime(task, time) {
+function logTime() {
     // store data in LS
     localStorage.setItem(PBI_KEY, task);
 
-    // Global code to retrieve data to be edited
-    let taskIndex = localStorage.getItem(PBI_KEY);
+    taskindex = alert(taskIndex.current);
 
+    let time = document.getElementById("PBITaskTime").value;
     // start task
-    sprint.items[taskIndex].time += time;
+    sprint.items[taskindex].time += time;
+
+    document.getElementById("PBITaskTime").value = "Time spent on the task";
 
     // store data in LS
     localStorage.setItem(PBI_KEY, task)
     updateLSData(SPRINT_INVENTORY_KEY, sprintInventory)
 
-    location.reload();
+    // Close modal popup
+    $('#logTimePopUp').modal('toggle');
+}
+
+function logTimeTask(task) {
+    // store data in LS
+    localStorage.setItem(PBI_KEY, task);
+
+    // Global code to retrieve data to be edited
+    taskIndex.current = localStorage.getItem(PBI_KEY);
+
 }
