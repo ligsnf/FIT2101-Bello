@@ -110,24 +110,24 @@ function displaySprintBacklog(currentSprint, currentIndex) {
                 <div class="card-body" style="${TAG_TO_COLOR[inProgress[i][1].tag]}">
                     <table style="width:100%">
                         <tr style="height:40px">
-                            <th style="width:55%">Tag:</th>
+                            <th style="width:76%">Tag:</th>
                             <td style="text-align: right">${inProgress[i][1].tag}</td>
                         </tr>
                         <tr style="height:40px">
-                            <th style="width:55%">Priority:</th>
+                            <th style="width:76%">Priority:</th>
                             <td style="text-align: right">${inProgress[i][1].priority}</td>
                         </tr>
                         <tr style="height:40px">
-                            <th style="width:55%">Story Points:</th>
+                            <th style="width:76%">Story Points:</th>
                             <td style="text-align: right">${inProgress[i][1].numStoryPoints}</td>
                         </tr>
                         <tr style="height:40px">
-                            <th style="width:55%">Time spent (minutes):</th>
+                            <th style="width:76%">Time Spent (mins):</th>
                             <td style="text-align: right">${inProgress[i][1].time}</td>
                         </tr>
                     </table>                    
                 </div>
-                <div class="card-footer" style="background-color: white; height:60px; padding:0px 0px 0px 97px;">
+                <div class="card-footer" style="background-color: white; height:30px; padding:0px 0px 0px 32px;">
                     <div class="button-wrapper">
                         <button type="button" id="view-PBI-button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#logTimePopUp" onclick="logTimeTask(${inProgress[i][0]})" >Log time</button>
                         <button type="button" id="view-PBI-button" class="btn btn-success" onclick="complete(${inProgress[i][0]})">Complete</button>
