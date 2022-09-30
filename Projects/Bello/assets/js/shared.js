@@ -52,6 +52,7 @@ class PBI {
         this._status = status;
         this._priority = priority;
         this._assignee = assignee;
+        this._time = 0;
     }
     // Getters
     get name() { return this._name; }
@@ -62,6 +63,7 @@ class PBI {
     get status() { return this._status; }
     get priority() { return this._priority; }
     get assignee() { return this._assignee; }
+    get time() { return this._time; }
     // Setters
     set name(newName) { this._name = newName; }
     set description(newDescription) { this._description = newDescription; }
@@ -71,6 +73,7 @@ class PBI {
     set status(newStatus) { this._status = newStatus; }
     set priority(newPriority) { this._priority = newPriority; }
     set assignee(newAssignee) { this._assignee = newAssignee; }
+    set time(newTime) { this._time = newTime; }
 
     fromData(data) {
         this._name = data._name;
@@ -81,6 +84,7 @@ class PBI {
         this._status = data._status;
         this._priority = data._priority;
         this._assignee = data._assignee;
+        this._time = data._time;
     }
 }
 
