@@ -314,25 +314,25 @@ function viewBurndownChart(currentIndex) {
 }
 
 var taskIndex = 0
+var timetask = null;
 /**
  * Log time spent to the item in current sprint
  * @param {PBI} task The sprint task whose be seleted to log time
  * @param {int} time the time spent in task with unit of minutes 
  */
 function logTime() {
-    // store data in LS
-    localStorage.setItem(PBI_KEY, task);
 
-    taskindex = alert(taskIndex.current);
-
-    let time = document.getElementById("PBITaskTime").value;
+    let tasktime = document.getElementById("PBITaskTime").value;
+    tasktime = parseInt(tasktime);
     // start task
-    sprint.items[taskindex].time += time;
+    let newTaskTime = parseInt(sprint.items[taskIndex]._time);
+    newTaskTime += tasktime;
+    sprint.items[taskIndex]._time = newTaskTime;
 
-    document.getElementById("PBITaskTime").value = "Time spent on the task";
+    document.getElementById("PBITaskTime").value = "";
 
     // store data in LS
-    localStorage.setItem(PBI_KEY, task)
+    localStorage.setItem(PBI_KEY, timetask)
     updateLSData(SPRINT_INVENTORY_KEY, sprintInventory)
 
     // Close modal popup
@@ -340,10 +340,12 @@ function logTime() {
 }
 
 function logTimeTask(task) {
+
+    timetask = task;
     // store data in LS
     localStorage.setItem(PBI_KEY, task);
 
     // Global code to retrieve data to be edited
-    taskIndex.current = localStorage.getItem(PBI_KEY);
+    taskIndex = localStorage.getItem(PBI_KEY);
 
 }
