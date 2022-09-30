@@ -301,3 +301,26 @@ function viewBurndownChart(currentIndex) {
     localStorage.setItem(ITEM_KEY, currentIndex);
     window.location = "burndownChart.html";
 }
+
+
+/**
+ * Log time spent to the item in current sprint
+ * @param {PBI} task The sprint task whose be seleted to log time
+ * @param {int} time the time spent in task with unit of minutes 
+ */
+function logTime(task, time) {
+    // store data in LS
+    localStorage.setItem(PBI_KEY, task);
+
+    // Global code to retrieve data to be edited
+    let taskIndex = localStorage.getItem(PBI_KEY);
+
+    // start task
+    sprint.items[taskIndex].time += time;
+
+    // store data in LS
+    localStorage.setItem(PBI_KEY, task)
+    updateLSData(SPRINT_INVENTORY_KEY, sprintInventory)
+
+    location.reload();
+}
