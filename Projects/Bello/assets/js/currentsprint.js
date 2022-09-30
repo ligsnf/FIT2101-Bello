@@ -127,7 +127,7 @@ function displaySprintBacklog(currentSprint, currentIndex) {
                         </tr>
                     </table>                    
                 </div>
-                <div class="card-footer" style="background-color: white; height:30px; padding:0px 0px 0px 97px;">
+                <div class="card-footer" style="background-color: white; height:60px; padding:0px 0px 0px 97px;">
                     <div class="button-wrapper">
                         <button type="button" id="view-PBI-button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#logTimePopUp" onclick="logTimeTask(${inProgress[i][0]})" >Log time</button>
                         <button type="button" id="view-PBI-button" class="btn btn-success" onclick="complete(${inProgress[i][0]})">Complete</button>
