@@ -1,3 +1,7 @@
+/**
+ * This function gets user data from the html page to create a new sprint
+ * The sprint is then saved into local storage and the page is updated with the new data
+ */
 function addSprint() {
     let name = document.getElementById("sprintName").value;
     let startDate = document.getElementById("startDate").value;
@@ -20,11 +24,17 @@ function addSprint() {
     $('#addSprintPopUp').modal('toggle');
 }
 
+/**
+ * This function updates the page with the list of sprints, showing each sprint as a card, seperated into started, future and finished
+ * @param {SprintInventory} sprintInventory the list of sprints
+ */
 function displaySprintInventory(sprintInventory) {
     let startedInventoryDisplayRef = document.getElementById("startedSprints");
     let futureInventoryDisplayRef = document.getElementById("futureSprints");
+    let finishedInventoryDisplayRef = document.getElementById("finishedSprints");
     let startedInventory = ``;
     let futureInventory = ``;
+    let finishedInventory = ``;
 
     for (let i=0; i < sprintInventory.inventory[0].length; i++) {
         let sprint = sprintInventory.inventory[0][i]
@@ -70,15 +80,46 @@ function displaySprintInventory(sprintInventory) {
         `
     }
     futureInventoryDisplayRef.innerHTML = futureInventory;
+
+    for (let i=0; i < sprintInventory.inventory[0].length; i++) {
+        let sprint = sprintInventory.inventory[0][i]
+        startedInventory += `
+        <div class="col">
+        <div class="card" style="width: 40rem;">
+            <div class="card-body">
+                <table style="width:100%">
+                    <tr style="height:35px">
+                        <th>${sprint.name}</th>
+                    </tr>
+                    <tr style="height:35px">
+                        <th>${sprint.startDate}</th>
+                    </tr>
+                    <tr style="height:35px">
+                        <th>${sprint.endDate}</th>
+                    </tr>
+                </table>                    
+            </div>
+        </div>
+        `
+    }
+    finishedInventoryDisplayRef.innerHTML = finishedInventory;
 }
 
 displaySprintInventory(sprintInventory);
 
+/**
+ * This function retrieves a sprint from the sprint inventory and changes window to currentsprint.html to allow that sprint to be viewed
+ * @param {int} index the index of the sprint 
+ */
 function view(index) {
     localStorage.setItem(ITEM_KEY, index);
     window.location = "currentsprint.html";
 }
 
+/**
+ * This function retrieves a sprint from the sprint inventory and changes window to editsprint.html to allow that sprint to be edited
+ * @param {int} index the index of the sprint  
+ */
 function edit(index) {
     localStorage.setItem(ITEM_KEY, index);
     window.location = "editsprint.html";
