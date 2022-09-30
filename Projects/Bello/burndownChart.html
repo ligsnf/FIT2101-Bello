@@ -1,63 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bello - Team Members</title>
+  <title>Bello - Sprint Board</title>
   <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
   <link rel="stylesheet" href="assets/css/style.css">
   <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.syncfusion.com/ej2/dist/ej2.min.js"></script>
+  <link href="https://cdn.syncfusion.com/ej2/material.css" rel="stylesheet">
   <script> 
     $(function(){
       $("#header").load("assets/components/header.html"); 
       $("#footer").load("assets/components/footer.html"); 
-      $("#viewTask").load("assets/components/viewSprintTaskPopUp.html"); 
     });
   </script> 
 </head>
+
 <body>
   <div id="header"></div>
-  <div class="container">
-    <h1 id="sprintName"></h1>
-    <div>
-      Start Date:
-      <a id="startDate">
-      </a>&nbsp;&nbsp;&nbsp;&nbsp;
-      End Date:
-      <a id="endDate">
-      </a>
-    </div>
-    
-    <br>
-
-    <div class="row" id="display-sprint-backlog">
-      <div class="col-sm" id="notStarted">
-        <h3>Not Started</h3>
+    <div class="container">
+      <h1>Burndown Chart</h1>
+      <div id="burndownChart">
+        <p>this is where the burndown chart would go</p>
       </div>
-      <div class="col-sm" id="inProgress">
-        <h3>In Progress</h3>
+      <div id="goBackButton">
+        <button id="goBackButton" type="button" class="btn btn-secondary icon" onclick="goBack()">Go Back</button>
       </div>
-      <div class="col-sm" id="completed">
-        <h3>Completed</h3>
-      </div>
+      <div id="goBack"></div>
     </div>
-
-    <br>
-
-    <div id="currentSprintButtons">
-      <button id="viewBurndownChartButton" type="button" class="btn btn-primary icon" onclick="viewBurndownChart()">View Burndown Chart</button>
-    </div>
-
   </div>
 
-  <div id="viewTask"></div>
-  <div id="viewBurndownChart"></div>
-  
   <div id="footer"></div>
   <script src="assets/js/shared.js"></script>
-  <script src="assets/js/completedsprint.js"></script>
+  <script src="assets/js/burndownChart.js"></script>
 </body>
+
 </html>
