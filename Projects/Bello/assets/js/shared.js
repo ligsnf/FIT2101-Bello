@@ -244,6 +244,16 @@ class Team{
         return this._team[index];
     }
 
+    memberExists(memberName) {
+        for (let i = 0; i < team._team.length; i++) {
+            // If member is found, 
+            if (team._team[i] == memberName) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     fromData(data) {
         this._team = [];
         for (let i = 0; i < data._team.length;i++){
