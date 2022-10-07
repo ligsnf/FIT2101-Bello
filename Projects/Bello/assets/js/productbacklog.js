@@ -28,6 +28,11 @@ function addPBI() {
     // Creates a new PBI object based on user inputs
     let pbi = new PBI(name, description, type, tag, storyPoints, status, priority, assignee);
     
+    // Create new member if they don't already exist
+    if (team.memberExists(assignee)) {
+        team.addMember(assignee);
+    }
+    
     // Adds item to inventory
     inventory.addItem(pbi);
 
