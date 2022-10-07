@@ -10,6 +10,7 @@ const PRODUCT_BACKLOG_KEY = "currentProductBacklogData"
 const PBI_KEY = "currentPbiIndex";
 const SPRINT_INVENTORY_KEY = "currentSprintInventoryData"
 const ITEM_KEY = "ItemKey";
+const TEAM_KEY = "TeamKey";
 
 
 /**
@@ -203,7 +204,7 @@ class Sprint{
      * @param {PBI} item item to be added to the sprint
      */
     addItem(item) {
-        if (item instanceof PBI){ this._items.push(item) }
+        if (item instanceof PBI){ this._items.push(item); }
     }
 
     /**
@@ -224,7 +225,61 @@ class Sprint{
     }
 }
 
+class Team{
+    constructor() {
+        this._team = [];
+    }
 
+    get team() { return this._team; }
+
+    addMember(member) {
+        if (member instanceof Member){ this._team.push(member); }
+    }
+
+    removeMember(index) {
+        this._team.splice(index,1);
+    }
+
+    getMember(index) {
+        return this._team[index];
+    }
+
+    fromData(data) {
+        this._team = [];
+        for (let i = 0; i < data._team.length;i++){
+            for (let j = 0; j <data._team[i].length; j++){
+                let tempMember = new Member();
+                tempSprint.fromData(data._team[i][j]);
+                this._team[i].push(tempMember);
+            }
+        }
+    }
+}
+
+class Member {
+    constructor(name) {
+        this._name = name;
+        this._email = "";
+        this._timeLog = [];
+    }
+
+    get name() { return this._name; }
+    get email() { return this._email; }
+    get timeLog() {return this._timeLog; }
+
+    set name(newName) { this._name = newName; }
+    set email(newEmail) { this._email = newEmail; }
+
+    addTime(time) {
+        this._timeLog.push(time);
+    }
+
+    fromData(data) {
+        this._name = data.name;
+        this._email = data.email;
+        this._timeLog = data.timeLog;
+    }
+}
 /**
  * checkLSData function
  * Used to check if any data in LS exists at a specific key
@@ -275,10 +330,13 @@ function updateLSData(key, data)
 }
 
 
-// Global inventory variable
+// Global variables
 let inventory = new Inventory();
+let sprintInventory = new SprintInventory();
+let team = new Team();
 
-// Check if data available in LS before continuing
+// Get from local storage
+// Product Backlog
 if (checkLSData(PRODUCT_BACKLOG_KEY))
 {
     // If data exists, retrieve it
@@ -287,14 +345,20 @@ if (checkLSData(PRODUCT_BACKLOG_KEY))
     inventory.fromData(data);
 }
 
-// Global sprint inventory variable
-let sprintInventory = new SprintInventory();
-
-// Check if data available in LS before continuing
+// Sprint Inventory
 if (checkLSData(SPRINT_INVENTORY_KEY))
 {
     // If data exists, retrieve it
     let data = retrieveLSData(SPRINT_INVENTORY_KEY);
     // Restore data into inventory
     sprintInventory.fromData(data);
+}
+
+// Team
+if (checkLSData(TEAM_KEY))
+{
+    // If data exists, retrieve it
+    let data = retrieveLSData(TEAM_KEY);
+    // Restore data into inventory
+    team.fromData(data);
 }
