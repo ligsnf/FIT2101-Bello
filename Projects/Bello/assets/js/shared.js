@@ -11,6 +11,7 @@ const PBI_KEY = "currentPbiIndex";
 const SPRINT_INVENTORY_KEY = "currentSprintInventoryData"
 const ITEM_KEY = "ItemKey";
 const TEAM_KEY = "TeamKey";
+const MEMBER_KEY = "MemberKey"
 
 
 /**
