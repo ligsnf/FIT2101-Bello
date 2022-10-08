@@ -256,12 +256,8 @@ class Team{
 
     fromData(data) {
         this._team = [];
-        for (let i = 0; i < data._team.length;i++){
-            for (let j = 0; j <data._team[i].length; j++){
-                let tempMember = new Member();
-                tempSprint.fromData(data._team[i][j]);
-                this._team[i].push(tempMember);
-            }
+        for (let i = 0; i < data._team.length;i++) {
+            this._team.push(data._team[i]);
         }
     }
 }
