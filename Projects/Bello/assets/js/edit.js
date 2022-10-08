@@ -33,7 +33,9 @@ function submit()
 
     // Create new member if they don't already exist
     if (!team.memberExists(editPBIAssigneeRef.value)) {
-        team.addMember(new Member(editPBIAssigneeRef.value));
+        let member = new Member();
+        member.name = editPBIAssigneeRef.value;
+        team.addMember(member);
     }
 
     updateLSData(PRODUCT_BACKLOG_KEY, inventory); //update localstorage

@@ -31,7 +31,9 @@ function addPBI() {
     
     // Create new member if they don't already exist
     if (!team.memberExists(assignee)) {
-        team.addMember(new Member(assignee));
+        let member = new Member();
+        member.name = assignee;
+        team.addMember(member);
     }
     
     // Adds item to inventory

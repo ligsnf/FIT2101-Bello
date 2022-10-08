@@ -257,14 +257,16 @@ class Team{
     fromData(data) {
         this._team = [];
         for (let i = 0; i < data._team.length;i++) {
-            this._team.push(data._team[i]);
+            let tempMember = new Member();
+            tempMember.fromData(data._team[i])
+            this._team.push(tempMember);
         }
     }
 }
 
 class Member {
-    constructor(name) {
-        this._name = name;
+    constructor() {
+        this._name = "";
         this._email = "";
         this._timeLog = [];
     }
@@ -275,15 +277,16 @@ class Member {
 
     set name(newName) { this._name = newName; }
     set email(newEmail) { this._email = newEmail; }
+    set timeLog(newTimeLog) { this._timeLog = newTimeLog; }
 
     addTime(time) {
         this._timeLog.push(time);
     }
 
     fromData(data) {
-        this._name = data.name;
-        this._email = data.email;
-        this._timeLog = data.timeLog;
+        this._name = data._name;
+        this._email = data._email;
+        this._timeLog = data._timeLog;
     }
 }
 /**
