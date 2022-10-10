@@ -1,45 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bello - Team Members</title>
   <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
   <link rel="stylesheet" href="assets/css/style.css">
-  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script> 
-    $(function(){
-      $("#header").load("assets/components/header.html"); 
-      $("#footer").load("assets/components/footer.html"); 
+  <script>
+    $(function () {
+      $("#header").load("assets/components/header.html");
+      $("#footer").load("assets/components/footer.html");
     });
-  </script> 
+  </script>
 </head>
-<body>
+
+<body onload="displayPBI()">
   <div id="header"></div>
   <div class="container">
     <div id="sprintNameDiv">
       <h1 id="sprintName"></h1>
-      <div>
-        Start Date:
-        <a id="startDate">
-        </a>&nbsp;&nbsp;&nbsp;&nbsp;
-        End Date:
-        <a id="endDate">
-        </a>
-      </div>
     </div>
     <div id="buttonDiv">
       <p>All PBIs; Sprint PBIs</p>
       <button id="editButton" type="button" class="btn btn-primary icon" onclick="editSprint()">Edit Details</button>
       <button type="button" class="btn btn-primary icon" onclick="startSprint()">Start Sprint</button>
-      <button type="button" class="btn btn-danger icon" onclick="deleteSprint()">Delete Sprint</button>
     </div>
+    <br>
+    <div>
+      <p>All Product Backlog Items</p>
+      <div id="allPBIDisplay" ondrop = "dragDropPBI(event)" ondragover ="allowDrop(event)"></div>
+    </div>
+    <br>
+    <div>
+      <p>Not Started Sprint Backlog Items</p>
+      <div id="notStartedPBI" ondrop = "dragDrop(event,0)" ondragover ="allowDrop(event)"></div>
+    </div> 
+    <br>
   </div>
   <div id="footer"></div>
   <script src="assets/js/shared.js"></script>
   <script src="assets/js/editsprint.js"></script>
 </body>
+
 </html>
