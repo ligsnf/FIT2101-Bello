@@ -360,8 +360,6 @@ if (checkLSData(PRODUCT_BACKLOG_KEY))
     inventory.fromData(data);
 }
 
-// Global sprint inventory variable
-let sprintInventory = new SprintInventory();
 // Check if data available in LS before continuing
 if (checkLSData(SPRINT_INVENTORY_KEY))
 {
