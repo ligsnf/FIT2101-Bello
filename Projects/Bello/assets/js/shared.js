@@ -255,7 +255,7 @@ class Team{
     memberExists(memberName) {
         for (let i = 0; i < team._team.length; i++) {
             // If member is found, 
-            if (team._team[i] == memberName) {
+            if (team._team[i].name == memberName) {
                 return true;
             }
         }
