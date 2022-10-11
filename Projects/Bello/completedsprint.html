@@ -29,9 +29,11 @@
       End Date:
       <a id="endDate">
       </a>
+      <p>Not Done; Doing; Done</p>
     </div>
-    
-    <br>
+    <div>
+      <button id="completedButton" type="button" class="btn btn-primary icon" onclick="completeSprint()">Complete</button>
+      <br>
 
     <div class="row" id="display-sprint-backlog">
       <div class="col-sm" id="notStarted">
@@ -49,13 +51,11 @@
 
     <div id="currentSprintButtons">
       <button id="viewBurndownChartButton" type="button" class="btn btn-primary icon" onclick="viewBurndownChart()">View Burndown Chart</button>
+
     </div>
-
   </div>
-
   <div id="viewTask"></div>
   <div id="viewBurndownChart"></div>
-  
   <div id="footer"></div>
   <script src="assets/js/shared.js"></script>
   <script src="assets/js/completedsprint.js"></script>
