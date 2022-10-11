@@ -22,6 +22,7 @@ class Inventory {
      * Constructor of the Inventory class
      * Initialises an array of product backlog items
      */
+
     constructor () {
         this._productBacklog = [];
     }
@@ -51,7 +52,6 @@ class Inventory {
         }
     }
 }
-
 
 /**
  * Product Backlog Item class representing a PBI
@@ -104,6 +104,7 @@ class PBI {
      * This function restores PBI data from local storage
      * @param {*} data data of PBI
      */
+
     fromData(data) {
         this._name = data._name;
         this._description = data._description;
@@ -117,10 +118,10 @@ class PBI {
     }
 }
 
-
 /**
  * Sprint Inventory class to hold all future, ongoing and past sprints
  */
+// Sprint Inventory Class
 class SprintInventory{
     /**
      * Constructor of SprintInventory class
@@ -172,7 +173,6 @@ class SprintInventory{
     }
 }
 
-
 /**
  * Sprint class representing a sprint
  */
@@ -187,7 +187,7 @@ class Sprint{
         this._name = name;
         this._startDate = startDate;
         this._endDate = endDate;
-        this._items = [];
+        this._items = [[],[],[]];
     }
 
     // Getters
@@ -205,7 +205,12 @@ class Sprint{
      * @param {PBI} item item to be added to the sprint
      */
     addItem(item) {
-        if (item instanceof PBI){ this._items.push(item); }
+        if (item instanceof PBI){ this._items[0].push(item) }
+    }
+
+    moveItem(itemIndex, fromArrayIndex, toArrayIndex){
+        this._items[toArrayIndex].push(this._items[fromArrayIndex][itemIndex]);
+        this._items[fromArrayIndex].splice(itemIndex,1);
     }
 
     /**
@@ -217,11 +222,13 @@ class Sprint{
         this._startDate = data._startDate;
         this._endDate = data._endDate;
 
-        this._items = [];
-        for (let i = 0; i < data._items.length;i++){
-            let tempPBI = new PBI();
-            tempPBI.fromData(data._items[i]);
-            this._items.push(tempPBI);
+        this._items = [[],[],[]];
+        for (let i = 0; i < data._items.length; i++){
+            for (let j = 0; j < data._items[i].length; j++){
+                let tempPBI = new PBI();
+                tempPBI.fromData(data._items[i][j]);
+                this._items[i].push(tempPBI);
+            }
         }
     }
 }
@@ -305,7 +312,6 @@ function checkLSData(key)
     return false;
 }
 
-
 /**
  * retrieveLSData function
  * Used to retrieve data from LS at a specific key. 
@@ -325,7 +331,6 @@ function checkLSData(key)
          return data;
      }
  }
-
 
  /**
  * updateLSData function
@@ -355,7 +360,9 @@ if (checkLSData(PRODUCT_BACKLOG_KEY))
     inventory.fromData(data);
 }
 
-// Sprint Inventory
+// Global sprint inventory variable
+let sprintInventory = new SprintInventory();
+// Check if data available in LS before continuing
 if (checkLSData(SPRINT_INVENTORY_KEY))
 {
     // If data exists, retrieve it
