@@ -187,7 +187,7 @@ class Sprint{
         this._name = name;
         this._startDate = startDate;
         this._endDate = endDate;
-        this._items = [[],[],[]];
+        this._items = [];
     }
 
     // Getters
