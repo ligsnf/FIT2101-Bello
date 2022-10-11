@@ -10,6 +10,8 @@ const PRODUCT_BACKLOG_KEY = "currentProductBacklogData"
 const PBI_KEY = "currentPbiIndex";
 const SPRINT_INVENTORY_KEY = "currentSprintInventoryData"
 const ITEM_KEY = "ItemKey";
+const TEAM_KEY = "TeamKey";
+const MEMBER_KEY = "MemberKey"
 
 
 /**
@@ -230,6 +232,71 @@ class Sprint{
         }
     }
 }
+
+class Team{
+    constructor() {
+        this._team = [];
+    }
+
+    get team() { return this._team; }
+
+    addMember(member) {
+        if (member instanceof Member){ this._team.push(member); }
+    }
+
+    removeMember(index) {
+        this._team.splice(index,1);
+    }
+
+    getMember(index) {
+        return this._team[index];
+    }
+
+    memberExists(memberName) {
+        for (let i = 0; i < team._team.length; i++) {
+            // If member is found, 
+            if (team._team[i] == memberName) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    fromData(data) {
+        this._team = [];
+        for (let i = 0; i < data._team.length;i++) {
+            let tempMember = new Member();
+            tempMember.fromData(data._team[i])
+            this._team.push(tempMember);
+        }
+    }
+}
+
+class Member {
+    constructor() {
+        this._name = "";
+        this._email = "";
+        this._timeLog = [];
+    }
+
+    get name() { return this._name; }
+    get email() { return this._email; }
+    get timeLog() {return this._timeLog; }
+
+    set name(newName) { this._name = newName; }
+    set email(newEmail) { this._email = newEmail; }
+    set timeLog(newTimeLog) { this._timeLog = newTimeLog; }
+
+    addTime(time) {
+        this._timeLog.push(time);
+    }
+
+    fromData(data) {
+        this._name = data._name;
+        this._email = data._email;
+        this._timeLog = data._timeLog;
+    }
+}
 /**
  * checkLSData function
  * Used to check if any data in LS exists at a specific key
@@ -277,9 +344,14 @@ function updateLSData(key, data)
     localStorage.setItem(key, json);
 }
 
-// Global inventory variable
+
+// Global variables
 let inventory = new Inventory();
-// Check if data available in LS before continuing
+let sprintInventory = new SprintInventory();
+let team = new Team();
+
+// Get from local storage
+// Product Backlog
 if (checkLSData(PRODUCT_BACKLOG_KEY))
 {
     // If data exists, retrieve it
@@ -297,4 +369,13 @@ if (checkLSData(SPRINT_INVENTORY_KEY))
     let data = retrieveLSData(SPRINT_INVENTORY_KEY);
     // Restore data into inventory
     sprintInventory.fromData(data);
+}
+
+// Team
+if (checkLSData(TEAM_KEY))
+{
+    // If data exists, retrieve it
+    let data = retrieveLSData(TEAM_KEY);
+    // Restore data into inventory
+    team.fromData(data);
 }

@@ -28,11 +28,16 @@ function addPBI() {
     // Creates a new PBI object based on user inputs
     let pbi = new PBI(name, description, type, tag, storyPoints, status, priority, assignee);
     
+    
+    // Create new member if they don't already exist
+    if (!team.memberExists(assignee)) {
+        let member = new Member();
+        member.name = assignee;
+        team.addMember(member);
+    }
+    
     // Adds item to inventory
     inventory.addItem(pbi);
-
-    console.log(pbi)
-    console.log(inventory)
 
     // Clearing input fields for next use
     document.getElementById("PBITaskName").value = "";
@@ -46,6 +51,7 @@ function addPBI() {
 
     // Save data
     updateLSData(PRODUCT_BACKLOG_KEY, inventory)
+    updateLSData(TEAM_KEY, team)
 
     // Update display
     displayProductBacklog(inventory);

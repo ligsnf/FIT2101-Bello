@@ -30,6 +30,15 @@ function submit()
     inventory.productBacklog[pbiIndex].tag = editPBITagRef.value;
     inventory.productBacklog[pbiIndex].priority = editPBIPriorityRef.value;
     inventory.productBacklog[pbiIndex].status = editPBIStatusRef.value;
+
+    // Create new member if they don't already exist
+    if (!team.memberExists(editPBIAssigneeRef.value)) {
+        let member = new Member();
+        member.name = editPBIAssigneeRef.value;
+        team.addMember(member);
+    }
+
     updateLSData(PRODUCT_BACKLOG_KEY, inventory); //update localstorage
+    updateLSData(TEAM_KEY, team);
     displayProductBacklog(inventory);
 }
