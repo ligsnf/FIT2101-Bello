@@ -253,9 +253,9 @@ class Team{
     }
 
     memberExists(memberName) {
-        for (let i = 0; i < team._team.length; i++) {
+        for (let i = 0; i < this._team.length; i++) {
             // If member is found, 
-            if (team._team[i].name == memberName) {
+            if (this._team[i].name == memberName) {
                 return true;
             }
         }
@@ -277,17 +277,21 @@ class Member {
         this._name = "";
         this._email = "";
         this._timeLog = [];
+        this._dateLog = [];
     }
 
     get name() { return this._name; }
     get email() { return this._email; }
     get timeLog() {return this._timeLog; }
+    get dateLog() {return this._dateLog; }
 
     set name(newName) { this._name = newName; }
     set email(newEmail) { this._email = newEmail; }
     set timeLog(newTimeLog) { this._timeLog = newTimeLog; }
+    set dateLog(newDateLog) { this._dateLog = newDateLog; }
 
-    addTime(time) {
+    addTime(date, time) {
+        this._dateLog.push(date);
         this._timeLog.push(time);
     }
 
@@ -295,6 +299,11 @@ class Member {
         this._name = data._name;
         this._email = data._email;
         this._timeLog = data._timeLog;
+        // this._dateLog = data._dateLog;
+        for (let i = 0; i < data._dateLog.length; i++) {
+            this._dateLog.push(data._dateLog[i]);
+            
+        }
     }
 }
 /**
