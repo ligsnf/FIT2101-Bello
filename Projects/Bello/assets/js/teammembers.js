@@ -48,6 +48,10 @@ function addMember() {
     // Add member
     team.addMember(member);
 
+    // Clearing input fields for next use
+    document.getElementById("memberName").value = "";
+    document.getElementById("memberEmail").value = "";
+
     // Update LS
     updateLSData(TEAM_KEY, team)
 
