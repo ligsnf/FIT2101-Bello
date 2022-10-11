@@ -187,7 +187,7 @@ class Sprint{
         this._name = name;
         this._startDate = startDate;
         this._endDate = endDate;
-        this._items = [[],[],[]];
+        this._items = [];
     }
 
     // Getters
@@ -205,12 +205,7 @@ class Sprint{
      * @param {PBI} item item to be added to the sprint
      */
     addItem(item) {
-        if (item instanceof PBI){ this._items[0].push(item) }
-    }
-
-    moveItem(itemIndex, fromArrayIndex, toArrayIndex){
-        this._items[toArrayIndex].push(this._items[fromArrayIndex][itemIndex]);
-        this._items[fromArrayIndex].splice(itemIndex,1);
+        if (item instanceof PBI){ this._items.push(item) }
     }
 
     /**
@@ -222,13 +217,11 @@ class Sprint{
         this._startDate = data._startDate;
         this._endDate = data._endDate;
 
-        this._items = [[],[],[]];
+        this._items = [];
         for (let i = 0; i < data._items.length; i++){
-            for (let j = 0; j < data._items[i].length; j++){
-                let tempPBI = new PBI();
-                tempPBI.fromData(data._items[i][j]);
-                this._items[i].push(tempPBI);
-            }
+            let tempPBI = new PBI();
+            tempPBI.fromData(data._items[i]);
+            this._items.push(tempPBI);
         }
     }
 }

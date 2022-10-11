@@ -78,10 +78,6 @@ function saveEdit(){
 function displayPBI(){
     let AllPBIDisplayRef = document.getElementById("allPBIDisplay");
     let notStartedPBIRef = document.getElementById("notStartedPBI");
-    let inProgressPBIRef = document.getElementById("inProgressPBI");
-    let completedPBIRef = document.getElementById("completedPBI");
-
-    refArray = [notStartedPBIRef,inProgressPBIRef,completedPBIRef];
 
 
     let output = ``;
@@ -90,7 +86,7 @@ function displayPBI(){
 
     if(inventory.productBacklog.length){
         for(let i = 0; i < inventory.productBacklog.length; i ++){
-            output += `<li class="list-group-item" id="PBI${i}" draggable = "true" ondragstart = "dragStartPBI(event,${i})">${inventory.productBacklog[i].name}</li>`;
+            output += `<li class="list-group-item" id="PBI${i}" draggable = "true" ondragstart = "dragStartSprint(event,${i})">${inventory.productBacklog[i].name}</li>`;
         }
     }
     else{
@@ -103,20 +99,18 @@ function displayPBI(){
 
     
     
-    for(let i = 0; i < sprint._items.length; i++){
-        let tempOutput = `<ul class="list-group">`;
-        if(sprint._items[i].length){
-            for(let j = 0; j < sprint._items[i].length ; j++){
-                tempOutput += `<li class="list-group-item" id="pbi${i}${j}" draggable = "true" ondragstart = "dragStartSprint(event,${j},${i})">${sprint._items[i][j].name}</li>`
-            }
+    let tempOutput = `<ul class="list-group">`;
+    if(sprint._items.length){
+        for(let i = 0; i < sprint._items.length; i ++){
+            tempOutput += `<li class="list-group-item" id="sprintpbi${i}" draggable = "true" ondragstart = "dragStartSprint(event,${i})">${sprint._items[i].name}</li>`
         }
-        else{
-            tempOutput += `<li class="list-group-item"></li>`
-        }
-    
-        tempOutput += `</ul">`;
-        refArray[i].innerHTML = tempOutput;
     }
+    else{
+        tempOutput += `<li class="list-group-item"></li>`
+    }
+    
+    tempOutput += `</ul">`;
+    notStartedPBIRef.innerHTML = tempOutput;
 
 }
 
@@ -131,32 +125,20 @@ function allowDrop (ev) {
 /**
  * Editing variables to allow changes of Sprint Backlog Items from one status to another in localstorage
  */
-function dragStartSprint (ev,itemIndex, fromIndex) {
-    tempFromIndex = fromIndex;
+function dragStartSprint (ev,itemIndex) {
     tempItemIndex = itemIndex;
     ev.dataTransfer.setData ("pbi", ev.target.id);
-}
-
-/**
- * Adding PBI to Sprint Backlog's Not Started array once a PBI has been dragged
- * and displaying changes on page
- */
-function dragStartPBI (ev,itemIndex){
-    sprint.addItem(inventory._productBacklog[itemIndex])
-    inventory._productBacklog.splice(itemIndex,1)
-    updateLSData(SPRINT_INVENTORY_KEY, sprintInventory)
-    updateLSData(PRODUCT_BACKLOG_KEY, inventory)
-    ev.dataTransfer.setData("pbi", ev.target.id);
 }
 
 /**
  * Moving Sprint Backlog items from one status array to another (started -> completed)
  * and displaying those changes on page
  */
-function dragDrop (ev,toIndex) {
-    sprint.moveItem(tempItemIndex, tempFromIndex, toIndex)
-    updateLSData(SPRINT_INVENTORY_KEY, sprintInventory)
-    updateLSData(PRODUCT_BACKLOG_KEY, inventory)
+function dragDrop (ev) {
+    sprint.addItem(inventory._productBacklog[tempItemIndex]);
+    inventory._productBacklog.splice(tempItemIndex,1);
+    updateLSData(SPRINT_INVENTORY_KEY, sprintInventory);
+    updateLSData(PRODUCT_BACKLOG_KEY, inventory);
     ev.preventDefault ();
     var data1 = ev.dataTransfer.getData("pbi");
     if(ev.target.className == "list-group-item"){
@@ -168,8 +150,8 @@ function dragDrop (ev,toIndex) {
 }
 
 function dragDropPBI(ev){
-    inventory.addItem(sprint._items[tempFromIndex][tempItemIndex])
-    sprint._items[tempFromIndex].splice(tempItemIndex,1);
+    inventory.addItem(sprint._items[tempItemIndex]);
+    sprint._items.splice(tempItemIndex,1);
     ev.preventDefault();
     var data1 = ev.dataTransfer.getData("pbi");
     updateLSData(SPRINT_INVENTORY_KEY, sprintInventory)
