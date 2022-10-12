@@ -28,12 +28,12 @@
     <br>
     
     <p>
-      View the team's effort within a specific time period by selecting the start and end dates of the period.
+      View the team's effort of a specific time period within the current sprint by selecting the start and end dates of the period.
     </p>
     
     <br>
 
-    <div class="row">
+    <div class="row" style="width: 80%">
       <div class="col-sm">
         <label for="startDate" class="form-label">Start Date</label>
         <div></div>
@@ -62,7 +62,32 @@
     <br>
 
     <div>
-      <p>table with all members name and hours</p>
+      <table class="table table-bordered" style="width: 60% ; text-align:center">
+        <thead>
+          <tr>
+            <th scope="col" style="width: 5%">Team Member#</th>
+            <th scope="col" style="width: 10%">Name</th>
+            <th scope="col" style="width: 10%">Average Number of Hours</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Name 1</td>
+            <td>5</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Name 2</td>
+            <td>10</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Name 3</td>
+            <td>15</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <br>
@@ -72,5 +97,6 @@
   </div>
   <div id="footer"></div>
   <script src="assets/js/shared.js"></script>
+  <script src="assets/js/teamdashboard.js"></script>
 </body>
 </html>
