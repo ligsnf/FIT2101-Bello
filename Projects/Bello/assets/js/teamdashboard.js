@@ -4,21 +4,43 @@
  * LAST MODIFIED : 13 Oct 22
  */
 
+// Global code for start & end dates of specified time period
+let startPeriod = null
+let endPeriod = null
 
 /**
  * Display the all team members effort table on the Team Members Page
  * @param {*} sprintInventory 
  */
- function displayTeamDashboard(sprintInventory) {
-    let currentSprint = sprintInventory[0][0]
-    let sprintStart = Date.parse(currentSprint.startDate)
-    let sprintEnd = Date.parse(currentSprint.endDate)
-    
-    // Alert user if start date is after end date
-    if (sprintStart>sprintEnd) {
-        alert("End date cannot be before start date");
-        return
+ function displayTeamDashboard() {
+    let teamDashboardTableRef = document.getElementById("teamDashboardTable")
+
+    let tableOutput = `
+        <thead>
+          <tr>
+            <th scope="col" style="width: 5%">Team Member #</th>
+            <th scope="col" style="width: 10%">Name</th>
+            <th scope="col" style="width: 10%">Average Number of Hours</th>
+          </tr>
+        </thead>
+        <tbody>
+    `
+
+    for (let i=0 ; i<team.team.length ; i++) {
+        let member = team.team[i]
+
+        tableOutput += `
+            <tr>
+                <th scope="row">${i+1}</th>
+                <td>${member.name}</td>
+                <td>5</td>
+            </tr>
+        `
     }
+
+    tableOutput += `</tbody>`
+
+    teamDashboardTableRef.innerHTML = tableOutput
 }
 
 
@@ -41,4 +63,7 @@ function setPeriod(startDate, endDate) {
         return
     }
 
+    startPeriod = startDate
+    endPeriod = endDate
+    displayTeamDashboard()
 }
