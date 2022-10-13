@@ -23,13 +23,24 @@
   <div id="header"></div>
   <div class="container">
     <h1>Team Members</h1>
-    <div>
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addMemberPopUp" style="margin-bottom:25px"> Add New Member </button>
-      <div id="addMember"></div>
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" style="margin-bottom:25px" onclick="window.location = `teamdashboard.html`"> Team Dashboard </button>
+
+    <br>
+
+    <div class="row" style="width: 50%">
+      <div class="col">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addMemberPopUp" style="margin-bottom:25px"> Add New Member </button>
+        <div id="addMember"></div>
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" style="margin-bottom:25px" onclick="window.location = `teamdashboard.html`"> View Team Dashboard </button>
+      </div>
     </div>
+
+    <br>
+
     <div id="teamMembers"></div>
     <div id="viewMember"></div>
+
   </div>
   <div id="footer"></div>
   <script src="assets/js/shared.js"></script>
