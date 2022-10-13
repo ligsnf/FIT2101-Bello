@@ -39,7 +39,7 @@
         <div></div>
         <input id="startDate" type="text">
         <script>
-            var startDate = new ej.calendars.DatePicker({ width: "255px" });
+            var startDate = new ej.calendars.DatePicker({format: 'yyyy-MM-dd', width: "255px"});
             startDate.appendTo('#startDate');
         </script>
       </div>
@@ -49,7 +49,7 @@
         <div></div>
         <input id="endDate" type="text">
         <script>
-            var endDate = new ej.calendars.DatePicker({ width: "255px" });
+            var endDate = new ej.calendars.DatePicker({format: 'yyyy-MM-dd', width: "255px"});
             endDate.appendTo('#endDate');
         </script>
       </div>
@@ -62,7 +62,7 @@
     <br>
 
     <div>
-      <table class="table table-bordered" style="width: 60% ; text-align:center">
+      <table id="teamdashboardtable" class="table table-bordered" style="width: 60% ; text-align:center">
         <thead>
           <tr>
             <th scope="col" style="width: 5%">Team Member#</th>
