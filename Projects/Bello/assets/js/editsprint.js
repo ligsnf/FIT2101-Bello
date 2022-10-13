@@ -1,7 +1,7 @@
 /**
  * FILENAME :   editsprint.js             
  * PURPOSE  :   Contains the funtionality for editing, starting and deleting an existing sprint.
- * LAST MODIFIED : 1 Oct 22
+ * LAST MODIFIED : 13 Oct 22
  */
 
 let index = localStorage.getItem(ITEM_KEY);
@@ -40,16 +40,15 @@ function editSprint(){
 
     let nameDiv = document.getElementById("sprintNameDiv");
     let outputEditName = `<div class="mb-3">
-    <label for="editSprintName" class="form-label">Sprint Name</label>
-    <textarea class="form-control" id="editSprintName" rows="1" placeholder=${currentSprintName}></textarea>
+    <label for="editSprintName" class="form-label"><h4>Sprint Name</h4></label>
+    <textarea class="form-control" id="editSprintName" rows="1">${currentSprintName}</textarea>
     </div>`;
     nameDiv.innerHTML = outputEditName;
 
     document.getElementById("editButton").remove()
 
     let buttonRef = document.getElementById("buttonDiv");
-    let finishButton = `<p>All PBIs; Sprint PBIs</p>
-    <button id="saveButton" type="button" class="btn btn-primary icon" onclick="saveEdit()">Save</button>`;
+    let finishButton = `<button id="saveButton" type="button" class="btn btn-primary icon" onclick="saveEdit()">Save</button>`;
     buttonRef.innerHTML = finishButton;
 
 }
@@ -70,7 +69,19 @@ function saveEdit(){
     <button id="editButton" type="button" class="btn btn-primary icon" onclick="editSprint()">Edit Details</button>
     <button type="button" class="btn btn-primary icon" onclick="startSprint()">Start Sprint</button>`;
     document.getElementById("buttonDiv").innerHTML = resetButtonOutput;
+    window.location = "editsprint.html"
 }
+
+
+/**
+  * Colour code PBI according to their tag
+  */
+ const TAG_TO_COLOR = {
+    "UI": "background-color: rgba(0, 255, 255, 0.4);",
+    "Core": "background-color: rgba(144, 238, 144, 0.4);",
+    "Testing": "background-color: rgba(255, 191, 0, 0.4);"
+}
+
 
 /**
  * Dislaying all PBI and Sprint Backlog Items on page
@@ -86,11 +97,41 @@ function displayPBI(){
 
     if(inventory.productBacklog.length){
         for(let i = 0; i < inventory.productBacklog.length; i ++){
-            output += `<li class="list-group-item" id="PBI${i}" draggable = "true" ondragstart = "dragStartSprint(event,${i})">${inventory.productBacklog[i].name}</li>`;
+            output += `
+                <li class="list-group-item" id="PBI${i}" draggable = "true" ondragstart = "dragStartSprint(event,${i})" style="${TAG_TO_COLOR[inventory.productBacklog[i].tag]}">
+                    <h4>${inventory.productBacklog[i].name}</h4>
+                    <div class="row">
+                        <div class="col">
+                            <table style="width:100%">
+                                <tr style="height:40px">
+                                    <th style="width:55%">Tag:</th>
+                                    <td style="text-align: left">${inventory.productBacklog[i].tag}</td>
+                                </tr>
+                                <tr style="height:40px">
+                                    <th style="width:55%">Priority:</th>
+                                    <td style="text-align: left">${inventory.productBacklog[i].priority}</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="col">
+                            <table style="width:100%">
+                                <tr style="height:40px">
+                                    <th style="width:55%">Story Points:</th>
+                                    <td style="text-align: left">${inventory.productBacklog[i].numStoryPoints}</td>
+                                </tr>
+                                <tr style="height:40px">
+                                    <th style="width:55%">Assignee:</th>
+                                    <td style="text-align: left">${inventory.productBacklog[i].assignee}</td>
+                                </tr>
+                            </table>
+                        </div> 
+                    </div>
+                </li>`
         }
     }
     else{
-        output += `<li class="list-group-item"></li>`
+        output += `<li class="list-group-item bg-transparent border-0">Drag a task from <i>Sprint Backlog Items</i> to here to remove it from the sprint backlog</li>`
     }
 
     output += `</ul>`
@@ -102,11 +143,41 @@ function displayPBI(){
     let tempOutput = `<ul class="list-group">`;
     if(sprint._items.length){
         for(let i = 0; i < sprint._items.length; i ++){
-            tempOutput += `<li class="list-group-item" id="sprintpbi${i}" draggable = "true" ondragstart = "dragStartSprint(event,${i})">${sprint._items[i].name}</li>`
+            tempOutput += `
+                <li class="list-group-item" id="sprintpbi${i}" draggable = "true" ondragstart = "dragStartSprint(event,${i})"  style="${TAG_TO_COLOR[sprint._items[i].tag]}">
+                     <h4>${sprint._items[i].name}</h4>
+                     <div class="row">
+                         <div class="col">
+                             <table style="width:100%">
+                                 <tr style="height:40px">
+                                     <th style="width:55%">Tag:</th>
+                                     <td style="text-align: left">${sprint._items[i].tag}</td>
+                                 </tr>
+                                 <tr style="height:40px">
+                                     <th style="width:55%">Priority:</th>
+                                     <td style="text-align: left">${sprint._items[i].priority}</td>
+                                 </tr>
+                             </table>
+                         </div>
+ 
+                         <div class="col">
+                             <table style="width:100%">
+                                 <tr style="height:40px">
+                                     <th style="width:55%">Story Points:</th>
+                                     <td style="text-align: left">${sprint._items[i].numStoryPoints}</td>
+                                 </tr>
+                                 <tr style="height:40px">
+                                     <th style="width:55%">Assignee:</th>
+                                     <td style="text-align: left">${sprint._items[i].assignee}</td>
+                                 </tr>
+                             </table>
+                         </div> 
+                     </div>
+                 </li>`
         }
     }
     else{
-        tempOutput += `<li class="list-group-item"></li>`
+        tempOutput += `<li class="list-group-item bg-transparent border-0">Drag a task from <i>All Product Backlog Items</i> to here to add it to the sprint backlog</li>`
     }
     
     tempOutput += `</ul">`;
@@ -147,6 +218,7 @@ function dragDrop (ev) {
     else{
         ev.target.appendChild(document.getElementById(data1));
     }
+    displayPBI()
 }
 
 function dragDropPBI(ev){
@@ -162,6 +234,7 @@ function dragDropPBI(ev){
     else{
         ev.target.appendChild(document.getElementById(data1));
     }
+    displayPBI()
 }
 
 /**
