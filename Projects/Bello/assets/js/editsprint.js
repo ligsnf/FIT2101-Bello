@@ -4,6 +4,8 @@
  * LAST MODIFIED : 13 Oct 22
  */
 
+
+// Global code
 let index = localStorage.getItem(ITEM_KEY);
 let sprint = sprintInventory.inventory[1][index];
 
@@ -22,13 +24,14 @@ sprintEndDateDisplayRef.innerHTML = sprint.endDate;
 
 
 /**
- * Moving sprint from not started to started
+ * Change the status of a sprint from not started to started
  */
 function startSprint() {
     sprintInventory.startSprint(index);
     updateLSData(SPRINT_INVENTORY_KEY, sprintInventory)
     window.location = "sprintBoard.html"
 }
+
 
 /**
  * Edit name of sprint in html and localstorage
@@ -52,6 +55,7 @@ function editSprint(){
     buttonRef.innerHTML = finishButton;
 
 }
+
 
 /**
  * Save the new name of sprint in html and localstorage
@@ -84,7 +88,7 @@ function saveEdit(){
 
 
 /**
- * Dislaying all PBI and Sprint Backlog Items on page
+ * Dislay all PBI and Sprint Backlog Items on page
  */
 function displayPBI(){
     let AllPBIDisplayRef = document.getElementById("allPBIDisplay");
@@ -137,9 +141,6 @@ function displayPBI(){
     output += `</ul>`
     AllPBIDisplayRef.innerHTML = output;
 
-
-    
-    
     let tempOutput = `<ul class="list-group">`;
     if(sprint._items.length){
         for(let i = 0; i < sprint._items.length; i ++){
@@ -182,27 +183,28 @@ function displayPBI(){
     
     tempOutput += `</ul">`;
     notStartedPBIRef.innerHTML = tempOutput;
-
 }
 
 
 /**
- * Allows drop functionality
+ * Allow drop functionality
  */
 function allowDrop (ev) {
     ev.preventDefault();
 }
 
+
 /**
- * Editing variables to allow changes of Sprint Backlog Items from one status to another in localstorage
+ * Edit variables to allow changes of Sprint Backlog Items from one status to another in localstorage
  */
 function dragStartSprint (ev,itemIndex) {
     tempItemIndex = itemIndex;
     ev.dataTransfer.setData ("pbi", ev.target.id);
 }
 
+
 /**
- * Moving Sprint Backlog items from one status array to another (started -> completed)
+ * Move Sprint Backlog items from one status array to another (started -> completed)
  * and displaying those changes on page
  */
 function dragDrop (ev) {
@@ -236,6 +238,7 @@ function dragDropPBI(ev){
     }
     displayPBI()
 }
+
 
 /**
  * Delete a future sprint listed on the sprint board page

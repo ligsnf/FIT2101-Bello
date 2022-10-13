@@ -1,9 +1,11 @@
 /**
  * FILENAME :   burndownChart.js             
  * PURPOSE  :   Contains the funtionality for showing the burndown chart of an ongoing sprint.
- * LAST MODIFIED : 1 Oct 22
+ * LAST MODIFIED : 14 Oct 22
  */
 
+
+// Global code
 let index = localStorage.getItem(ITEM_KEY);
 let sprint = sprintInventory.inventory[0][index];
 
@@ -54,10 +56,12 @@ function totalStoryPoints() {
     return storyPoints;
 }
 
+
 function numDays(startDate, endDate) {
     // Find number of days between start and end
     return (endDate.getTime() - startDate.getTime())/(1000*60*60*24);
 }
+
 
 function idealVelocity(totalStoryPoints, numDays) {
     // If there are no points, return all days filled with 0
@@ -78,6 +82,7 @@ function idealVelocity(totalStoryPoints, numDays) {
     return data;
 }
 
+
 function dateRange(startDate, endDate) {
     // Initialise variables
     let data = [];
@@ -92,6 +97,8 @@ function dateRange(startDate, endDate) {
     }
     return data;
 }
+
+
 /**
  * Go back to the sprint backlog page of the currently viewing sprint
  * @param {int} currentIndex The index number of the sprint
