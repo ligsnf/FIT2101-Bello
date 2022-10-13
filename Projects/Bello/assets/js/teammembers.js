@@ -20,6 +20,9 @@ function displayTeamMembers(team) {
         </div>
         `
     }
+    if (team.team.length==0) {
+        teamMembers = `There is no team member.`
+    }
     teamMemberRef.innerHTML = teamMembers;
 }
 displayTeamMembers(team)
@@ -78,9 +81,8 @@ function viewMember(index) {
 
     let MemberDisplayFooterRef = document.getElementById("viewMemberPopUpFotter");
     MemberDisplayFooterRef.innerHTML = `
-    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-    <button type="button" class="btn btn-danger" onclick="removeMember(${index})">Remove</button>
-    <button type="button" class="btn btn-primary" onclick="memberAnalytics(${index})">Analytics</button>
+    <button type="button" class="btn btn-primary" onclick="memberAnalytics(${index})">View Analytics</button>
+    <button type="button" class="btn btn-danger" onclick="removeMember(${index})">Remove Member</button>
     `
 }
 
