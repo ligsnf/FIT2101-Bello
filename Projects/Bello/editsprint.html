@@ -25,32 +25,51 @@
   <div class="container">
     <div id="sprintNameDiv">
       <h1 id="sprintName"></h1>
+
+      <br>
+
       <div>
-        Start Date:
+        <b>Start Date:</b>
         <a id="startDate">
         </a>&nbsp;&nbsp;&nbsp;&nbsp;
-        End Date:
+        <b>End Date:</b>
         <a id="endDate">
         </a>
       </div>
     </div>
+
+    <br>
+
+    <div>
+      <p>
+        Add tasks to sprint by dragging PBIs from <i>All Product Backlog Items</i> section to <i>Sprint Backlog Items</i> section 
+      </p>
+    </div>
+
     <div id="buttonDiv">
-      <p>All PBIs; Sprint PBIs</p>
       <button id="editButton" type="button" class="btn btn-primary icon" onclick="editSprint()">Edit Details</button>
       <button type="button" class="btn btn-primary icon" onclick="startSprint()">Start Sprint</button>
       <button type="button" class="btn btn-danger icon" onclick="deleteSprint()">Delete Sprint</button>
     </div>
+
     <br>
+
     <div>
-      <p>All Product Backlog Items</p>
+      <h4>All Product Backlog Items</h4>
       <div id="allPBIDisplay" ondrop = "dragDropPBI(event)" ondragover ="allowDrop(event)"></div>
     </div>
+
     <br>
+
     <div>
-      <p>Not Started Sprint Backlog Items</p>
+      <h4>Sprint Backlog Items</h4>
       <div id="notStartedPBI" ondrop = "dragDrop(event,0)" ondragover ="allowDrop(event)"></div>
     </div> 
+
     <br>
+
+    <div id="viewPBI"></div>
+
   </div>
   <div id="footer"></div>
   <script src="assets/js/shared.js"></script>
