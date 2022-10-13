@@ -47,7 +47,7 @@ let endPeriod = null
 
 
 /**
- * Sets the start and end dates of the time period
+ * Set the start and end dates of the time period
  * @param {*} startDate start date of the time period
  * @param {*} endDate end date of the time period
  * @returns if alerts raised
@@ -78,7 +78,7 @@ function setPeriod(startDate, endDate) {
 
 
 /**
- * Calculates the average number of hours spent on project during a specific time period
+ * Calculate the average number of hours spent on project during a specific time period
  * @param {*} index the index of the team member in the team members list
  * @returns average number of hours
  */

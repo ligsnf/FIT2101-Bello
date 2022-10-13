@@ -1,3 +1,10 @@
+/**
+ * FILENAME :   teammembers.js            
+ * PURPOSE  :   Contains the funtionality for adding, removing and viewing team members.
+ * LAST MODIFIED : 14 Oct 22
+ */
+
+
 function displayTeamMembers(team) {
     let teamMemberRef = document.getElementById("teamMembers");
     let teamMembers = ``;
@@ -26,6 +33,7 @@ function displayTeamMembers(team) {
     teamMemberRef.innerHTML = teamMembers;
 }
 displayTeamMembers(team)
+
 
 function addMember() {
     // Getting the user inputs
@@ -65,6 +73,7 @@ function addMember() {
     $('#addMemberPopUp').modal('toggle');
 }
 
+
 function viewMember(index) {
     let memberDisplayRef = document.getElementById("viewMemberPopUpBody");
     
@@ -86,6 +95,7 @@ function viewMember(index) {
     `
 }
 
+
 function removeMember(index) {
     team.removeMember(index);
 
@@ -99,11 +109,17 @@ function removeMember(index) {
     $('#viewMemberPopUp').modal('toggle');
 }
 
+
 function memberAnalytics(index) {
     localStorage.setItem(MEMBER_KEY, index);
     window.location = "analytics.html";
 }
 
+
+/**
+ * Redirect to the Team Dashboard Page to view the team's effort
+ * @returns if alert raised
+ */
 function viewTeamDashboard() {
     // alert user if there is no current sprint to view team dashboard for
     if (sprintInventory.inventory[0].length==0) {
