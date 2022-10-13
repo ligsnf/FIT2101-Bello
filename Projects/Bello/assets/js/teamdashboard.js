@@ -20,3 +20,25 @@
         return
     }
 }
+
+
+function setPeriod(startDate, endDate) {
+    // Alert user if start date not selected
+    if (!startDate) {
+        alert("Please select a start date");
+        return
+    }
+
+    // Alert user if end date not selected
+    if (!endDate) {
+        alert("Please select an end date");
+        return
+    }
+
+    // Alert user if start date is after end date
+    if (startDate>endDate) {
+        alert("End date cannot be before start date");
+        return
+    }
+
+}

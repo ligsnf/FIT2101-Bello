@@ -40,7 +40,7 @@
 
     <div class="row" style="width: 80%">
       <div class="col-sm">
-        <label for="startDate" class="form-label">Start Date</label>
+        <label for="startDate" class="form-label"><b>Start Date</b></label>
         <div></div>
         <input id="startDate" type="text">
         <script src="assets/js/shared.js"></script>
@@ -51,7 +51,7 @@
       </div>
 
       <div class="col-sm">
-        <label for="endDate" class="form-label">End Date</label>
+        <label for="endDate" class="form-label"><b>End Date</b></label>
         <div></div>
         <input id="endDate" type="text">
         <script>
@@ -61,7 +61,7 @@
       </div>
 
       <div class="col-sm">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" style="margin-bottom:25px" onclick="searchPeriod(startDate.currentDate, endDate.currentDate)"> Search </button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" style="margin-bottom:25px" onclick="setPeriod(startDate.currentDate, endDate.currentDate)"> Set Time Period </button>
       </div>
     </div>
 
