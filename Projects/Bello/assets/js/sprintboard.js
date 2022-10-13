@@ -12,6 +12,21 @@ function addSprint() {
     let startDate = document.getElementById("startDate").value;
     let endDate = document.getElementById("endDate").value;
 
+    let sprintStart = Date.parse(startDate)
+    let sprintEnd = Date.parse(endDate)
+
+    // Alert user if any field is empty
+    if (!name | !sprintStart | !sprintEnd) {
+        alert("Please fill in all fields");
+        return
+    }
+    
+    // Alert user if start date is after end date
+    if (sprintStart>sprintEnd) {
+        alert("End date cannot be before start date");
+        return
+    }
+    
     let sprint = new Sprint(name, startDate, endDate);
     sprintInventory.addSprint(sprint);
     console.log(sprintInventory)
