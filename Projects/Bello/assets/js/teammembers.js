@@ -103,3 +103,13 @@ function memberAnalytics(index) {
     localStorage.setItem(MEMBER_KEY, index);
     window.location = "analytics.html";
 }
+
+function viewTeamDashboard() {
+    // alert user if there is no current sprint to view team dashboard for
+    if (sprintInventory.inventory[0].length==0) {
+        alert("Cannot view team dashboard as there is no current sprint");
+        return
+    }
+
+    window.location = `teamdashboard.html`
+}
