@@ -22,7 +22,7 @@
                 <div></div>
                 <input id="startDate" type="text">
                 <script>
-                    var startDate = new ej.calendars.DatePicker({ width: "255px" });
+                    var startDate = new ej.calendars.DatePicker({format: 'yyyy-MM-dd', width: "255px"});
                     startDate.appendTo('#startDate');
                 </script>
             </div>
@@ -31,7 +31,10 @@
                 <div></div>
                 <input id="endDate" type="text">
                 <script>
-                    var endDate = new ej.calendars.DatePicker({ width: "255px" });
+                    // var endDate = new ej.calendars.DatePicker({ dateFormat:"dd/MM/yyy"});
+                    
+                    var endDate = new ej.calendars.DatePicker({format: 'yyyy-MM-dd', width: "255px"});
+
                     endDate.appendTo('#endDate');
                 </script>
             </div>
