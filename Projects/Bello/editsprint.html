@@ -42,33 +42,30 @@
 
     <div>
       <p>
-        Add tasks to sprint by dragging PBIs from <i>All Product Backlog Items</i> section to <i>Sprint Backlog Items</i> section 
+        Add tasks to the sprint backlog by dragging PBIs from <i>All Product Backlog Items</i> to <i>Sprint Backlog Items</i>
       </p>
     </div>
 
+    <br>
+
+    <div class="row gx-5">
+      <div class="col">
+        <h4>All Product Backlog Items</h4>
+        <div id="allPBIDisplay" ondrop = "dragDropPBI(event)" ondragover ="allowDrop(event)"></div>
+      </div>
+      <div class="col">
+        <h4>Sprint Backlog Items</h4>
+        <div id="notStartedPBI" ondrop = "dragDrop(event,0)" ondragover ="allowDrop(event)"></div>
+      </div>
+    </div>
+    
+    <br>
+
     <div id="buttonDiv">
       <button id="editButton" type="button" class="btn btn-primary icon" onclick="editSprint()">Edit Details</button>
-      <button type="button" class="btn btn-primary icon" onclick="startSprint()">Start Sprint</button>
-      <button type="button" class="btn btn-danger icon" onclick="deleteSprint()">Delete Sprint</button>
+      <button type="button" class="btn btn-success icon" onclick="startSprint()">Start Sprint</button>
+      <button type="button" class="btn btn-danger icon" style="float: right;" onclick="deleteSprint()">Delete Sprint</button>
     </div>
-
-    <br>
-
-    <div>
-      <h4>All Product Backlog Items</h4>
-      <div id="allPBIDisplay" ondrop = "dragDropPBI(event)" ondragover ="allowDrop(event)"></div>
-    </div>
-
-    <br>
-
-    <div>
-      <h4>Sprint Backlog Items</h4>
-      <div id="notStartedPBI" ondrop = "dragDrop(event,0)" ondragover ="allowDrop(event)"></div>
-    </div> 
-
-    <br>
-
-    <div id="viewPBI"></div>
 
   </div>
   <div id="footer"></div>
