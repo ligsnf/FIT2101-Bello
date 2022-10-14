@@ -1,9 +1,11 @@
 /**
  * FILENAME :   completedBurndownChart.js             
  * PURPOSE  :   Contains the funtionality for showing the burndown chart of a completed sprint.
- * LAST MODIFIED : 1 Oct 22
+ * LAST MODIFIED : 14 Oct 22
  */
 
+
+// Global code
 let index = localStorage.getItem(ITEM_KEY);
 let sprint = sprintInventory.inventory[2][index];
 
