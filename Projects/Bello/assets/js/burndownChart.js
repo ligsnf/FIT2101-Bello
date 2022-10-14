@@ -55,10 +55,10 @@ function burndownChart() {
         showlegend: true,
         legend: {
             x: 0,
-            y: -1.5
+            y: -0.4
         },
         title: "Burndown Chart",
-        height: 750,
+        height: 550,
         xaxis: {
             title: "Date",
             autotick: false,
