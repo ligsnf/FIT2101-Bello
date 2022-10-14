@@ -26,7 +26,7 @@ function addSprint() {
         alert("End date cannot be before start date");
         return
     }
-    
+
     let sprint = new Sprint(name, startDate, endDate);
     sprintInventory.addSprint(sprint);
     console.log(sprintInventory)

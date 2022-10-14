@@ -1,10 +1,11 @@
 /**
  * FILENAME :   shared.js             
  * PURPOSE  :   Contains all classes required for the application, keys for local storage, and global code that can be accessed by other files.
- * LAST MODIFIED : 1 Oct 22
+ * LAST MODIFIED : 14 Oct 22
  */
 
 "use strict";
+
 // Keys
 const PRODUCT_BACKLOG_KEY = "currentProductBacklogData"
 const PBI_KEY = "currentPbiIndex";
@@ -52,6 +53,7 @@ class Inventory {
         }
     }
 }
+
 
 /**
  * Product Backlog Item class representing a PBI
@@ -118,6 +120,7 @@ class PBI {
     }
 }
 
+
 /**
  * Sprint Inventory class to hold all future, ongoing and past sprints
  */
@@ -173,6 +176,7 @@ class SprintInventory{
     }
 }
 
+
 /**
  * Sprint class representing a sprint
  */
@@ -226,6 +230,10 @@ class Sprint{
     }
 }
 
+
+/**
+ * Team class representing the team working on the project
+ */
 class Team{
     constructor() {
         this._team = [];
@@ -265,6 +273,10 @@ class Team{
     }
 }
 
+
+/**
+ * Member class representing each member in the team
+ */
 class Member {
     constructor() {
         this._name = "";
@@ -299,6 +311,8 @@ class Member {
         }
     }
 }
+
+
 /**
  * checkLSData function
  * Used to check if any data in LS exists at a specific key
@@ -313,6 +327,7 @@ function checkLSData(key)
     }
     return false;
 }
+
 
 /**
  * retrieveLSData function
@@ -333,6 +348,7 @@ function checkLSData(key)
          return data;
      }
  }
+
 
  /**
  * updateLSData function

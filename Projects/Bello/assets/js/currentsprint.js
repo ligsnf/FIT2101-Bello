@@ -347,7 +347,38 @@ function logTimeTask(task) {
 function logTime() {
 
     let tasktime = document.getElementById("PBITaskTime").value;
+
+    // alert user if no time is entered
+    if (!tasktime) {
+        alert("Please enter time spent on task")
+        return
+    }
+
+    let taskDate = document.getElementById("logDate").value
+    taskDate = new Date(Date.parse(taskDate))
+
+    // alert user if no date is entered
+    if (!taskDate) {
+        alert("Please enter a date")
+        return
+    }
+
     tasktime = parseInt(tasktime);
+
+    let assigneeName = sprint.items[taskIndex].assignee
+
+    // loop through all members
+    for (let i=0 ; i<team.team.length ; i++) {
+        // check for logged task assignee in member list
+        if (assigneeName==team.team[i].name) {
+            team.team[i].addTime(taskDate, tasktime)
+
+            // update local storage
+            localStorage.setItem(MEMBER_KEY, team.team[i])
+            updateLSData(TEAM_KEY, team)
+        }
+    }
+
     // start task
     let newTaskTime = parseInt(sprint.items[taskIndex]._time);
     newTaskTime += tasktime;
