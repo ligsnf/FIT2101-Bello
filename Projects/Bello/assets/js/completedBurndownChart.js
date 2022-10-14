@@ -115,7 +115,6 @@ function actualVelocity(totalStoryPoints, numDays) {
     let tempPoints = totalStoryPoints;
 
     // Loop to create array of decreasing points
-    console.log(sprint.velocityLog);
     for (let i = 0; i < numDays+1; i++) {
         tempPoints = points - sprint.velocityLog[i];
         data.push(tempPoints);
