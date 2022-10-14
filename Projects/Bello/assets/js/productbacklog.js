@@ -1,7 +1,7 @@
 /**
  * FILENAME :   productbacklog.js             
  * PURPOSE  :   Contains the funtionality for adding, editing, deleting and viewing PBIs in the product backlog.
- * LAST MODIFIED : 1 Oct 22
+ * LAST MODIFIED : 14 Oct 22
  */
 
 /**
@@ -62,7 +62,7 @@ function addPBI() {
 
 
 /**
- * 
+ * Edit a PBI
  * @param {PBI} pbi The instance of PBI being edited
  */
 function edit(pbi)

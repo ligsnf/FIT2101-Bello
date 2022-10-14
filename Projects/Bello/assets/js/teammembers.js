@@ -1,3 +1,10 @@
+/**
+ * FILENAME :   teammembers.js            
+ * PURPOSE  :   Contains the funtionality for adding, removing and viewing team members.
+ * LAST MODIFIED : 14 Oct 22
+ */
+
+
 function displayTeamMembers(team) {
     let teamMemberRef = document.getElementById("teamMembers");
     let teamMembers = ``;
@@ -20,9 +27,13 @@ function displayTeamMembers(team) {
         </div>
         `
     }
+    if (team.team.length==0) {
+        teamMembers = `There is no team member.`
+    }
     teamMemberRef.innerHTML = teamMembers;
 }
 displayTeamMembers(team)
+
 
 function addMember() {
     // Getting the user inputs
@@ -62,6 +73,7 @@ function addMember() {
     $('#addMemberPopUp').modal('toggle');
 }
 
+
 function viewMember(index) {
     let memberDisplayRef = document.getElementById("viewMemberPopUpBody");
     
@@ -78,11 +90,11 @@ function viewMember(index) {
 
     let MemberDisplayFooterRef = document.getElementById("viewMemberPopUpFotter");
     MemberDisplayFooterRef.innerHTML = `
-    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-    <button type="button" class="btn btn-danger" onclick="removeMember(${index})">Remove</button>
-    <button type="button" class="btn btn-primary" onclick="memberAnalytics(${index})">Analytics</button>
+    <button type="button" class="btn btn-primary" onclick="memberAnalytics(${index})">View Analytics</button>
+    <button type="button" class="btn btn-danger" onclick="removeMember(${index})">Remove Member</button>
     `
 }
+
 
 function removeMember(index) {
     team.removeMember(index);
@@ -97,7 +109,23 @@ function removeMember(index) {
     $('#viewMemberPopUp').modal('toggle');
 }
 
+
 function memberAnalytics(index) {
     localStorage.setItem(MEMBER_KEY, index);
     window.location = "analytics.html";
+}
+
+
+/**
+ * Redirect to the Team Dashboard Page to view the team's effort
+ * @returns if alert raised
+ */
+function viewTeamDashboard() {
+    // alert user if there is no current sprint to view team dashboard for
+    if (sprintInventory.inventory[0].length==0) {
+        alert("Cannot view team dashboard as there is no current sprint");
+        return
+    }
+
+    window.location = `teamdashboard.html`
 }
