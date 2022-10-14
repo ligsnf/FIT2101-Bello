@@ -13,15 +13,41 @@ let sprint = sprintInventory.inventory[2][index];
 burndownChart();
 
 function burndownChart() {
+    let sprintDateRange = dateRange(new Date(sprint.startDate), new Date(sprint.endDate));
+    let sprintNumDays = numDays(new Date(sprint.startDate), new Date(sprint.endDate));
+    let sprintTotalStoryPoints = totalStoryPoints();
     var idealVelocity_ = {
-        x: dateRange(new Date(sprint.startDate), new Date(sprint.endDate)),
-        y: idealVelocity(totalStoryPoints(), numDays(new Date(sprint.startDate), new Date(sprint.endDate))),
+        x: sprintDateRange,
+        y: idealVelocity(sprintTotalStoryPoints, sprintNumDays),
         mode: "lines",
         name: "Ideal Velocity"
     }
+    var actualVelocity_ = {
+        x: sprintDateRange,
+        y: actualVelocity(sprintTotalStoryPoints, sprintNumDays),
+        type: "scatter",
+        name: "Actual Velocity"
+    }
+    var effortAccumulation_ = {
+        x: sprintDateRange,
+        y: effortAccumulation(sprintNumDays),
+        yaxis: 'y2',    
+        type: "bar",
+        name: "Effort Accumulation",
+        marker: {
+            color: 'rgb(242, 237, 75)',
+            opacity: 0.7,
+        },
+        width: 0.3
+    }
     let layout = {
         showlegend: true,
-        title: "Burndown Chart",
+        legend: {
+            x: 0,
+            y: -0.4
+        },
+        title: `${sprint.name} Burndown Chart`,
+        height: 550,
         xaxis: {
             title: "Date",
             autotick: false,
@@ -29,10 +55,16 @@ function burndownChart() {
             tick0: 0,
         },
         yaxis: {
-            title: "Story Points"
+            title: "Velocity (Story Points)",
+            overlaying: 'y2'
+        },
+        yaxis2: {
+            title: "Accumulation of effort (Hours)",
+            side: 'right',
+            showgrid: false,
         }
     }
-    Plotly.newPlot("burndownChart", [idealVelocity_], layout);
+    Plotly.newPlot("burndownChart", [idealVelocity_,actualVelocity_,effortAccumulation_], layout);
 }
 
 
@@ -45,20 +77,22 @@ function totalStoryPoints() {
     return storyPoints;
 }
 
+
 function numDays(startDate, endDate) {
     // Find number of days between start and end
     return (endDate.getTime() - startDate.getTime())/(1000*60*60*24);
 }
 
+
 function idealVelocity(totalStoryPoints, numDays) {
     // If there are no points, return all days filled with 0
     if (totalStoryPoints == 0) {
-        return Array(numDays).fill(0);
+        return Array(numDays+1).fill(0);
     }
 
     // Initialise variables
     let data = [];
-    let pointsPerDay = totalStoryPoints/numDays;
+    let pointsPerDay = totalStoryPoints/(numDays+1);
     let points = totalStoryPoints;
 
     // Loop to create array of decreasing points
@@ -68,6 +102,48 @@ function idealVelocity(totalStoryPoints, numDays) {
     }
     return data;
 }
+
+function actualVelocity(totalStoryPoints, numDays) {
+    // If there are no points, return all days filled with 0
+    if (totalStoryPoints == 0) {
+        return Array(numDays+1).fill(0);
+    }
+
+    // Initialise variables
+    let data = [];
+    let points = totalStoryPoints;
+    let tempPoints = totalStoryPoints;
+
+    // Loop to create array of decreasing points
+    console.log(sprint.velocityLog);
+    for (let i = 0; i < numDays+1; i++) {
+        tempPoints = points - sprint.velocityLog[i];
+        data.push(tempPoints);
+        points = tempPoints;
+    }
+
+    return data;
+}
+
+function effortAccumulation(numDays) {
+    // If there are no points, return all days filled with 0
+    if (totalStoryPoints == 0) {
+        return Array(numDays+1).fill(0);
+    }
+
+    // Initialise variables
+    let data = [];
+    let effortTotal = 0;
+
+    // Loop to create array of decreasing points
+    for (let i = 0; i < numDays+1; i++) {
+        effortTotal += (sprint.effortLog[i] / 60);
+        data.push(effortTotal);
+    }
+
+    return data;
+}
+
 
 function dateRange(startDate, endDate) {
     // Initialise variables

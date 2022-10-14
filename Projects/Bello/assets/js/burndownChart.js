@@ -9,16 +9,16 @@
 let index = localStorage.getItem(ITEM_KEY);
 let sprint = sprintInventory.inventory[0][index];
 
-if (sprint.items.length==0) {
-    let pbi1 = new PBI("Test Task 1", "text 1", "Story", "UI", "1", "Not started", "Low", "A")
-    sprint.addItem(pbi1)
-    let pbi2 = new PBI("Test Task 2", "text 2", "Bug", "Core", "2", "Not started", "High", "B")
-    sprint.addItem(pbi2)
-    let pbi3 = new PBI("Test Task 3", "text 3", "Bug", "Testing", "3", "Not started", "Medium", "C")
-    sprint.addItem(pbi3)
-    let pbi4 = new PBI("Test Task 4", "text 4", "Story", "Core", "4", "Not started", "High", "D")
-    sprint.addItem(pbi4)
-}
+// if (sprint.items.length==0) {
+//     let pbi1 = new PBI("Test Task 1", "text 1", "Story", "UI", "1", "Not started", "Low", "A")
+//     sprint.addItem(pbi1)
+//     let pbi2 = new PBI("Test Task 2", "text 2", "Bug", "Core", "2", "Not started", "High", "B")
+//     sprint.addItem(pbi2)
+//     let pbi3 = new PBI("Test Task 3", "text 3", "Bug", "Testing", "3", "Not started", "Medium", "C")
+//     sprint.addItem(pbi3)
+//     let pbi4 = new PBI("Test Task 4", "text 4", "Story", "Core", "4", "Not started", "High", "D")
+//     sprint.addItem(pbi4)
+// }
 
 // Load burndown chart
 burndownChart();
