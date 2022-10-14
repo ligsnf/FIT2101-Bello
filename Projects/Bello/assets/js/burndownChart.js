@@ -36,7 +36,7 @@ function burndownChart() {
     var actualVelocity_ = {
         x: sprintDateRange,
         y: actualVelocity(sprintTotalStoryPoints, sprintNumDays),
-        mode: "lines",
+        type: "scatter",
         name: "Actual Velocity"
     }
     var effortAccumulation_ = {
@@ -57,7 +57,7 @@ function burndownChart() {
             x: 0,
             y: -0.4
         },
-        title: "Burndown Chart",
+        title: `${sprint.name} Burndown Chart`,
         height: 550,
         xaxis: {
             title: "Date",
@@ -66,12 +66,13 @@ function burndownChart() {
             tick0: 0,
         },
         yaxis: {
-            title: "Story Points",
+            title: "Velocity (Story Points)",
             overlaying: 'y2'
         },
         yaxis2: {
-            title: "Hours",
-            side: 'right'
+            title: "Accumulation of effort (Hours)",
+            side: 'right',
+            showgrid: false,
         }
     }
     Plotly.newPlot("burndownChart", [idealVelocity_,actualVelocity_,effortAccumulation_], layout);
@@ -146,7 +147,6 @@ function effortAccumulation(numDays) {
     let effortTotal = 0;
 
     // Loop to create array of decreasing points
-    console.log(sprint.effortLog);
     for (let i = 0; i < numDays+1; i++) {
         effortTotal += (sprint.effortLog[i] / 60);
         data.push(effortTotal);
