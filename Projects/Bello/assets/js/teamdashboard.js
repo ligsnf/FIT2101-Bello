@@ -88,18 +88,22 @@ function calculateAverage(index) {
     console.log("days: " + daysBetween)
 
     let startDate = startPeriod
-    startDate.setDate(startPeriod.getDate()+1)
+    startDate.setDate(startPeriod.getDate())
     startDate = startPeriod.toISOString().split('T')[0]
 
     let endDate = endPeriod
-    endDate.setDate(endPeriod.getDate()+1)
+    endDate.setDate(endPeriod.getDate())
     endDate = endPeriod.toISOString().split('T')[0]
+
+    console.log("start: " + startDate)
+    console.log("end: " + endDate)
 
     // find the total number of hours logged within period
     let dateLogged = team.team[index].dateLog
     let timeLogged = team.team[index].timeLog
     let totalTime = 0
     for (let j=0 ; j<dateLogged.length ; j++) {
+        console.log("logged " + j + " :" + dateLogged[j].split('T')[0])
         if (startDate<=dateLogged[j].split('T')[0] && dateLogged[j].split('T')[0]<=endDate) {
             totalTime += timeLogged[j]
         }
