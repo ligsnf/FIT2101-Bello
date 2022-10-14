@@ -176,6 +176,11 @@ class SprintInventory{
     }
 }
 
+function dateBetween(startDate, endDate) {
+    let startDateObject = new Date(startDate);
+    let endDateObject = new Date(endDate);
+    return Math.ceil((endDateObject.getTime() - startDateObject.getTime()) / (1000 * 3600 * 24));
+}
 
 /**
  * Sprint class representing a sprint
@@ -192,6 +197,11 @@ class Sprint{
         this._startDate = startDate;
         this._endDate = endDate;
         this._items = [];
+        if (startDate){
+            let durationDays = dateBetween(startDate, endDate);
+            this._velocityLog = new Array(durationDays+1).fill(0);
+            this._effortLog = new Array(durationDays+1).fill(0);
+        }
     }
 
     // Getters
@@ -199,10 +209,14 @@ class Sprint{
     get startDate() { return this._startDate; }
     get endDate() { return this._endDate; }
     get items() { return this._items; }
+    get velocityLog() { return this._velocityLog; }
+    get effortLog() { return this._effortLog; }
     // Setters
     set name(newName) { this._name = newName; }
     set startDate(newStartDate) { this._startDate = newStartDate; }
     set endDate(newEndDate) { return this._endDate = newEndDate; }
+    set velocityLog(newVelocityLog) { return this._velocityLog = newVelocityLog; }
+    set effortLog(newEffortLog) { return this._effortLog = newEffortLog; }
 
     /**
      * Adds a PBI onto the sprint
@@ -220,6 +234,8 @@ class Sprint{
         this._name = data._name;
         this._startDate = data._startDate;
         this._endDate = data._endDate;
+        this._velocityLog = data._velocityLog;
+        this._effortLog = data._effortLog;
 
         this._items = [];
         for (let i = 0; i < data._items.length; i++){
