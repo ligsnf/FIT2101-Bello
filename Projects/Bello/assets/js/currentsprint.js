@@ -347,22 +347,20 @@ function logTimeTask(task) {
 function logTime() {
 
     let tasktime = document.getElementById("PBITaskTime").value;
-
-    // alert user if no time is entered
-    if (!tasktime) {
-        alert("Please enter time spent on task")
-        return
-    }
-
     let taskDate = document.getElementById("logDate").value
-    taskDate = new Date(Date.parse(taskDate))
 
     // alert user if no date is entered
     if (!taskDate) {
         alert("Please enter a date")
         return
     }
+    taskDate = new Date(Date.parse(taskDate))
 
+    // alert user if no time is entered
+    if (!tasktime) {
+        alert("Please enter time spent on task")
+        return
+    }
     tasktime = parseInt(tasktime);
 
     let assigneeName = sprint.items[taskIndex].assignee
