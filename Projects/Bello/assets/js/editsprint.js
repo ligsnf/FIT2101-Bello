@@ -33,6 +33,12 @@ function startSprint() {
         return
     }
 
+    // check if there is any sprint task
+    if (sprintInventory.inventory[1][index].items.length==0) {
+        alert("Cannot start a sprint without any sprint backlog item")
+        return
+    }
+
     sprintInventory.startSprint(index);
     updateLSData(SPRINT_INVENTORY_KEY, sprintInventory)
     window.location = "sprintBoard.html"
@@ -140,8 +146,11 @@ function displayPBI(){
                 </li>`
         }
     }
+    else if (sprint._items.length) {
+        output += `<li class="list-group-item bg-transparent border-0">Drag a task from <i>Sprint Backlog Items</i> to here to remove it from the sprint backlog.</li>`
+    }
     else{
-        output += `<li class="list-group-item bg-transparent border-0">Drag a task from <i>Sprint Backlog Items</i> to here to remove it from the sprint backlog</li>`
+        output += `<li class="list-group-item bg-transparent border-0">There is currently no PBIs.</li>`
     }
 
     output += `</ul>`
@@ -184,7 +193,7 @@ function displayPBI(){
         }
     }
     else{
-        tempOutput += `<li class="list-group-item bg-transparent border-0">Drag a task from <i>All Product Backlog Items</i> to here to add it to the sprint backlog</li>`
+        tempOutput += `<li class="list-group-item bg-transparent border-0">Drag a task from <i>All Product Backlog Items</i> to here to add it to the sprint backlog.</li>`
     }
     
     tempOutput += `</ul">`;
