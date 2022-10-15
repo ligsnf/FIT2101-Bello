@@ -67,6 +67,8 @@ function setPeriod(startDate, endDate) {
 
     // Alert user if start date is after end date
     if (startDate>endDate) {
+        console.log("start:" + startDate)
+        console.log("end:" + endDate)
         alert("End date cannot be before start date");
         return
     }
