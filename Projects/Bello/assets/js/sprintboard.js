@@ -66,7 +66,7 @@ function displaySprintInventory(sprintInventory) {
                     <tr style="height:35px">
                         <th style="width:25%">${sprint.name}</th>
                         <td style="text-align: left">
-                            (${sprint.startDate} - ${sprint.startDate})
+                            (${sprint.startDate} - ${sprint.endDate})
                         </td>
                         <td style="text-align: right">
                             <button type="button" class="btn btn-info" data-bs-toggle="modal" onclick="view(${i})"> View </button>

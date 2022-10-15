@@ -243,6 +243,8 @@ function complete(task) {
     // start task
     sprint.items[taskIndex].status = "Completed"
 
+    sprint.velocityLog[dateBetween(sprint.startDate, new Date())] += parseInt(sprint.items[taskIndex].numStoryPoints);
+
     // store data in LS
     localStorage.setItem(PBI_KEY, task)
     updateLSData(SPRINT_INVENTORY_KEY, sprintInventory)
@@ -362,6 +364,9 @@ function logTime() {
         return
     }
     tasktime = parseInt(tasktime);
+
+    // add time to sprint effort log
+    sprint.effortLog[dateBetween(sprint.startDate, taskDate)] += tasktime;
 
     let assigneeName = sprint.items[taskIndex].assignee
 
