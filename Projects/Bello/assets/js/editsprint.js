@@ -27,6 +27,12 @@ sprintEndDateDisplayRef.innerHTML = sprint.endDate;
  * Change the status of a sprint from not started to started
  */
 function startSprint() {
+    // check if there is a currently ongoing sprint
+    if (sprintInventory.inventory[0].length>0) {
+        alert("Cannot start a new sprint before completing the current sprint")
+        return
+    }
+
     sprintInventory.startSprint(index);
     updateLSData(SPRINT_INVENTORY_KEY, sprintInventory)
     window.location = "sprintBoard.html"
