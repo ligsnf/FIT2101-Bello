@@ -4,7 +4,10 @@
  * LAST MODIFIED : 14 Oct 22
  */
 
-
+/**
+ * Display the team member in the team member page
+ * @param {*} index the index of the team member in the team members list
+ */
 function displayTeamMembers(team) {
     let teamMemberRef = document.getElementById("teamMembers");
     let teamMembers = ``;
@@ -34,7 +37,9 @@ function displayTeamMembers(team) {
 }
 displayTeamMembers(team)
 
-
+/**
+ * Add new team member into the team members list
+ */
 function addMember() {
     // Getting the user inputs
     let name = document.getElementById("memberName").value;
@@ -73,7 +78,10 @@ function addMember() {
     $('#addMemberPopUp').modal('toggle');
 }
 
-
+/**
+ * Display the Member's information
+ * @param {*} index the index of the team member in the team members list
+ */
 function viewMember(index) {
     let memberDisplayRef = document.getElementById("viewMemberPopUpBody");
     
@@ -95,7 +103,10 @@ function viewMember(index) {
     `
 }
 
-
+/**
+ * remove the selected team member from the team member list
+ * @param {*} index the index of the team member in the team members list
+ */
 function removeMember(index) {
     team.removeMember(index);
 
@@ -109,7 +120,10 @@ function removeMember(index) {
     $('#viewMemberPopUp').modal('toggle');
 }
 
-
+/**
+ * move to the analytics page
+ * @param {*} index the index of the team member in the team members list
+ */
 function memberAnalytics(index) {
     localStorage.setItem(MEMBER_KEY, index);
     window.location = "analytics.html";
