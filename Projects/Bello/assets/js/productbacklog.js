@@ -131,6 +131,10 @@ function displayProductBacklog(inventory){
 
     output += `<div class="row justify-content-start" id="display-product-backlog">`
 
+    if (inventory.productBacklog.length==0) {
+        output += `<p>There is currently no product backlog item.</p>`
+    }
+
     for (let i=0; i < inventory.productBacklog.length; i++) {
         output += `
         <div class="col">
@@ -162,7 +166,7 @@ function displayProductBacklog(inventory){
         </div>
     `
     }
-
+    
     const PBIitemsPerRow = 30;
 
     // make empty elements to align bottom row left
