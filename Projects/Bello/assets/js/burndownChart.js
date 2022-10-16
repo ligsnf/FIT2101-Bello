@@ -103,7 +103,7 @@ function idealVelocity(totalStoryPoints, numDays) {
 
     // Initialise variables
     let data = [];
-    let pointsPerDay = totalStoryPoints/(numDays+1);
+    let pointsPerDay = totalStoryPoints/(numDays);
     let points = totalStoryPoints;
 
     // Loop to create array of decreasing points
@@ -111,6 +111,7 @@ function idealVelocity(totalStoryPoints, numDays) {
         data.push(points);
         points -= pointsPerDay;
     }
+    data.push(0);
     return data;
 }
 
