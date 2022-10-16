@@ -47,7 +47,7 @@ function addPBI() {
     document.getElementById("selectPBITaskType_").value = "";
     document.getElementById("selectPBITaskTag_").value = "";
     document.getElementById("selectPBITaskPriority_").value = "";
-    document.getElementById("selectPBITaskStatus_").value = "";
+    document.getElementById("selectPBITaskStatus_").value = "Not started";
 
     // Save data
     updateLSData(PRODUCT_BACKLOG_KEY, inventory)
