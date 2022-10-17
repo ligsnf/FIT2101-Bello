@@ -9,7 +9,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="addSprintPopUpLabel">New Sprint Backlog</h5>
+            <h5 class="modal-title" id="addSprintPopUpLabel">New Sprint</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
@@ -17,28 +17,33 @@
                 <label for="sprintName" class="form-label">Sprint Name</label>
                 <input class="form-control" id="sprintName" placeholder="Name of the sprint">
             </div>
+            <br>
             <div class="mb-3">
                 <label for="startDate" class="form-label">Start Date</label>
                 <div></div>
                 <input id="startDate" type="text">
                 <script>
-                    var startDate = new ej.calendars.DatePicker({ width: "255px" });
+                    var startDate = new ej.calendars.DatePicker({format: 'yyyy-MM-dd', width: "255px"});
                     startDate.appendTo('#startDate');
                 </script>
             </div>
+            <br>
             <div class="mb-3">
                 <label for="endDate" class="form-label">End Date</label>
                 <div></div>
                 <input id="endDate" type="text">
                 <script>
-                    var endDate = new ej.calendars.DatePicker({ width: "255px" });
+                    // var endDate = new ej.calendars.DatePicker({ dateFormat:"dd/MM/yyy"});
+                    
+                    var endDate = new ej.calendars.DatePicker({format: 'yyyy-MM-dd', width: "255px"});
+
                     endDate.appendTo('#endDate');
                 </script>
             </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" onclick="addSprint()">Save Sprint</button>
+            <button type="button" class="btn btn-primary" onclick="addSprint()">Create Sprint</button>
           </div>
         </div>
       </div>

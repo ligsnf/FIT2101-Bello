@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bello - Sprint Board</title>
+  <title>Bello - Burndown Chart</title>
   <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
   <link rel="stylesheet" href="assets/css/style.css">
   <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
@@ -13,6 +13,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.syncfusion.com/ej2/dist/ej2.min.js"></script>
   <link href="https://cdn.syncfusion.com/ej2/material.css" rel="stylesheet">
+  <script src='https://cdn.plot.ly/plotly-2.14.0.min.js'></script>
   <script> 
     $(function(){
       $("#header").load("assets/components/header.html"); 
@@ -25,16 +26,16 @@
   <div id="header"></div>
     <div class="container">
       <h1>Burndown Chart</h1>
-      <div id="burndownChart">
-        <p>this is where the burndown chart would go</p>
+      <div id="burndownChart"style="width: 100%;">
+        <!-- This is where the burndown chart goes -->
       </div>
+      <br>
       <div id="goBackButton">
         <button id="goBackButton" type="button" class="btn btn-secondary icon" onclick="goBack()">Go Back</button>
       </div>
-      <div id="goBack"></div>
+      <br>
     </div>
   </div>
-
   <div id="footer"></div>
   <script src="assets/js/shared.js"></script>
   <script src="assets/js/burndownChart.js"></script>

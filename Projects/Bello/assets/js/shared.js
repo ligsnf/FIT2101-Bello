@@ -1,15 +1,18 @@
 /**
  * FILENAME :   shared.js             
  * PURPOSE  :   Contains all classes required for the application, keys for local storage, and global code that can be accessed by other files.
- * LAST MODIFIED : 1 Oct 22
+ * LAST MODIFIED : 14 Oct 22
  */
 
 "use strict";
+
 // Keys
 const PRODUCT_BACKLOG_KEY = "currentProductBacklogData"
 const PBI_KEY = "currentPbiIndex";
 const SPRINT_INVENTORY_KEY = "currentSprintInventoryData"
 const ITEM_KEY = "ItemKey";
+const TEAM_KEY = "TeamKey";
+const MEMBER_KEY = "MemberKey"
 
 
 /**
@@ -20,6 +23,7 @@ class Inventory {
      * Constructor of the Inventory class
      * Initialises an array of product backlog items
      */
+
     constructor () {
         this._productBacklog = [];
     }
@@ -102,6 +106,7 @@ class PBI {
      * This function restores PBI data from local storage
      * @param {*} data data of PBI
      */
+
     fromData(data) {
         this._name = data._name;
         this._description = data._description;
@@ -119,6 +124,7 @@ class PBI {
 /**
  * Sprint Inventory class to hold all future, ongoing and past sprints
  */
+// Sprint Inventory Class
 class SprintInventory{
     /**
      * Constructor of SprintInventory class
@@ -170,6 +176,11 @@ class SprintInventory{
     }
 }
 
+function dateBetween(startDate, endDate) {
+    let startDateObject = new Date(startDate);
+    let endDateObject = new Date(endDate);
+    return Math.ceil((endDateObject.getTime() - startDateObject.getTime()) / (1000 * 3600 * 24));
+}
 
 /**
  * Sprint class representing a sprint
@@ -186,6 +197,11 @@ class Sprint{
         this._startDate = startDate;
         this._endDate = endDate;
         this._items = [];
+        if (startDate){
+            let durationDays = dateBetween(startDate, endDate);
+            this._velocityLog = new Array(durationDays+1).fill(0);
+            this._effortLog = new Array(durationDays+1).fill(0);
+        }
     }
 
     // Getters
@@ -193,10 +209,14 @@ class Sprint{
     get startDate() { return this._startDate; }
     get endDate() { return this._endDate; }
     get items() { return this._items; }
+    get velocityLog() { return this._velocityLog; }
+    get effortLog() { return this._effortLog; }
     // Setters
     set name(newName) { this._name = newName; }
     set startDate(newStartDate) { this._startDate = newStartDate; }
     set endDate(newEndDate) { return this._endDate = newEndDate; }
+    set velocityLog(newVelocityLog) { return this._velocityLog = newVelocityLog; }
+    set effortLog(newEffortLog) { return this._effortLog = newEffortLog; }
 
     /**
      * Adds a PBI onto the sprint
@@ -214,12 +234,96 @@ class Sprint{
         this._name = data._name;
         this._startDate = data._startDate;
         this._endDate = data._endDate;
+        this._velocityLog = data._velocityLog;
+        this._effortLog = data._effortLog;
 
         this._items = [];
-        for (let i = 0; i < data._items.length;i++){
+        for (let i = 0; i < data._items.length; i++){
             let tempPBI = new PBI();
             tempPBI.fromData(data._items[i]);
             this._items.push(tempPBI);
+        }
+    }
+}
+
+
+/**
+ * Team class representing the team working on the project
+ */
+class Team{
+    constructor() {
+        this._team = [];
+    }
+
+    get team() { return this._team; }
+
+    addMember(member) {
+        if (member instanceof Member){ this._team.push(member); }
+    }
+
+    removeMember(index) {
+        this._team.splice(index,1);
+    }
+
+    getMember(index) {
+        return this._team[index];
+    }
+
+    memberExists(memberName) {
+        for (let i = 0; i < this._team.length; i++) {
+            // If member is found, 
+            if (this._team[i].name == memberName) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    fromData(data) {
+        this._team = [];
+        for (let i = 0; i < data._team.length;i++) {
+            let tempMember = new Member();
+            tempMember.fromData(data._team[i])
+            this._team.push(tempMember);
+        }
+    }
+}
+
+
+/**
+ * Member class representing each member in the team
+ */
+class Member {
+    constructor() {
+        this._name = "";
+        this._email = "";
+        this._timeLog = [];
+        this._dateLog = [];
+    }
+
+    get name() { return this._name; }
+    get email() { return this._email; }
+    get timeLog() {return this._timeLog; }
+    get dateLog() {return this._dateLog; }
+
+    set name(newName) { this._name = newName; }
+    set email(newEmail) { this._email = newEmail; }
+    set timeLog(newTimeLog) { this._timeLog = newTimeLog; }
+    set dateLog(newDateLog) { this._dateLog = newDateLog; }
+
+    addTime(date, time) {
+        this._dateLog.push(date);
+        this._timeLog.push(time);
+    }
+
+    fromData(data) {
+        this._name = data._name;
+        this._email = data._email;
+        this._timeLog = data._timeLog;
+        // this._dateLog = data._dateLog;
+        for (let i = 0; i < data._dateLog.length; i++) {
+            this._dateLog.push(data._dateLog[i]);
+            
         }
     }
 }
@@ -275,10 +379,13 @@ function updateLSData(key, data)
 }
 
 
-// Global inventory variable
+// Global variables
 let inventory = new Inventory();
+let sprintInventory = new SprintInventory();
+let team = new Team();
 
-// Check if data available in LS before continuing
+// Get from local storage
+// Product Backlog
 if (checkLSData(PRODUCT_BACKLOG_KEY))
 {
     // If data exists, retrieve it
@@ -287,9 +394,6 @@ if (checkLSData(PRODUCT_BACKLOG_KEY))
     inventory.fromData(data);
 }
 
-// Global sprint inventory variable
-let sprintInventory = new SprintInventory();
-
 // Check if data available in LS before continuing
 if (checkLSData(SPRINT_INVENTORY_KEY))
 {
@@ -297,4 +401,13 @@ if (checkLSData(SPRINT_INVENTORY_KEY))
     let data = retrieveLSData(SPRINT_INVENTORY_KEY);
     // Restore data into inventory
     sprintInventory.fromData(data);
+}
+
+// Team
+if (checkLSData(TEAM_KEY))
+{
+    // If data exists, retrieve it
+    let data = retrieveLSData(TEAM_KEY);
+    // Restore data into inventory
+    team.fromData(data);
 }

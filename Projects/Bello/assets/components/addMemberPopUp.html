@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <style>
+  </style>
+  <body>
+    <div class="modal fade" id="addMemberPopUp" tabindex="-1" aria-labelledby="addMemberPopUpLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addMemberPopUpLabel">New Team Member</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+                <label for="memberName" class="form-label">Name</label>
+                <input class="form-control" id="memberName" placeholder="Member Name">
+            </div>
+            <div class="mb-3">
+              <label for="memberEmail" class="form-label">Email</label>
+              <input class="form-control" id="memberEmail" placeholder="Member Email">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" onclick="addMember()">Add Member</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

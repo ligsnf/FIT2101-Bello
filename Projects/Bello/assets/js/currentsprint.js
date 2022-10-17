@@ -243,6 +243,8 @@ function complete(task) {
     // start task
     sprint.items[taskIndex].status = "Completed"
 
+    sprint.velocityLog[dateBetween(sprint.startDate, new Date())] += parseInt(sprint.items[taskIndex].numStoryPoints);
+
     // store data in LS
     localStorage.setItem(PBI_KEY, task)
     updateLSData(SPRINT_INVENTORY_KEY, sprintInventory)
@@ -347,7 +349,39 @@ function logTimeTask(task) {
 function logTime() {
 
     let tasktime = document.getElementById("PBITaskTime").value;
+    let taskDate = document.getElementById("logDate").value
+
+    // alert user if no date is entered
+    if (!taskDate) {
+        alert("Please enter a date")
+        return
+    }
+    taskDate = new Date(Date.parse(taskDate))
+
+    // alert user if no time is entered
+    if (!tasktime) {
+        alert("Please enter time spent on task")
+        return
+    }
     tasktime = parseInt(tasktime);
+
+    // add time to sprint effort log
+    sprint.effortLog[dateBetween(sprint.startDate, taskDate)] += tasktime;
+
+    let assigneeName = sprint.items[taskIndex].assignee
+
+    // loop through all members
+    for (let i=0 ; i<team.team.length ; i++) {
+        // check for logged task assignee in member list
+        if (assigneeName==team.team[i].name) {
+            team.team[i].addTime(taskDate, tasktime)
+
+            // update local storage
+            localStorage.setItem(MEMBER_KEY, team.team[i])
+            updateLSData(TEAM_KEY, team)
+        }
+    }
+
     // start task
     let newTaskTime = parseInt(sprint.items[taskIndex]._time);
     newTaskTime += tasktime;

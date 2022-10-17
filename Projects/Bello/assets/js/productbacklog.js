@@ -1,7 +1,7 @@
 /**
  * FILENAME :   productbacklog.js             
  * PURPOSE  :   Contains the funtionality for adding, editing, deleting and viewing PBIs in the product backlog.
- * LAST MODIFIED : 1 Oct 22
+ * LAST MODIFIED : 14 Oct 22
  */
 
 /**
@@ -28,11 +28,16 @@ function addPBI() {
     // Creates a new PBI object based on user inputs
     let pbi = new PBI(name, description, type, tag, storyPoints, status, priority, assignee);
     
+    
+    // Create new member if they don't already exist
+    if (!team.memberExists(assignee)) {
+        let member = new Member();
+        member.name = assignee;
+        team.addMember(member);
+    }
+    
     // Adds item to inventory
     inventory.addItem(pbi);
-
-    console.log(pbi)
-    console.log(inventory)
 
     // Clearing input fields for next use
     document.getElementById("PBITaskName").value = "";
@@ -42,10 +47,11 @@ function addPBI() {
     document.getElementById("selectPBITaskType_").value = "";
     document.getElementById("selectPBITaskTag_").value = "";
     document.getElementById("selectPBITaskPriority_").value = "";
-    document.getElementById("selectPBITaskStatus_").value = "";
+    document.getElementById("selectPBITaskStatus_").value = "Not started";
 
     // Save data
     updateLSData(PRODUCT_BACKLOG_KEY, inventory)
+    updateLSData(TEAM_KEY, team)
 
     // Update display
     displayProductBacklog(inventory);
@@ -56,7 +62,7 @@ function addPBI() {
 
 
 /**
- * 
+ * Edit a PBI
  * @param {PBI} pbi The instance of PBI being edited
  */
 function edit(pbi)
@@ -125,6 +131,10 @@ function displayProductBacklog(inventory){
 
     output += `<div class="row justify-content-start" id="display-product-backlog">`
 
+    if (inventory.productBacklog.length==0) {
+        output += `<p>There is currently no product backlog item.</p>`
+    }
+
     for (let i=0; i < inventory.productBacklog.length; i++) {
         output += `
         <div class="col">
@@ -156,7 +166,7 @@ function displayProductBacklog(inventory){
         </div>
     `
     }
-
+    
     const PBIitemsPerRow = 30;
 
     // make empty elements to align bottom row left

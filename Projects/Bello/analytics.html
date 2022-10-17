@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bello - Current Sprint</title>
+  <title>Bello - Member Analytics</title>
   <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
   <link rel="stylesheet" href="assets/css/style.css">
   <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
@@ -16,59 +16,30 @@
     $(function(){
       $("#header").load("assets/components/header.html"); 
       $("#footer").load("assets/components/footer.html"); 
-      $("#viewTask").load("assets/components/viewSprintTaskPopUp.html"); 
-      $("#logTime").load("assets/components/logTimePopUp.html");
+      $("#addSprint").load("assets/components/addSprintPopUp.html"); 
     });
-  </script> 
+  </script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+  </script>
 </head>
 <body>
   <div id="header"></div>
   <div class="container">
-    <h1 id="sprintName"></h1>
+    <h1 id="memberName"></h1>
+    <br>
+    <h3 id="error"></h3>
+    <canvas id="myChart"></canvas>
 
     <br>
 
-    <div>
-      <b>Start Date:</b>
-      <a id="startDate">
-      </a>&nbsp;&nbsp;&nbsp;&nbsp;
-      <b>End Date:</b>
-      <a id="endDate">
-      </a>
-    </div>
-
-    <br>
-
-    <div class="row" id="display-sprint-backlog">
-      <div class="col-sm" id="notStarted">
-        <h3>Not Started</h3>
-      </div>
-      <div class="col-sm" id="inProgress">
-        <h3>In Progress</h3>
-      </div>
-      <div class="col-sm" id="completed">
-        <h3>Completed</h3>
-      </div>
-    </div>
-
-    <br>
-
-    <div id="currentSprintButtons">
-      <button id="completedButton" type="button" class="btn btn-success icon" onclick="completeSprint()">Complete</button>
-      <button id="viewBurndownChartButton" type="button" class="btn btn-primary icon" onclick="viewBurndownChart()">View Burndown Chart</button>
-    </div>
+    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" style="margin-bottom:25px" onclick="window.location = `teammembers.html`"> Back </button>
 
     <br>
     <br>
-
   </div>
-
-  <div id="viewTask"></div>
-  <div id="logTime"></div>
-  <div id="viewBurndownChart"></div>
-
   <div id="footer"></div>
   <script src="assets/js/shared.js"></script>
-  <script src="assets/js/currentsprint.js"></script>
+  <script src="assets/js/analytics.js"></script>
 </body>
 </html>
