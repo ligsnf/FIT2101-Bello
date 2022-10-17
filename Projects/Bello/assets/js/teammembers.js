@@ -121,10 +121,16 @@ function removeMember(index) {
 }
 
 /**
- * move to the analytics page
+ * Move to the analytics page
  * @param {*} index the index of the team member in the team members list
  */
 function memberAnalytics(index) {
+    // alert user if there is no current sprint to view team dashboard for
+    if (sprintInventory.inventory[0].length==0) {
+        alert("Cannot view team member's analytics as there is no current sprint");
+        return
+    }
+
     localStorage.setItem(MEMBER_KEY, index);
     window.location = "analytics.html";
 }
