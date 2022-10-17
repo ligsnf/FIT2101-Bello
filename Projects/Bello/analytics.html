@@ -18,14 +18,25 @@
       $("#footer").load("assets/components/footer.html"); 
       $("#addSprint").load("assets/components/addSprintPopUp.html"); 
     });
-  </script> 
+  </script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+  </script>
 </head>
 <body>
   <div id="header"></div>
   <div class="container">
     <h1 id="memberName"></h1>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" style="margin-bottom:25px" onclick="window.location = `teammembers.html`"> Back </button>
-    <p>graph showing each member and hours worked on each day</p>
+    <br>
+    <h3 id="error"></h3>
+    <canvas id="myChart"></canvas>
+
+    <br>
+
+    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" style="margin-bottom:25px" onclick="window.location = `teammembers.html`"> Back </button>
+
+    <br>
+    <br>
   </div>
   <div id="footer"></div>
   <script src="assets/js/shared.js"></script>
