@@ -1,3 +1,13 @@
+/**
+ * FILENAME :   analytics.js             
+ * PURPOSE  :   Contains the funtionality for showing the bar chart of a team member.
+ * LAST MODIFIED : 17 Oct 22
+ */
+
+
+/**
+ * Function that add @param {*} days to a date
+ */
 Date.prototype.addDays = function(days) {
     var date = new Date(this.valueOf());
     date.setDate(date.getDate() + days);
