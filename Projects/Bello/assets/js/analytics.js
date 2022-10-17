@@ -8,7 +8,7 @@ let index = localStorage.getItem(MEMBER_KEY);
 let member = team.team[index];
 
 let memberNameDisplayRef = document.getElementById("memberName");
-memberNameDisplayRef.innerHTML = member.name;
+memberNameDisplayRef.innerHTML = member.name + `'s Analytics`;
 
 let memberTime = member.timeLog;
 let memberDate = member.dateLog;
@@ -123,7 +123,7 @@ else{
     data: {
         labels: xValues,
         datasets: [{
-            label: "Data",
+            label: "Minutes",
             backgroundColor: 'rgba(255, 99, 132, 0.2)',
             borderColor: 'rgb(255, 99, 132)',
             borderWidth: 1,
